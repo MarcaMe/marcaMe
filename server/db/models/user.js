@@ -1,8 +1,8 @@
-const crypto = require("crypto");
-const Sequelize = require("sequelize");
-const db = require("../db");
+const crypto = require('crypto');
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const User = db.define("user", {
+const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -13,7 +13,7 @@ const User = db.define("user", {
     allowNull: false,
     set(val) {
       const newFirstName = val[0].toUpperCase() + val.slice(1);
-      this.setDataValue("firstName", newFirstName);
+      this.setDataValue('firstName', newFirstName);
     }
   },
   lastName: {
@@ -21,7 +21,7 @@ const User = db.define("user", {
     allowNull: false,
     set(val) {
       const newLastName = val[0].toUpperCase() + val.slice(1);
-      this.setDataValue("lastName", newLastName);
+      this.setDataValue('lastName', newLastName);
     }
   },
   followers: {
@@ -56,22 +56,22 @@ User.prototype.correctPassword = function(candidatePwd) {
  * classMethods
  */
 User.generateSalt = function() {
-  return crypto.randomBytes(16).toString("base64");
+  return crypto.randomBytes(16).toString('base64');
 };
 
 User.encryptPassword = function(plainText, salt) {
   return crypto
-    .createHash("RSA-SHA256")
+    .createHash('RSA-SHA256')
     .update(plainText)
     .update(salt)
-    .digest("hex");
+    .digest('hex');
 };
 
 /**
  * hooks
  */
 const setSaltAndPassword = user => {
-  if (user.changed("password")) {
+  if (user.changed('password')) {
     user.salt = User.generateSalt();
     user.password = User.encryptPassword(user.password, user.salt);
   }
