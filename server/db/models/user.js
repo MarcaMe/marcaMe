@@ -10,17 +10,15 @@ const User = db.define('user', {
   },
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false,
     set(val) {
-      const newFirstName = val[0].toUpperCase() + val.slice(1);
+      const newFirstName = val ? val[0].toUpperCase() + val.slice(1) : '';
       this.setDataValue('firstName', newFirstName);
     }
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
     set(val) {
-      const newLastName = val[0].toUpperCase() + val.slice(1);
+      const newLastName = val ? val[0].toUpperCase() + val.slice(1) : '';
       this.setDataValue('lastName', newLastName);
     }
   },
@@ -39,6 +37,9 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   googleId: {
+    type: Sequelize.STRING
+  },
+  facebookId: {
     type: Sequelize.STRING
   }
 });
