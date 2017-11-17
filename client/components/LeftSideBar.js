@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
+import { Sidebar, Segment, Button, Menu, Icon, Header } from 'semantic-ui-react';
 import ContentHome from './ContentHome';
 
 class LeftSideBar extends Component {
@@ -49,7 +49,7 @@ class LeftSideBar extends Component {
 const mapState = (state) => {
     return {
         // email: state.user.email
-    }
-}
+    };
+};
 
-export default connect(mapState)(LeftSideBar)
+export default connect(mapState)(LeftSideBar);
