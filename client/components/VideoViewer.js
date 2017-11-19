@@ -6,6 +6,7 @@ export const VideoViewer = () => {
     title: 'Solving SEO with Headless Chrome (Polymer Summit 2017)',
     provider: 'youtube',
     date: ' Nov 18th, 2017',
+    url:'https://www.youtube.com/watch?v=ydThUDlBDfc',
     videoId: 'ydThUDlBDfc',
     embed: "https://www.youtube.com/embed/ydThUDlBDfc"
     //embed links different for different sites
@@ -19,6 +20,7 @@ export const VideoViewer = () => {
       <h2>{dummyData.title}</h2>
       <h5>{`${dummyData.provider}.com`} </h5>
       <h5>{dummyData.date}</h5>
+      <h5><a href={dummyData.url}> Go to original </a></h5>
       <iframe width="640" height="390" src={dummyData.embed} frameborder="0" allowfullscreen></iframe>
     </div>
   );
