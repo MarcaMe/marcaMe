@@ -20,8 +20,25 @@ body {
   }
 
   #content-home {
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 140px;
+    margin-right: 140px;
   }
-}
 
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px) {
+    #content-home {
+      margin-left: 25px;
+      margin-right: 25px;
+    }
+  }
+  @media only screen
+  and (min-device-width: 500px)
+  and (max-device-width: 800px) {
+    #content-home {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+  }
+
+}

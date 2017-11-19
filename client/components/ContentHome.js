@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { ContentCard } from './ContentCard'
 // import { Mosaic } from 'react-mosaic-component'; to be used later
 
 let data = [{
@@ -42,25 +43,25 @@ let data = [{
 }];
 
 export const ContentHome = () => {
+    //hardcoding screen sizes for testing
+    //need to change based on document size
+    let itemsPerRow;
+    if (window.innerWidth < 400) {
+        itemsPerRow = '1'
+    }
+    if (window.innerWidth < 800) {
+        itemsPerRow = '3'
+    }
+    else {
+        itemsPerRow = '4'
+    }
 
     return (
         <div id="content-home">
-            <Card.Group itemsPerRow="4" >
+            <Card.Group itemsPerRow={itemsPerRow} >
                 {data.map((story, index) => {
                     return (
-                        <Card key={index}>
-                            <Image src={story.image} />
-                            <Card.Content>
-                                <Card.Header>{story.name}</Card.Header>
-                                <Card.Meta>
-                                    <span className="date">{story.date}</span>
-                                </Card.Meta>
-                                <Card.Description>{story.description}</Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <a><Icon name="user" />{story.likes}</a>
-                            </Card.Content>
-                        </Card>
+                        <ContentCard story={story} key={index} />
                     )
                 })}
             </Card.Group>
