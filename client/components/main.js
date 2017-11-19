@@ -34,6 +34,8 @@ class Main extends Component {
                 <Link to="/home">Home</Link>
                 <a href="#" onClick={handleClick}>Logout</a>
                 <button onClick={this.handleUrlButtonClick}>+</button>
+                {this.state.showUrlForm&&
+                  <AddByUrlForm user={user} />}                
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}

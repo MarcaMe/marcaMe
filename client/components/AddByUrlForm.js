@@ -1,0 +1,17 @@
+import react, { Component } from' react';
+import { connect } from 'react-redux'
+import { Form, Button } from 'semantic-ui-react';
+const AddByUrlForm = () => {
+  return (
+    <Form>
+      <h5>Save an item</h5>
+      <Form.Field>
+        <label>Enter Url</label>
+        <input placeholder='http://...'/>
+      </Form.Field>
+      <Button type='submit'>Save</Button>
+    </Form>
+    )
+}
+
+export default connect(null)(AddByUrlForm);
