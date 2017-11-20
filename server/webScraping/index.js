@@ -1,4 +1,6 @@
 const router = require('express').Router();
 
-router.use('/vedioScraping', require('./vedioScraping'));
+router.use('/videoScraping', require('./videoScraping'));
 router.use('/articleScraping', require('./articleScraping'));
+
+module.exports = router;
