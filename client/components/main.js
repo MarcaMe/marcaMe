@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
+import { AddByUrlForm } from './index'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -15,6 +16,7 @@ class Main extends Component {
     this.state = {
       showUrlForm: false
     }
+   this.handleUrlButtonClick = this.handleUrlButtonClick.bind(this)
   }
   
   handleUrlButtonClick(){

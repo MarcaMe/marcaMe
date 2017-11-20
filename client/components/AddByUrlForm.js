@@ -1,4 +1,4 @@
-import react, { Component } from' react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Form, Button } from 'semantic-ui-react';
 const AddByUrlForm = () => {
@@ -13,5 +13,10 @@ const AddByUrlForm = () => {
     </Form>
     )
 }
-
+// mapDispatch = dispatch => ({
+//   handleSubmit(evt, userId){
+//     evt.preventDefault();
+        
+//   }
+// })
 export default connect(null)(AddByUrlForm);
