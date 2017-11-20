@@ -74,6 +74,12 @@ body {
     justify-content: space-between;
   }
 
+  #hamburger {
+    margin-left: 1vw;
+    padding-left: 4vw;
+    padding-right: 1vw;
+    width: 5vw;
+  }
 
   @media only screen
   and (min-device-width: 320px)
