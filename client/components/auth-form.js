@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import { Button, Form } from 'semantic-ui-react'
+
 
 /**
  * COMPONENT
@@ -10,23 +12,26 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
+    <div id="login-container">
+    <h2>{displayName}</h2>
+      <Form id="login" onSubmit={handleSubmit} name={name} >
+        <Form.Field>
+          <label>Email</label>
           <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
           <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+        </Form.Field>
+        <Button color="instagram" type="submit">{displayName}</Button>
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-      <a href="/auth/facebook">{displayName} with Facebook</a>
+      </Form>
+      <div id="auth-form">
+        <a href="/auth/google">
+        <img src="/images/btn_google_signin_dark_normal_web.png" />
+        </a>
+        <a href="/auth/facebook">{displayName} with Facebook</a>
+      </div>
     </div>
   )
 }
