@@ -8,4 +8,6 @@ export { default as UserHome } from './user-home';
 export { Login, Signup } from './auth-form';
 export { default as ContentHome } from './ContentHome';
 export { default as LeftSideBar } from './LeftSideBar';
+export { default as AddByUrlForm } from './AddByUrlForm';
 export { default as VideoViewer } from './VideoViewer';
+
