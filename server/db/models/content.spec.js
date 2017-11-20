@@ -7,7 +7,7 @@ describe('Content model', () => {
     return db.sync({ force: true });
   });
 
-  describe('tags column', () => {
+  describe('content column', () => {
     let sample;
     beforeEach(() => {
       return Content.create({
@@ -21,9 +21,9 @@ describe('Content model', () => {
     });
 
     it('takes an array of objects, but look like an object', () => {
-      expect(Content.attributes.tags).to.be.an('object');
+      expect(Content.attributes.content).to.be.an('object');
     });
     //it actually looks like this: { {"breakfast", "consulting"}, {"meeting", "lunch"} }
-  }); // end describe('instanceMethods')
+  }); 
 
-}); // end describe('User model')
+});
