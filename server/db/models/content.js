@@ -25,7 +25,7 @@ const Content = db.define('content', {
     defaultValue: false
   },
   content: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
+    type: Sequelize.JSON,
     defaultValue: []
   },
   image: {
@@ -38,6 +38,5 @@ const Content = db.define('content', {
     allowNull: false
   }
 });
-
 
 module.exports = Content;
