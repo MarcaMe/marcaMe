@@ -25,4 +25,5 @@ describe('Content model', () => {
     });
     //it actually looks like this: { {"breakfast", "consulting"}, {"meeting", "lunch"} }
   }); // end describe('instanceMethods')
+
 }); // end describe('User model')

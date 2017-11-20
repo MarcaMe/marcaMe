@@ -39,4 +39,5 @@ const Content = db.define('content', {
   }
 });
 
+
 module.exports = Content;
