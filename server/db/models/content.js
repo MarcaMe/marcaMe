@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Article = db.define('article', {
+const Content = db.define('content', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -10,10 +10,6 @@ const Article = db.define('article', {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     defaultValue: []
   },
-  image: {
-    type: Sequelize.STRING,
-    defaultValue: "https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg"
-  }, 
   description: {
     type: Sequelize.TEXT
   },
@@ -31,8 +27,16 @@ const Article = db.define('article', {
   content: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     defaultValue: []
+  },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg'
+  },
+  type: {
+    type: Sequelize.ENUM('video', 'article', 'pdf'),
+    allowNull: false
   }
-
 });
 
-module.exports = Article;
+module.exports = Content;
