@@ -12,8 +12,15 @@ module.exports = router;
 //url = "https://www.nytimes.com/2017/11/16/opinion/sunday/confederate-statues-lee-family.html?action=click&pgtype=Homepage&clickSource=story-heading&module=opinion-c-col-right-region&region=opinion-c-col-right-region&WT.nav=opinion-c-col-right-region";
 //let url = "https://hbr.org/2017/11/how-to-excel-at-both-strategy-and-execution";
 //url="http://www.businessinsider.com/how-tesla-designs-cars-to-look-so-good-2017-11";
-//let url = "https://www.washingtonpost.com/news/worldviews/wp/2017/11/19/what-the-parasites-in-a-defectors-stomach-tell-us-about-north-korea/?utm_term=.8425ddda7d3a";
-let url = "https://scotch.io/bar-talk/vuejs-and-reactjs-a-quick-comparison";
+let url = "https://www.washingtonpost.com/news/worldviews/wp/2017/11/19/what-the-parasites-in-a-defectors-stomach-tell-us-about-north-korea/?utm_term=.8425ddda7d3a";
+//let url = "https://scotch.io/bar-talk/vuejs-and-reactjs-a-quick-comparison";
+
+const findDescription = (firstParaOfArticle) => {
+    for(key in firstParaOfArticle){
+        return firstParaOfArticle[key];
+    }
+}
+
 
 router.get("/", function(req, res) {
   request(url, function(error, response, html) {
@@ -21,7 +28,6 @@ router.get("/", function(req, res) {
       let $ = cheerio.load(html);
       let article = {
         title: '',
-        tags: [],
         description: '',
         url: url,
         content: [],
@@ -59,12 +65,6 @@ router.get("/", function(req, res) {
         let data = $(this);
         img = data.attr("content");
         article.image = img;
-      });
-      // not covered all
-      $("meta[name=keywords]").filter(function() {
-        let data = $(this);
-        tags = data.attr("content");
-        article.tags.push(tags);
       });
 
       $(`${contentSelector}`).each(function() {
@@ -112,7 +112,6 @@ router.get("/", function(req, res) {
               let obj = {};
               obj[tagName] = text;
               article.content.push(obj);
-              //console.log("tagName: ", tagName, " Link: ", link, " text: ", text)
             } else {
               let obj = {};
               let tagName = "p";
@@ -142,7 +141,7 @@ router.get("/", function(req, res) {
           }
         }
       });
-
+     article.description = findDescription(article.content[0]);
       Content.create(article);
       res.send(article);
     } else {
