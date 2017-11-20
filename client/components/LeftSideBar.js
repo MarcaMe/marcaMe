@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Sidebar, Segment, Button, Menu, Icon, Header } from 'semantic-ui-react';
+import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react';
 import ContentHome from './ContentHome';
+
 
 class LeftSideBar extends Component {
     constructor(props) {
@@ -9,18 +10,15 @@ class LeftSideBar extends Component {
         this.state = {
             visible: false
         }
-        this.toggleVisibility = this.toggleVisibility.bind(this);
     }
 
-    toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
     render() {
         const { visible } = this.state
         return (
             <div>
-                <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-                <Sidebar.Pushable as={Segment}>
-                    <Sidebar as={Menu} animation="overlay" width="thin" visible={visible} icon="labeled" vertical inverted>
+                <Sidebar.Pushable>
+                    <Sidebar className="sidebar" as={Menu} animation="overlay" width="thin" visible={visible} icon="labeled" vertical inverted>
                         <Menu.Item name="home">
                             <Icon name="home" />
                             Home
@@ -36,7 +34,6 @@ class LeftSideBar extends Component {
                     </Sidebar>
                     <Sidebar.Pusher>
                         <Segment basic>
-                            <Header as="h1">Content</Header>
                             <ContentHome />
                         </Segment>
                     </Sidebar.Pusher>
