@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react';
+import { Sidebar, Segment, Menu, Icon, Transition, Button } from 'semantic-ui-react';
 import ContentHome from './ContentHome';
 
 
@@ -10,7 +10,10 @@ class LeftSideBar extends Component {
         this.state = {
             visible: false
         }
+        this.toggleVisibility = this.toggleVisibility.bind(this)
     }
+
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
 
     render() {
@@ -34,7 +37,7 @@ class LeftSideBar extends Component {
                     </Sidebar>
                     <Sidebar.Pusher>
                         <Segment basic>
-                            <ContentHome />
+                        <ContentHome />
                         </Segment>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>

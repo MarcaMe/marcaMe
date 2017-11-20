@@ -10,9 +10,19 @@ body {
     display: block;
   }
 
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   nav a {
-    display: inline-block;
-    margin: 1em;
+    display: flex;
+    margin: .4em;
+  }
+
+  #logo {
+    margin-bottom: 0;
+    padding-left: 2vw;
   }
 
   form div {
@@ -26,16 +36,24 @@ body {
     padding-right: 2vw;
   }
 
-  #content-home {
-    padding: 3vh 2vw;
+  #logout-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 6vw;
   }
+
+  #content-home {
+    padding: .5vh 2vw;
+    position: absolute;
+  }
+
 
   .description {
     font-size: .8em;
   }
 
   #login-container {
-    // flex-direction: column;
     position: absolute;
     left: 35%;
     top: 20%;
@@ -53,7 +71,7 @@ body {
 
   #auth-form {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
 
