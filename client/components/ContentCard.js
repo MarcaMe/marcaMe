@@ -5,8 +5,8 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 
 export const ContentCard = (props) => {
     return (
-    <Card color={props.color} className="card" fluid={true}>
-        <Image size="medium" src={props.story.image} />
+    <Card color={props.color} className="card" fluid>
+        <Image fluid src={props.story.image} />
         <Card.Content>
             <Card.Header>{props.story.name}</Card.Header>
             <Card.Meta>

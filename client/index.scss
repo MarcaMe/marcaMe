@@ -20,14 +20,20 @@ body {
     display: inline-block;
   }
 
-  #content-home {
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-top: 1vh;
+  #login-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2vw;
   }
+
+  #content-home {
+    padding: 3vh 2vw;
+  }
+
   .description {
     font-size: .8em;
   }
+
   #login-container {
     // flex-direction: column;
     position: absolute;
