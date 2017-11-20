@@ -16,37 +16,42 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const url = req.body.url;
-  const videoId = url.split('=').pop()
-  if (url.indexOf('youtube.com')) {
-    request(url, (error, response, html) => {
-      let json = {
-        title: '',
-        image: `http://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-        tags: [],
-        description: '',
-        content: [],
-        type: 'video',
-        userId: req.body.userId,
-        url
-      };
-      console.log("JDSFDSKLFJLDSK", json)
-      if (!error) {
-        let $ = cheerio.load(html);
+  let json = {
+    title: '',
+    image: '',
+    tags: [],
+    description: '',
+    content: [],
+    type: 'video',
+    userId: req.body.userId,
+    url
+  };
+  request(url, (error, response, html) => {
+    if (!error) {
+      const $ = cheerio.load(html);
+      if (url.includes('youtube.com')) {
+        const videoId = url.split('=').pop();
         json.title = $('meta[itemprop="name"]').attr('content');
-        json.tags = $('meta[name=keywords]')
-          .attr('content')
-          .split(',');
+        json.image = `http://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        // json.tags = $('meta[name=keywords]').attr('content').split(',');
         json.description = $('#eow-description').text();
-        json.content = [
-          `https://www.youtube.com/embed/${videoId}`
-        ];
-        // res.send(json)
-        Content.create(json)
-          .then(_ => res.sendStatus(201))
-          .catch(next);
-      } else {
-        console.error('ERROR IN VIDEOSCRAPING POST', error);
+        json.content = [`https://www.youtube.com/embed/${videoId}`];
+      } else {  // for vimeo, vevo, dailymotion 
+        const videoId = url.split('/').pop();    
+        json.title = $('[property=og\\:title]').attr('content');
+        json.image = $('[property=og\\:image]').attr('content');
+        // json.tags = ($('[property=video\\:tag]').map((i, el)=> $(this).attr('content')))
+        json.description = $('[property=og\\:description]').attr('content')
+        if (url.indexOf('vimeo.com')) json.content = [`https://player.vimeo.com/video/${videoId}`]
+        else if (url.indexOf('dailymotion.com')) json.content = [`http://www.dailymotion.com/video/${videoId}`]
+        else if (url.indexOf('vevo.com')) json.content = [`https://embed.vevo.com?isrc=${videoId}`]
       }
-    });
-  }
+    
+      Content.create(json)
+        .then(_ => res.sendStatus(201))
+        .catch(next);
+    } else {
+      console.error('ERROR IN VIDEOSCRAPING POST', error);
+    }
+  });
 });
