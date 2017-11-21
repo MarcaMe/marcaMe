@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 import { postContentThunk } from '../store/content';
+import { webScraping } from '../utilsScraping'
 
 const AddByUrlForm = ({ user, handleSubmit }) => {
-  // const user = this.props.user
   return (
     <Form onSubmit={evt => handleSubmit(evt, user.id)}>
       <h5>Save an item</h5>
@@ -23,34 +23,14 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId) {
     evt.preventDefault();
-    let type;
-    if (
-      [
-        'youtube.com',
-        'vevo.com',
-        'vimeo.com',
-        'dailymotion.com'
-      ].some(videoSite => evt.target.url.value.includes(videoSite))
-    ) {
-      type = 'video';
-    } else if (
-      [
-        'nytimes.com',
-        'medium.com',
-        'washingtonpost.com',
-        'hbr.org',
-        'scotch.io'
-      ].some(articleSite => evt.target.url.value.includes(articleSite))
-    ) {
-      type = 'article';
-    }
+    const mercuryUrl = 'https://mercury.postlight.com/parser?url=' + evt.target.url.value;
+    webScraping(mercuryUrl, userId)
+    .then(res => dispatch(postContentThunk(res)))
 
-    const contentBody = {
-      userId,
-      type,
-      url: evt.target.url.value
-    };
-    dispatch(postContentThunk(contentBody));
   }
 });
 export default connect(mapState, mapDispatch)(AddByUrlForm);
+
+
+
+

@@ -28,7 +28,7 @@ const Content = db.define('content', {
     type: Sequelize.JSON,
     defaultValue: []
   },
-  image: {
+  imageUrl: {
     type: Sequelize.STRING,
     defaultValue:
       'https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg'
