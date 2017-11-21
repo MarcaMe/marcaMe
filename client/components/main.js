@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
+import { AddByUrlForm } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
 /**
  * COMPONENT
@@ -10,25 +11,40 @@ import { Button, Icon, Divider } from 'semantic-ui-react'
  *  else common to our entire app. The 'picture' inside the frame is the space
  *  rendered out by the component's `children`.
  */
-const Main = (props) => {
-  const { children, handleClick, isLoggedIn } = props
+class Main extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      showUrlForm: false
+    }
+   this.handleUrlButtonClick = this.handleUrlButtonClick.bind(this)
+  }
 
-  return (
-    <div>
-      <nav>
-      <h1 id="logo">MarcaMe</h1>
-        {
-          isLoggedIn
-            ? <div id="logout-nav">
-              {/* The navbar will show these links after you log in */}
+  handleUrlButtonClick(){
+    this.setState({showUrlForm: !this.state.showUrlForm})
+  }
+
+  render(){
+  const { children, handleClick, isLoggedIn, user } = this.props
+    return (
+      <div>
+        <nav>
+        <h1 id="logo">MarcaMe</h1>
+          {
+            isLoggedIn
+              ? <div id="logout-nav">
+                {/* The navbar will show these links after you log in */}
                 <Link to="/home">
-                  <Icon name="home" color="blue" size="big" />
+                <Icon name="home" color="blue" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
-                 <Icon name="log out" color="grey" size="large">Logout</Icon>
+                <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
-            </div>
-            : <div id="login-nav">
+                <button onClick={this.handleUrlButtonClick}>+</button>
+                {this.state.showUrlForm &&
+                  <AddByUrlForm user={user} />}
+              </div>
+              : <div id="login-nav">
               {/* The navbar will show these links before you log in */}
               <Link to="/sidebar">All Content</Link>
               <Link to="/login">
@@ -38,12 +54,13 @@ const Main = (props) => {
                 <Button color="teal">Sign Up</Button>
               </Link>
             </div>
-        }
-      </nav>
-      <Divider />
-      {children}
-    </div>
-  )
+          }
+        </nav>
+        <Divider />
+        {children}
+      </div>
+    )
+  }
 }
 
 /**
@@ -51,6 +68,7 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
+    user: state.user,
     isLoggedIn: !!state.user.id
   }
 }

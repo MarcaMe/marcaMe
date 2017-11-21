@@ -1,9 +1,10 @@
 const User = require('./user');
-const Video = require('./video');
+const Content = require('./content');
 
-User.hasMany(Video);
+User.hasMany(Content);
+
 
 module.exports = {
   User,
-  Video
+  Content
 };
