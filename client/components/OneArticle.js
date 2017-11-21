@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import store from "../store";
-import { fetchOneArticle } from "../store/article";
+import React from 'react';
+import { connect } from 'react-redux';
+import store from '../store';
+import { fetchOneArticle } from '../store/article';
 
 class OneArticle extends React.Component {
   constructor(props) {
