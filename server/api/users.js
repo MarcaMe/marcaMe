@@ -12,3 +12,14 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+// to test out the chrome extension
+router.post('/test', (req, res, next) => {
+  console.log('BODY: ', req.body)
+  res.sendStatus(200)
+})
+
+router.post('/dog', (req, res, next) => {
+  console.log('dog: ', req.body)
+  res.sendStatus(200)
+})
