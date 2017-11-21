@@ -17,6 +17,7 @@ export const postContentThunk = contentBody => dispatch => {
 
 export const getSingleContent = contentId => dispatch => {
   axios.get(`/api/contents/${contentId}`)
+  .then(res => res.data)
   .then(content => dispatch(getContent(content)))
   .catch(err => console.error(err));
 }

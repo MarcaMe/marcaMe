@@ -9,21 +9,20 @@ class OneArticle extends React.Component {
   }
 
   componentDidMount() {
-    //const runit = fetchOneArticle();
-    //store.dispatch(runit);
     this.props.getSingleContent()
   }
 
   render() {
-    // if (this.props.article.content) {
-    //   const article = this.props.article;
-    //   const contents = article.content;
-      //console.log("!!!!!!!!", contents);
-      return (
-        <div>
-          <h1>wow</h1>
-        </div>
-      );
+    let article;
+    if(this.props.content){
+      article = this.props.content[0];
+      }
+      return article&& (
+          <div>
+            <h1>{article.title}</h1>
+            <h2>{article.author} </h2>
+          </div>
+        );  
   }
 }
 
