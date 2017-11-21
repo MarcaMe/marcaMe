@@ -18,9 +18,9 @@ class Main extends Component {
     }
    this.handleUrlButtonClick = this.handleUrlButtonClick.bind(this)
   }
-  
+
   handleUrlButtonClick(){
-    this.setState({showUrlForm:!this.state.showUrlForm})
+    this.setState({showUrlForm: !this.state.showUrlForm})
   }
 
   render(){
@@ -36,8 +36,9 @@ class Main extends Component {
                 <Link to="/home">Home</Link>
                 <a href="#" onClick={handleClick}>Logout</a>
                 <button onClick={this.handleUrlButtonClick}>+</button>
-                {this.state.showUrlForm&&
-                  <AddByUrlForm user={user} />}                
+                { this.state.showUrlForm &&
+                  <AddByUrlForm user={user} />
+                }
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}

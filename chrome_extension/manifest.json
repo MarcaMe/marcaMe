@@ -1,0 +1,14 @@
+{
+  "name": "Fetch the Current URL",
+  "description": "fetch URL and add tags",
+  "version": "1.0",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+      "default_title": "Get this page's URL",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
