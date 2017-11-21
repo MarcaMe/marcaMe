@@ -12,13 +12,13 @@ export const webScraping = (mercuryUrl, userId) => {
     .get(mercuryUrl, config)
     .then(res => {
       const title = res.data.title;
+      const author = res.data.author;
       const description = res.data.excerpt;
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = res.data.url;
       const type = 'article'; // HARD CODED type
-      let obj = { title, description, content, imageUrl, type, userId, url };
-      return obj;
+      return { title, author, description, content, imageUrl, type, userId, url };
     })
     .catch(error => console.error(error));
 };
