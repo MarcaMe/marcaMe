@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => res.json(req.content))
+router.get('/:id', (req, res, next) => res.json(req.content));
 
 router.post('/', (req, res, next) => {
   const url = req.body.url;
@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
     image: '',
     tags: [],
     description: '',
-    content: [],
+    embedLink: '',
     type: 'video',
     userId: req.body.userId,
     url
@@ -49,7 +49,7 @@ router.post('/', (req, res, next) => {
         json.image = `http://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         // json.tags = $('meta[name=keywords]').attr('content').split(',');
         json.description = $('#eow-description').text();
-        json.content = [`https://www.youtube.com/embed/${videoId}`];
+        json.embedLink = `https://www.youtube.com/embed/${videoId}`;
       } else {
         // for vimeo, vevo, dailymotion
         const videoId = url.split('/').pop();
@@ -57,12 +57,12 @@ router.post('/', (req, res, next) => {
         json.image = $('[property=og\\:image]').attr('content');
         // json.tags = ($('[property=video\\:tag]').map((i, el)=> $(this).attr('content')))
         json.description = $('[property=og\\:description]').attr('content');
-        if (url.indexOf('vimeo.com'))
-          json.content = [`https://player.vimeo.com/video/${videoId}`];
-        else if (url.indexOf('dailymotion.com'))
-          json.content = [`http://www.dailymotion.com/video/${videoId}`];
-        else if (url.indexOf('vevo.com'))
-          json.content = [`https://embed.vevo.com?isrc=${videoId}`];
+        if (url.includes('vimeo.com'))
+          json.embedLink = `https://player.vimeo.com/video/${videoId}`;
+        else if (url.includes('dailymotion.com'))
+          json.embedLink = `http://www.dailymotion.com/video/${videoId}`;
+        else if (url.includes('vevo.com'))
+          json.embedLink = `https://embed.vevo.com?isrc=${videoId}`;
       }
 
       Content.create(json)

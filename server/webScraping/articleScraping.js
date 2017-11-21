@@ -22,7 +22,7 @@ const findDescription = (firstParaOfArticle) => {
 }
 
 
-router.get('/', function(req, res) {
+router.post('/', function(req, res) {
   request(url, function(error, response, html) {
     if (!error) {
       let $ = cheerio.load(html);
@@ -33,7 +33,8 @@ router.get('/', function(req, res) {
         url: url,
         content: [],
         image: '',
-        type: 'article'
+        type: 'article',
+         userId: req.body.userId,        
       };
 
       if (url.slice(12, 19) === 'nytimes') {
