@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, LeftSideBar, VideoViewer} from './components'
+import OneArticle from './components/OneArticle';
 import {me} from './store'
 
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/sidebar" component={LeftSideBar} />
             <Route path="/videos" component={VideoViewer} />
+            <Route path="/oneArticle" component={OneArticle} />
             {
               isLoggedIn &&
                 <Switch>
