@@ -41,20 +41,8 @@ class Main extends Component {
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
                 <button onClick={this.handleUrlButtonClick}>+</button>
-<<<<<<< HEAD
                 {this.state.showUrlForm &&
                   <AddByUrlForm user={user} />}
-=======
-                { this.state.showUrlForm &&
-                  <AddByUrlForm user={user} />
-                }
-              </div>
-              : <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/sidebar">All Content</Link>
->>>>>>> master
               </div>
               : <div id="login-nav">
               {/* The navbar will show these links before you log in */}
