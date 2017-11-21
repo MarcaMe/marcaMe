@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 import { postContentThunk } from '../store/content';
-
-
+import { webScraping } from '../utilsScraping'
 
 class AddByUrlForm extends Component {
   constructor(props) {
@@ -41,34 +40,11 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId) {
     evt.preventDefault();
-    let type;
-    if (
-      [
-        'youtube.com',
-        'vevo.com',
-        'vimeo.com',
-        'dailymotion.com'
-      ].some(videoSite => evt.target.url.value.includes(videoSite))
-    ) {
-      type = 'video';
-    } else if (
-      [
-        'nytimes.com',
-        'medium.com',
-        'washingtonpost.com',
-        'hbr.org',
-        'scotch.io'
-      ].some(articleSite => evt.target.url.value.includes(articleSite))
-    ) {
-      type = 'article';
-    }
+    const mercuryUrl = 'https://mercury.postlight.com/parser?url=' + evt.target.url.value;
+    webScraping(mercuryUrl, userId)
+    .then(res => dispatch(postContentThunk(res)))
 
-    const contentBody = {
-      userId,
-      type,
-      url: evt.target.url.value
-    };
-    dispatch(postContentThunk(contentBody));
   }
 });
 export default connect(mapState, mapDispatch)(AddByUrlForm);
+

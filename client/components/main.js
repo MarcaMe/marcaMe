@@ -41,7 +41,6 @@ class Main extends Component {
                 <Link to="/signup" onClick={handleClick}>
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
-
               </div>
               : <div id="login-nav">
               {/* The navbar will show these links before you log in */}

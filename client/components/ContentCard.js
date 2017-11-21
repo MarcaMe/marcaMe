@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 export const ContentCard = (props) => {
     return (
     <Card color={props.color} className="card" fluid>
-       <NavLink to={"/oneArticle"}> <Image fluid src={props.story.image} /> </NavLink>
+       <NavLink to={'/oneArticle'}> <Image fluid src={props.story.image} /> </NavLink>
         <Card.Content>
             <Card.Header>{props.story.name}</Card.Header>
             <Card.Meta>
@@ -20,4 +20,3 @@ export const ContentCard = (props) => {
     </Card>
       )
 }
-
