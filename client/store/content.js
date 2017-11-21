@@ -10,7 +10,6 @@ export const postContentThunk = contentBody => dispatch => {
   axios
     .post(`/api/scrape/${contentBody.type}Scraping/`, contentBody)
     .then(content => {
-      console.log("DID I HIT ", content)
       dispatch(postContent(content));
     })
     .catch(err => console.error(err));

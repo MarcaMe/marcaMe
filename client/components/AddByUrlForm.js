@@ -33,6 +33,16 @@ const mapDispatch = dispatch => ({
       ].some(videoSite => evt.target.url.value.includes(videoSite))
     ) {
       type = 'video';
+    } else if (
+      [
+        'nytimes.com',
+        'medium.com',
+        'washingtonpost.com',
+        'hbr.org',
+        'scotch.io'
+      ].some(articleSite => evt.target.url.value.includes(articleSite))
+    ) {
+      type = 'article';
     }
 
     const contentBody = {
@@ -40,7 +50,6 @@ const mapDispatch = dispatch => ({
       type,
       url: evt.target.url.value
     };
-    console.log("BODY ", contentBody)
     dispatch(postContentThunk(contentBody));
   }
 });
