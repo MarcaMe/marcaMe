@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Icon } from 'semantic-ui-react'
 
 
 /**
@@ -28,9 +28,15 @@ const AuthForm = (props) => {
       </Form>
       <div id="auth-form">
         <a href="/auth/google">
-        <img src="/images/btn_google_signin_dark_normal_web.png" />
+          <Button color="google plus">
+            <Icon name="google" />{displayName} with Google
+          </Button>
         </a>
-        <a href="/auth/facebook">{displayName} with Facebook</a>
+        <a href="/auth/facebook">
+          <Button color="facebook">
+            <Icon name="facebook" />{displayName} with Facebook
+          </Button>
+        </a>
       </div>
     </div>
   )

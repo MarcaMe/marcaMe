@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AddByUrlForm } from './index'
+import { Button, Icon, Divider } from 'semantic-ui-react'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -27,28 +28,35 @@ class Main extends Component {
   const { children, handleClick, isLoggedIn, user } = this.props
     return (
       <div>
-        <h1>MarcaMe</h1>
         <nav>
+        <h1 id="logo">MarcaMe</h1>
           {
             isLoggedIn
-              ? <div>
+              ? <div id="logout-nav">
                 {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
-                <a href="#" onClick={handleClick}>Logout</a>
+                <Link to="/home">
+                <Icon name="home" color="blue" size="big" />
+                </Link>
+                <Link to="/signup" onClick={handleClick}>
+                <Icon name="log out" color="grey" size="large">Logout</Icon>
+                </Link>
                 <button onClick={this.handleUrlButtonClick}>+</button>
-                { this.state.showUrlForm &&
-                  <AddByUrlForm user={user} />
-                }
+                {this.state.showUrlForm &&
+                  <AddByUrlForm user={user} />}
               </div>
-              : <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/sidebar">All Content</Link>
-              </div>
+              : <div id="login-nav">
+              {/* The navbar will show these links before you log in */}
+              <Link to="/sidebar">All Content</Link>
+              <Link to="/login">
+                <Button color="instagram">Login</Button>
+              </Link>
+              <Link to="/signup">
+                <Button color="teal">Sign Up</Button>
+              </Link>
+            </div>
           }
         </nav>
-        <hr />
+        <Divider />
         {children}
       </div>
     )
