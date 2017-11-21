@@ -24,6 +24,6 @@ describe('Content model', () => {
       expect(Content.attributes.content).to.be.an('object');
     });
     //it actually looks like this: { {"breakfast", "consulting"}, {"meeting", "lunch"} }
-  }); 
+  });
 
 });

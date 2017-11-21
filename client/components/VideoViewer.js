@@ -27,7 +27,7 @@ export const VideoViewer = () => {
         width="640"
         height="390"
         src={dummyData.embed}
-        allowfullscreen="true"
+        allowFullScreen="true"
       />
     </div>
   );

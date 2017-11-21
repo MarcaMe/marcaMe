@@ -36,6 +36,12 @@ const Content = db.define('content', {
   type: {
     type: Sequelize.ENUM('video', 'article', 'pdf'),
     allowNull: false
+  },
+  embedLink: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
   }
 });
 
