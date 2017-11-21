@@ -34,13 +34,13 @@ class Main extends Component {
             isLoggedIn
               ? <div id="logout-nav">
                 {/* The navbar will show these links after you log in */}
+                <button onClick={this.handleUrlButtonClick}>+</button>
                 <Link to="/home">
                 <Icon name="home" color="blue" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
-                <button onClick={this.handleUrlButtonClick}>+</button>
                 {this.state.showUrlForm &&
                   <AddByUrlForm user={user} />}
               </div>

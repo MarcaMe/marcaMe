@@ -19,14 +19,13 @@ const getArticle = article => ({type: GET_ARTICLE, article});
 /**
  * THUNK CREATORS
  */
-export const fetchOneArticle = () =>{
+export const fetchOneArticle = () => {
     return function thunk (dispatch) {
         axios.get('/api/scrape/articleScraping')
-          .then(res =>dispatch(getArticle(res.data)))
+          .then(res => dispatch(getArticle(res.data)))
           .catch(err => console.log(err))
     }
 }
-
 
 
 /**

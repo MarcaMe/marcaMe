@@ -8,10 +8,8 @@ const postContent = content => ({ type: POST_CONTENT, content });
 
 export const postContentThunk = contentBody => dispatch => {
   axios
-    .post(`/api/scrape/${contentBody.type}Scraping/`, contentBody)
-    .then(content => {
-      dispatch(postContent(content));
-    })
+    .post(`/api/contents`, contentBody)
+    .then(content => dispatch(postContent(content)))
     .catch(err => console.error(err));
 };
 
