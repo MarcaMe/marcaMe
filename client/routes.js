@@ -28,7 +28,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/sidebar" component={LeftSideBar} />
             <Route path="/videos" component={VideoViewer} />
-            <Route path="/oneArticle" component={OneArticle} />
+            <Route path="/content/:id" component={OneArticle} />
             {
               isLoggedIn &&
                 <Switch>
