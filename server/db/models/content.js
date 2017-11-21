@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const Video = db.define('video', {
+const Content = db.define('content', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -13,10 +13,6 @@ const Video = db.define('video', {
   description: {
     type: Sequelize.TEXT
   },
-  provider: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   url: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -27,7 +23,20 @@ const Video = db.define('video', {
   isPublic: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  content: {
+    type: Sequelize.JSON,
+    defaultValue: []
+  },
+  image: {
+    type: Sequelize.STRING,
+    defaultValue:
+      'https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg'
+  },
+  type: {
+    type: Sequelize.ENUM('video', 'article', 'pdf'),
+    allowNull: false
   }
 });
 
-module.exports = Video;
+module.exports = Content;

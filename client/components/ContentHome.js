@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { ContentCard } from './ContentCard';
+
 // import { Mosaic } from 'react-mosaic-component'; to be used later
 
 let data = [{
@@ -36,36 +38,51 @@ let data = [{
 }, {
     name: 'kenny',
     date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
+    image: 'https://www.youtube.com/embed/ydThUDlBDfc',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
+    likes: 5000
+    },
+    {
+    name: 'kenny',
+    date: 'date',
+    image: 'https://www.youtube.com/embed/ydThUDlBDfc',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
     likes: 5000
 }];
 
-export const ContentHome = () => {
+export class ContentHome extends Component {
+    //hardcoding screen sizes for testing
+    //need to change based on document size
+    constructor(props) {
+        super(props)
+        this.state = {
+            itemsPerRow: '4'
+        }
+    }
+    componentDidMount() {
+        if (window.innerWidth < 900) this.setState({itemsPerRow: '3'})
+        if (window.innerWidth < 500) this.setState({itemsPerRow: '1'})
+        if (window.innerWidth > 900) this.setState({itemsPerRow: '4'})
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 900) this.setState({itemsPerRow: '3'})
+            if (window.innerWidth < 500) this.setState({itemsPerRow: '1'})
+            if (window.innerWidth > 900) this.setState({itemsPerRow: '4'})
+        })
+    }
 
+    render() {
     return (
         <div id="content-home">
-            <Card.Group itemsPerRow="4" >
+            <Card.Group itemsPerRow={this.state.itemsPerRow} >
                 {data.map((story, index) => {
                     return (
-                        <Card key={index}>
-                            <Image src={story.image} />
-                            <Card.Content>
-                                <Card.Header>{story.name}</Card.Header>
-                                <Card.Meta>
-                                    <span className="date">{story.date}</span>
-                                </Card.Meta>
-                                <Card.Description>{story.description}</Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <a><Icon name="user" />{story.likes}</a>
-                            </Card.Content>
-                        </Card>
+                        <ContentCard color={getColor(index)} story={story} key={index} />
                     )
                 })}
             </Card.Group>
         </div>
     )
+    }
 }
 
 const mapState = (state) => {
@@ -73,5 +90,11 @@ const mapState = (state) => {
         // email: state.user.email
     };
 };
+
+function getColor(index) {
+    const colors = ['green', 'teal', 'blue', 'green', 'olive', 'violet', 'purple' ]
+    return colors[index % data.length]
+}
+
 
 export default connect(mapState)(ContentHome);

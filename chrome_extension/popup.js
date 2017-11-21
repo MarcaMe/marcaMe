@@ -1,5 +1,5 @@
 function addBookmark(url) {
-  const status = document.getElementById('status-display')
+  // const status = document.getElementById('status-display')
 
   let data = {
     url,
