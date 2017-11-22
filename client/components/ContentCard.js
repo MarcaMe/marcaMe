@@ -35,9 +35,17 @@ export const ContentCard = props => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Icon name="user">placeholder</Icon>
+        <span>
+          <Icon size="large" name="user" />
+        </span>
+        <span>
+          <Icon
+            onClick={evt => props.deleteContent(evt, props.id)}
+            size="large"
+            name="trash"
+          />
+        </span>
       </Card.Content>
     </Card>
   );
 };
-
