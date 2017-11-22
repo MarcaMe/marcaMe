@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Sidebar, Segment, Menu, Icon, Transition, Button } from 'semantic-ui-react';
+import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react';
 import ContentHome from './ContentHome';
-
+import store, { fetchCollections } from '../store'
 
 class LeftSideBar extends Component {
     constructor(props) {
@@ -14,31 +14,34 @@ class LeftSideBar extends Component {
         this.toggleVisibility = this.toggleVisibility.bind(this)
     }
 
+    componentDidMount(){
+        const collectionsThunk = fetchCollections()
+        store.dispatch(collectionsThunk)
+    }
+
   toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
 
     render() {
         const { visible, folderOpen } = this.state
+        const { collections } = this.props
         return (
             <div>
-            <Icon color="grey" size="big" name="sidebar" content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} onMouseOver={this.toggleVisibility} onMouseOut={this.toggleVisibility} id="hamburger"> Menu</Icon>
+            <Icon color="grey" size="big" name="sidebar" content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} onMouseOver={this.toggleVisibility} onMouseOut={this.toggleVisibility} id="hamburger">Collections</Icon>
             <Sidebar.Pushable >
                 <Sidebar onMouseOver={() => this.setState({visible: true})} onMouseOut={this.toggleVisibility} className="sidebar" as={Menu} animation="overlay" visible={visible} width="thin" icon="labeled" vertical inverted>
-                    <Menu.Item name="home">
-                        <Icon name="home" />
-                        Home
-                    </Menu.Item>
-                    <Menu.Item onMouseOut={() => this.setState({folderOpen: false})} onMouseOver={() => this.setState({folderOpen: true})}name="folder">
-                    {folderOpen ?
-                        <Icon name="folder open" /> :
-                        <Icon name="folder" />
-                    }
-                        Games
-                    </Menu.Item>
-                    <Menu.Item name="folder">
-                        <Icon name="folder" />
-                        Channels
-                    </Menu.Item>
+                {collections &&
+                collections.map(collection => {
+                    return (
+                        <Menu.Item key={collection.id} onMouseOut={() => this.setState({folderOpen: false})} onMouseOver={() => this.setState({folderOpen: true})}name="folder">
+                        {folderOpen ?
+                            <Icon name="folder open" /> :
+                            <Icon name="folder" />
+                        }
+                        {collection.name}
+                        </Menu.Item>
+                    )})
+                }
                 </Sidebar>
                 <Sidebar.Pusher>
                     <Segment basic>
@@ -53,7 +56,7 @@ class LeftSideBar extends Component {
 
 const mapState = (state) => {
     return {
-        // email: state.user.email
+        collections: state.collections
     };
 };
 

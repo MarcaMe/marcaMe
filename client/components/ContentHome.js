@@ -5,7 +5,6 @@ import { ContentCard } from './ContentCard';
 import { fetchAllContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
-// import { Mosaic } from 'react-mosaic-component'; to be used later
 
 export class ContentHome extends Component {
   //hardcoding screen sizes for testing

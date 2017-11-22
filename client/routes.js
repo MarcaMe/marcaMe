@@ -14,6 +14,7 @@ import {
 } from './components';
 import OneArticle from './components/OneArticle';
 import { me } from './store';
+import ContentHome from './components/ContentHome';
 
 /**
  * COMPONENT
@@ -39,7 +40,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/sidebar" component={LeftSideBar} />;
                 <Route path="/content/:id" component={OneArticle} />
-                <Route path="/home" component={LeftSideBar} />
+                <Route path="/home" component={ContentHome} />
               </Switch>
             )}
             {/* Displays our Login component as a fallback */}
