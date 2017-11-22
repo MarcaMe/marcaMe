@@ -44,6 +44,12 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+router.delete('/:id', (req, res, next) => {
+  req.content.destroy()
+  .then(_=> res.sendStatus(204))
+  .catch(next)
+})
+
 router.param('id', (req, res, next, id) => {
   Content.findById(id)
     .then(content => {
