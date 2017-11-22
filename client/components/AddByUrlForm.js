@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 import { postContentThunk } from '../store/content';
-import { webScraping } from '../utilsScraping'
+import { webScraping } from '../utilsScraping';
 
 class AddByUrlForm extends Component {
   constructor(props) {
