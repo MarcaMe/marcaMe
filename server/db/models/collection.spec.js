@@ -40,34 +40,4 @@ describe('Collection model', () => {
       })
     })
   })
-
-  describe('User association', () => {
-    let testCollection;
-    let kenny;
-    beforeEach(() => {
-      let user = User.create({
-        email: 'kenny@puppybook.com',
-        password: 'bones',
-        firstName: 'kenny',
-        lastName: 'puppybook'
-      })
-
-      let collection = Collection.create({
-        name: 'Kenny\'s super cool collection'
-      })
-      return Promise.all([user, collection])
-        .then(([createdUser, createdCollection]) => {
-          kenny = createdUser;
-          createdCollection.userId = createdUser.id
-          return createdCollection.reload()
-        })
-        .then(userCollection => {
-          testCollection = userCollection;
-        })
-    });
-
-    it('creates a collection associated with a user', () => {
-      expect(testCollection.userId).to.be.equal(kenny.id);
-    });
-  });
 });

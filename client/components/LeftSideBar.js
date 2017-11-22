@@ -20,26 +20,8 @@ class LeftSideBar extends Component {
     render() {
         const { visible, folderOpen } = this.state
         return (
-            <div>
-            <Icon color="grey" size="big" name="sidebar" content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} onMouseOver={this.toggleVisibility} onMouseOut={this.toggleVisibility} id="hamburger"> Menu</Icon>
-            <Sidebar.Pushable >
-                <Sidebar onMouseOver={() => this.setState({visible: true})} onMouseOut={this.toggleVisibility} className="sidebar" as={Menu} animation="overlay" visible={visible} width="thin" icon="labeled" vertical inverted>
-                    <Menu.Item name="home">
-                        <Icon name="home" />
-                        Home
-                    </Menu.Item>
+        <div>
 
-                    <Menu.Item name="folder">
-                        <Icon name="folder" />
-                        Channels
-                    </Menu.Item>
-                </Sidebar>
-                <Sidebar.Pusher>
-                    <Segment basic>
-                        <ContentHome />
-                    </Segment>
-                </Sidebar.Pusher>
-            </Sidebar.Pushable>
         </div>
         )
     }
