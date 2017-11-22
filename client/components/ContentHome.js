@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
-import { ContentCard } from './ContentCard';
+import  ContentCard  from './ContentCard';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
@@ -49,7 +49,7 @@ export class ContentHome extends Component {
               .filter(content => content.userId === this.props.user.id)
               .map((story, index) => {
                 return (
-                  <NavLink key={content.id} to={`content/${story.id}`}>
+                  <NavLink key={story.id} to={`content/${story.id}`}>
                     <ContentCard
                       color={this._getColor(index % 7)}
                       story={story}

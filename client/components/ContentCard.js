@@ -8,44 +8,56 @@ const truncateDescription = des => {
   else return des;
 };
 
-export const ContentCard = props => {
+class ContentCard extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+      heart: 'empty heart'
+    }
+  }
+
+render(){
   return (
     <Card
       style={{ width: '300px', height: '350px', margin: '0.5vw' }}
-      color={props.color}
+      color={this.props.color}
       className="card"
       fluid
     >
       <Card.Content style={{ overflow: 'hidden' }}>
-        <Card.Header>{props.story.title}</Card.Header>
+        <Card.Header>{this.props.story.title}</Card.Header>
         <div
           style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
         >
           <Image
             style={{ width: '100%', display: 'block' }}
             fluid
-            src={props.story.imageUrl}
+            src={this.props.story.imageUrl}
           />
         </div>
         <Card.Meta>
-          <span className="date">{props.story.date}</span>
+          <span className="date">{this.props.story.date}</span>
         </Card.Meta>
         <Card.Description style={{ fontSize: '1em' }} className="description">
-          {truncateDescription(props.story.description)}
+          {truncateDescription(this.props.story.description)}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <span>
-          <Icon size="large" name="user" />
-        </span>
-        <span>
-          <Icon
-            onClick={evt => props.deleteContent(evt, props.id)}
-            size="large"
-            name="trash"
-          />
-        </span>
+    
+      <Icon size="large" name={this.state.heart} onClick={evt => {
+        evt.preventDefault();
+        this.setState({heart: 'heart'}) }}/>  
+      
+      <Icon size="large" name="trash"
+      onClick={evt => props.deleteContent(evt, this.props.id)} />
+
+  
       </Card.Content>
     </Card>
-  );
+  )
+}
 };
+
+
+export default connect(null)(ContentCard);
