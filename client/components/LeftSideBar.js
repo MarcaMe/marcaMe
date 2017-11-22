@@ -28,13 +28,7 @@ class LeftSideBar extends Component {
                         <Icon name="home" />
                         Home
                     </Menu.Item>
-                    <Menu.Item onMouseOut={() => this.setState({folderOpen: false})} onMouseOver={() => this.setState({folderOpen: true})}name="folder">
-                    {folderOpen ?
-                        <Icon name="folder open" /> :
-                        <Icon name="folder" />
-                    }
-                        Games
-                    </Menu.Item>
+
                     <Menu.Item name="folder">
                         <Icon name="folder" />
                         Channels
@@ -58,3 +52,12 @@ const mapState = (state) => {
 };
 
 export default connect(mapState)(LeftSideBar);
+
+
+// <Menu.Item onMouseOut={() => this.setState({folderOpen: false})} onMouseOver={() => this.setState({folderOpen: true})}name="folder">
+// {folderOpen ?
+//     <Icon name="folder open" /> :
+//     <Icon name="folder" />
+// }
+//     Games
+// </Menu.Item>

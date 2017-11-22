@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Popup, Icon } from 'semantic-ui-react'
+import { Popup, Icon } from 'semantic-ui-react'
 import { AddByUrlForm } from './index'
 
 const AddPopup = (props) => (
