@@ -3,52 +3,6 @@ import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { ContentCard } from './ContentCard';
 
-// import { Mosaic } from 'react-mosaic-component'; to be used later
-
-let data = [{
-    name: 'matthew',
-    date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}, {
-    name: 'dog',
-    date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}, {
-    name: 'cat',
-    date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}, {
-    name: 'mom',
-    date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}, {
-    name: 'dad',
-    date: 'date',
-    image: 'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}, {
-    name: 'kenny',
-    date: 'date',
-    image: 'https://www.youtube.com/embed/ydThUDlBDfc',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-    },
-    {
-    name: 'kenny',
-    date: 'date',
-    image: 'https://www.youtube.com/embed/ydThUDlBDfc',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elitQuisque eget risus varius, consequat risus eu, placerat nisl.Curabitur quis arcu eget mi tristique egestas. Morbi nulla mauris',
-    likes: 5000
-}];
 
 export class ContentHome extends Component {
     //hardcoding screen sizes for testing
