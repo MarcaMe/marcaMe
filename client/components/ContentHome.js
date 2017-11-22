@@ -48,11 +48,10 @@ export class ContentHome extends Component {
           {content.length &&
             content.filter(content => content.userId === this.props.user.id).map((story, index) => {
               return (
-                <NavLink to={`content/${story.id}`}>
+                <NavLink key={index }to={`content/${story.id}`}>
                 <ContentCard
                   color={this._getColor(index)}
                   story={story}
-                  key={index}
                 />
                 </NavLink>
               );

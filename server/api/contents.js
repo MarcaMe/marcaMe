@@ -4,7 +4,7 @@ module.exports = router;
 
 router.post('/', (req, res, next) => {
   Content.create(req.body)
-    .then(() => res.sendStatus(201))
+    .then(content => res.json(content))
     .catch(next);
 });
 

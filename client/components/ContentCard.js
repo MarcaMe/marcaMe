@@ -14,10 +14,10 @@ export const ContentCard = (props) => {
             <Card.Meta>
                 <span className="date">{props.story.date}</span>
             </Card.Meta>
-            <Card.Description style={{"font-size": "1em"}}className="description">{truncateDescription(props.story.description)}</Card.Description>
+            <Card.Description style={{"fontSize": "1em"}} className="description">{truncateDescription(props.story.description)}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <a><Icon name="user" />{props.story.likes}</a>
+            <Icon name="user">placeholder</Icon>
         </Card.Content>
     </Card>
       )
