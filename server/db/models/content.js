@@ -6,8 +6,11 @@ const Content = db.define('content', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  author: {
+    type: Sequelize.STRING
+  },
   tags: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
+    type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue: []
   },
   description: {
