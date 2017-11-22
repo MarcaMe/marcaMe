@@ -35,7 +35,7 @@ class Main extends Component {
               ? <div id="logout-nav">
                 {/* The navbar will show these links after you log in */}
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
-                <Link to="/home">
+                <Link to="/sidebar">
                 <Icon name="home" color="teal" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
@@ -44,7 +44,6 @@ class Main extends Component {
               </div>
               : <div id="login-nav">
               {/* The navbar will show these links before you log in */}
-              <Link to="/sidebar">All Content</Link>
               <Link to="/login">
                 <Button color="instagram">Login</Button>
               </Link>

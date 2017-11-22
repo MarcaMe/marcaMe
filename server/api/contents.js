@@ -21,7 +21,7 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/', (req, res, next) => {
   Content.findAll({
-    attributes: ['id', 'title', 'description', 'imageUrl']
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId']
   })
   .then(content => res.json(content))
   .catch(next)

@@ -13,6 +13,7 @@ const getAllContent = content => ({ type: GET_ALL_CONTENT, content });
 export const fetchAllContent = () => dispatch => {
   axios
     .get('/api/contents')
+    .then(res => res.data)
     .then(content => dispatch(getAllContent(content)))
     .catch(err => console.error(err));
 };
