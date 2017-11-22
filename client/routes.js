@@ -10,9 +10,9 @@ import {
   Signup,
   UserHome,
   LeftSideBar,
-  VideoViewer
+  VideoViewer,
+  OneArticle
 } from './components';
-import OneArticle from './components/OneArticle';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
 
@@ -38,9 +38,9 @@ class Routes extends Component {
             {isLoggedIn && (
               <Switch>
                 {/* Routes placed here are only available after logging in */}
-                <Route path="/" component={ContentHome} />
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
+                <Route component={ContentHome} />
               </Switch>
             )}
             {/* Displays our Login component as a fallback */}
