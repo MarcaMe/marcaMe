@@ -13,8 +13,15 @@ class ContentCard extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      heart: 'empty heart'
+      isLike: false
     }
+    this.toggleLike = this.toggleLike.bind(this);
+  }
+
+  toggleLike(evt) {
+      evt.preventDefault();
+      this.setState({isLike: !this.state.isLike}) 
+      console.log(evt.target.className)
   }
 
 render(){
@@ -45,12 +52,10 @@ render(){
       </Card.Content>
       <Card.Content extra>
     
-      <Icon size="large" name={this.state.heart} onClick={evt => {
-        evt.preventDefault();
-        this.setState({heart: 'heart'}) }}/>  
+      <Icon size="large" name={this.state.isLike ? 'heart' : 'empty heart'} onClick={evt => this.toggleLike(evt)}/>  
       
       <Icon size="large" name="trash"
-      onClick={evt => props.deleteContent(evt, this.props.id)} />
+      onClick={evt => this.props.deleteContent(evt, this.props.id)} />
 
   
       </Card.Content>
