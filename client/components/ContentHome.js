@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { ContentCard } from './ContentCard';
 import { fetchAllContent } from '../store/content';
+import { NavLink } from 'react-router-dom';
 
 // import { Mosaic } from 'react-mosaic-component'; to be used later
 
@@ -48,11 +49,13 @@ export class ContentHome extends Component {
           {content.length &&
             content.filter(content => content.userId === this.props.user.id).map((story, index) => {
               return (
+                <NavLink to={`content/${story.id}`}>
                 <ContentCard
                   color={this._getColor(index)}
                   story={story}
                   key={index}
                 />
+                </NavLink>
               );
             })}
         </Card.Group>

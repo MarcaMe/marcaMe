@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
+
 export const ContentCard = (props) => {
     return (
     <Card color={props.color} className="card" fluid>
