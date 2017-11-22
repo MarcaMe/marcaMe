@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import { ContentCard } from './ContentCard';
-import { fetchAllContent } from '../store/content';
+import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
 export class ContentHome extends Component {
@@ -53,6 +53,8 @@ export class ContentHome extends Component {
                     <ContentCard
                       color={this._getColor(index % 7)}
                       story={story}
+                      id={story.id}
+                      deleteContent={this.props.deleteSingleContent}
                     />
                   </NavLink>
                 );
@@ -71,6 +73,10 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   fetchAllContentofUser() {
     dispatch(fetchAllContent());
+  },
+  deleteSingleContent(evt, contentId) {
+    evt.preventDefault();
+    dispatch(deleteOneContent(contentId));
   }
 });
 

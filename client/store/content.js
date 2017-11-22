@@ -3,12 +3,14 @@ import axios from 'axios';
 const GET_ALL_CONTENT = 'GET_ALL_CONTENT';
 const ADD_CONTENT = 'ADD_CONTENT';
 const GET_SINGLE_CONTENT = 'GET_SINGLE_CONTENT';
+const DELETE_SINGLE_CONTENT = 'DELETE_SINGLE_CONTENT';
 
 const defaultContent = [];
 
 const addContent = content => ({ type: ADD_CONTENT, content });
 const getContent = content => ({ type: GET_SINGLE_CONTENT, content });
 const getAllContent = content => ({ type: GET_ALL_CONTENT, content });
+const deleteSingleContent = contentId => ({ type: DELETE_SINGLE_CONTENT, contentId })
 
 export const fetchAllContent = () => dispatch => {
   axios
@@ -34,6 +36,13 @@ export const getSingleContent = contentId => dispatch => {
     .catch(err => console.error(err));
 };
 
+export const deleteOneContent = contentId => dispatch => {
+  dispatch(deleteSingleContent(contentId))
+  axios
+  .delete(`/api/contents/${contentId}`)
+  .catch(err => console.error(err))
+}
+
 export default function(state = defaultContent, action) {
   switch (action.type) {
     case GET_ALL_CONTENT:
@@ -42,6 +51,8 @@ export default function(state = defaultContent, action) {
       return [...state, action.content];
     case GET_SINGLE_CONTENT:
       return [action.content];
+    case DELETE_SINGLE_CONTENT:
+      return state.filter(content => (+content.id !== +action.contentId))
     default:
       return state;
   }
