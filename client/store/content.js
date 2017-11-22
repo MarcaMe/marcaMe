@@ -21,6 +21,7 @@ export const fetchAllContent = () => dispatch => {
 export const postContentThunk = contentBody => dispatch => {
   axios
     .post(`/api/contents`, contentBody)
+    .then(res => res.data)
     .then(content => dispatch(addContent(content)))
     .catch(err => console.error(err));
 };
@@ -38,7 +39,7 @@ export default function(state = defaultContent, action) {
     case GET_ALL_CONTENT:
       return action.content
     case ADD_CONTENT:
-      return action.content;
+      return [...state, action.content];
     case GET_SINGLE_CONTENT:
       return [action.content];
     default:
