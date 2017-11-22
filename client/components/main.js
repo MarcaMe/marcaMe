@@ -5,6 +5,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AddPopup } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
+import { ChangeTheme } from '../components'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -25,7 +26,7 @@ class Main extends Component {
   }
 
   render(){
-  const { children, handleClick, isLoggedIn, user } = this.props
+  const { children, handleClick, isLoggedIn, user, theme } = this.props
     return (
       <div>
         <nav>
@@ -34,9 +35,10 @@ class Main extends Component {
             isLoggedIn
               ? <div id="logout-nav">
                 {/* The navbar will show these links after you log in */}
+                <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
-                <Link to="/sidebar">
-                <Icon name="home" color="teal" size="big" />
+                <Link to="/home">
+                <Icon name="home" color={theme} size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
@@ -66,7 +68,8 @@ class Main extends Component {
 const mapState = (state) => {
   return {
     user: state.user,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    theme: state.theme
   }
 }
 

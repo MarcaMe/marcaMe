@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import { ContentCard } from './ContentCard';
+import { LeftSideBar } from '../components'
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
@@ -42,6 +43,8 @@ export class ContentHome extends Component {
   render() {
     const content = this.props.content;
     return (
+      <div>
+      <LeftSideBar />
       <div id="content-home">
         <Card.Group itemsPerRow={this.state.itemsPerRow}>
           {content.length &&
@@ -60,6 +63,7 @@ export class ContentHome extends Component {
                 );
               })}
         </Card.Group>
+      </div>
       </div>
     );
   }
