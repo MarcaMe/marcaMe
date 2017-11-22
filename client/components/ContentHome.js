@@ -52,7 +52,7 @@ export class ContentHome extends Component {
               .filter(content => content.userId === this.props.user.id)
               .map((story, index) => {
                 return (
-                  <NavLink key={story.id} to={`/content/${story.id}`}>
+                  <NavLink key={story.id} to={`content/${story.id}`}>
                     <ContentCard
                       color={this._getColor(index % 7)}
                       story={story}
