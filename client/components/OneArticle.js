@@ -1,43 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store from '../store';
 import { getSingleContent } from '../store/content';
-
+import ReactHtmlParser from 'react-html-parser';
+import { Container } from 'semantic-ui-react';
 class OneArticle extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    this.props.getSingleContent()
+    this.props.getSingleContent();
   }
 
   render() {
-    let article;
-    if(this.props.content){
-      article = this.props.content[0];
-      }
-      return article&& (
-          <div>
+    const article = this.props.article.length ? this.props.article[0] : null;
+    return (
+      article && (
+        <div>
+          <Container text>
             <h1>{article.title}</h1>
-            <h2>{article.author} </h2>
-          </div>
-        );  
+            <h5>{article.author && article.author}</h5>
+            <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
+            <h5>
+              <a href={article.url}> Go to original </a>
+            </h5>
+          </Container>
+          <Container text>{ReactHtmlParser(article.content)}</Container>
+        </div>
+      )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  article: state.article
+  article: state.content
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const id = Number(ownProps.match.params.id);
   return {
-     getSingleContent () {
-      dispatch(getSingleContent(id))
+    getSingleContent() {
+      dispatch(getSingleContent(id));
     }
-  }
-}
-
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(OneArticle);

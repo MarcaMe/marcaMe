@@ -12,7 +12,7 @@ router.post('/', (req, res, next) => {
 router.param('id', (req, res, next, id) => {
     Content.findById(id)
     .then(content => {
-        if(!content) res.sendStatus(404)
+        if (!content) res.sendStatus(404)
         req.content = content;
         next()
         return null;
