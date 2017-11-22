@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
 
 // to test out the chrome extension
 router.post('/test', (req, res, next) => {
+
   console.log('BODY: ', req.body)
   res.sendStatus(200)
 })
