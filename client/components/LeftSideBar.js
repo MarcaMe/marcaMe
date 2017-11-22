@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon, Input, Form, Label } from 'semantic-ui-react';
+import { Icon, Input, Form, Label, Sticky } from 'semantic-ui-react';
 import { Folder } from '../components'
 import { fetchCollections, postCollection } from '../store'
 
@@ -20,7 +20,8 @@ class LeftSideBar extends Component {
         const { collections, addCollection, theme } = this.props
         const { showForm } = this.state
         return (
-            <div>
+            <div id="sidebar">
+            <Sticky>
             <Icon name="add" color={theme} size="huge" onClick={() => this.setState({showForm: true})} />
             <Label color={theme} size="medium">Add a collection</Label>
             {showForm ?
@@ -36,7 +37,7 @@ class LeftSideBar extends Component {
             </div>
             )
             }) : 'No Collections'}
-
+            </Sticky>
           </div>
         )
     }
