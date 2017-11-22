@@ -44,7 +44,6 @@ class Main extends Component {
               </div>
               : <div id="login-nav">
               {/* The navbar will show these links before you log in */}
-              <Link to="/sidebar">All Content</Link>
               <Link to="/login">
                 <Button color="instagram">Login</Button>
               </Link>

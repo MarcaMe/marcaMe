@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, LeftSideBar, VideoViewer} from './components'
+import {Main, Login, Signup, LeftSideBar, VideoViewer} from './components'
 import OneArticle from './components/OneArticle';
 import {me} from './store'
 
@@ -26,14 +26,14 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/sidebar" component={LeftSideBar} />
+
             <Route path="/videos" component={VideoViewer} />
             <Route path="/content/:id" component={OneArticle} />
             {
               isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
+                  <Route path="/home" component={LeftSideBar} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
