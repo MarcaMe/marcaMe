@@ -43,7 +43,7 @@ export class ContentHome extends Component {
   render() {
     const content = this.props.content;
     return (
-      <div>
+      <div id="main-page">
       <LeftSideBar />
       <div id="content-home">
         <Card.Group itemsPerRow={this.state.itemsPerRow}>

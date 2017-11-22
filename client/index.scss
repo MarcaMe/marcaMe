@@ -47,10 +47,20 @@ body {
     padding-right: 6vw;
   }
 
-  #content-home {
-    padding: .5vh 2vw;
+  #main-page {
+    display: flex;
+    flex-direction: row;
   }
 
+  #sidebar {
+    width: 30vw;
+    position: sticky;
+  }
+
+  #content-home {
+    padding-right: .5vw;
+    padding-left: .5vw;
+  }
 
   .description {
     font-size: .8em;
