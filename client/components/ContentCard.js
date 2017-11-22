@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-
 export const ContentCard = (props) => {
     return (
     <Card color={props.color} className="card" fluid>
@@ -21,4 +20,3 @@ export const ContentCard = (props) => {
     </Card>
       )
 }
-

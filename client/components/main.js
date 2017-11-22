@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
-import { AddByUrlForm } from './index'
+import { AddPopup } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
 /**
  * COMPONENT
@@ -34,15 +34,13 @@ class Main extends Component {
             isLoggedIn
               ? <div id="logout-nav">
                 {/* The navbar will show these links after you log in */}
-                <button onClick={this.handleUrlButtonClick}>+</button>
+                <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
                 <Link to="/home">
-                <Icon name="home" color="blue" size="big" />
+                <Icon name="home" color="teal" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
-                {this.state.showUrlForm &&
-                  <AddByUrlForm user={user} />}
               </div>
               : <div id="login-nav">
               {/* The navbar will show these links before you log in */}
