@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import user from './user'
 import content from './content'
-import collections from './collection'
+import collections from './collections'
 
 const reducer = combineReducers({user, content, collections})
 const middleware = composeWithDevTools(applyMiddleware(
@@ -17,4 +17,4 @@ export default store
 
 export * from './user';
 export * from './content';
-export * from './collection';
+export * from './collections';

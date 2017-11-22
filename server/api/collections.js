@@ -27,9 +27,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     Collection.create(req.body)
         .then((newCollection) => {
-        newCollection.setUser(req.user)
+        return newCollection.setUser(req.user)
         })
-    .then(() => res.sendStatus(201))
+    .then((collection) => res.json(collection))
     .catch(next)
 })
 

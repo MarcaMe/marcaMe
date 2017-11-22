@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
 import { Container } from 'semantic-ui-react';
+
 class OneArticle extends React.Component {
   componentDidMount() {
     this.props.getSingleContent();
