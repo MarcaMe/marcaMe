@@ -17,12 +17,12 @@ class LeftSideBar extends Component {
     }
 
     render() {
-        const { collections, addCollection } = this.props
+        const { collections, addCollection, theme } = this.props
         const { showForm } = this.state
         return (
             <div>
-            <Icon name="add" color="teal" size="huge" onClick={() => this.setState({showForm: true})} />
-            <Label color="teal" size="medium">Add a collection</Label>
+            <Icon name="add" color={theme} size="huge" onClick={() => this.setState({showForm: true})} />
+            <Label color={theme} size="medium">Add a collection</Label>
             {showForm ?
             <Form onSubmit={(evt) => addCollection(evt)} >
                 <Input name="input" placeholder="add collection"  />
@@ -32,7 +32,7 @@ class LeftSideBar extends Component {
             return (
             <div key={collection.id}>
                 <Folder />
-                <Label color="teal" size="medium">{collection.name}</Label>
+                <Label color={theme} size="medium">{collection.name}</Label>
             </div>
             )
             }) : 'No Collections'}
@@ -44,7 +44,8 @@ class LeftSideBar extends Component {
 
 const mapState = (state) => {
     return {
-        collections: state.collections
+        collections: state.collections,
+        theme: state.theme
     };
 };
 

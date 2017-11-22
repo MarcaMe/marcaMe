@@ -26,7 +26,7 @@ class AddByUrlForm extends Component {
           <label>Enter Url</label>
           <input name="url" placeholder="http://..." onChange={(evt) => this.handleInput(evt)} />
         </Form.Field>
-        <Button onClick={() => this.setState({saved: 'Saved!'})}color={this.state.urlInput.length > 0 ? 'teal' : ''} type="submit">
+        <Button onClick={() => this.setState({saved: 'Saved!'})} color={this.state.urlInput.length > 0 ? 'teal' : ''} type="submit">
         {this.state.saved}
         </Button>
       </Form>
