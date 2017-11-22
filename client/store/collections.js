@@ -15,6 +15,7 @@ const removeCollection = collection => ({ type: REMOVE_COLLECTION, collection})
 export const postCollection = collection => dispatch => {
   return axios
     .post(`/api/collections`, collection)
+    .then(res => res.data)
     .then(newCollection => dispatch(getCollection(newCollection)))
     .catch(err => console.error(err));
 };
