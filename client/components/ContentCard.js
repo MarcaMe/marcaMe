@@ -35,7 +35,8 @@ export const ContentCard = props => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Icon name="user">placeholder</Icon>
+        <span><Icon size="large" name="user"></Icon></span>
+        <span><Icon size="large" name="trash"></Icon></span>
       </Card.Content>
     </Card>
   );
