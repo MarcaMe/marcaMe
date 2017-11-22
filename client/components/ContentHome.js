@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { ContentCard } from './ContentCard';
 import { fetchAllContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
-
 
 export class ContentHome extends Component {
   //hardcoding screen sizes for testing
@@ -14,7 +13,7 @@ export class ContentHome extends Component {
     this.state = {
       itemsPerRow: '4'
     };
-    this._getColor = this._getColor.bind(this)
+    this._getColor = this._getColor.bind(this);
   }
   componentDidMount() {
     this.props.fetchAllContentofUser();
@@ -46,17 +45,18 @@ export class ContentHome extends Component {
       <div id="content-home">
         <Card.Group itemsPerRow={this.state.itemsPerRow}>
           {content.length &&
-            content.filter(content => content.userId === this.props.user.id).map((story, index) => {
-              return (
-                <NavLink to={`content/${story.id}`}>
-                <ContentCard
-                  color={this._getColor(index)}
-                  story={story}
-                  key={index}
-                />
-                </NavLink>
-              );
-            })}
+            content
+              .filter(content => content.userId === this.props.user.id)
+              .map((story, index) => {
+                return (
+                  <NavLink key={content.id} to={`content/${story.id}`}>
+                    <ContentCard
+                      color={this._getColor(index % 7)}
+                      story={story}
+                    />
+                  </NavLink>
+                );
+              })}
         </Card.Group>
       </div>
     );
