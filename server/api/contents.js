@@ -1,25 +1,30 @@
-const router = require('express').Router()
-const {Content} = require('../db/models')
-module.exports = router
+const router = require('express').Router();
+const { Content } = require('../db/models');
+module.exports = router;
 
 router.post('/', (req, res, next) => {
-    Content.create(req.body)
+  Content.create(req.body)
     .then(() => res.sendStatus(201))
-    .catch(next)
-})
-
+    .catch(next);
+});
 
 router.param('id', (req, res, next, id) => {
-    Content.findById(id)
+  Content.findById(id)
     .then(content => {
-        if (!content) res.sendStatus(404)
-        req.content = content;
-        next()
-        return null;
+      if (!content) res.sendStatus(404);
+      req.content = content;
+      next();
+      return null;
     })
-    .catch(next)
-})
+    .catch(next);
+});
 
+router.get('/', (req, res, next) => {
+  Content.findAll({
+    attributes: ['id', 'title', 'description', 'imageUrl']
+  })
+  .then(content => res.json(content))
+  .catch(next)
+});
 
 router.get('/:id', (req, res) => res.json(req.content));
-
