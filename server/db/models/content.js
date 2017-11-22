@@ -3,8 +3,7 @@ const db = require('../db');
 
 const Content = db.define('content', {
   title: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.TEXT
   },
   author: {
     type: Sequelize.STRING
@@ -45,6 +44,10 @@ const Content = db.define('content', {
     validate: {
       isUrl: true
     }
+  },
+  isFavorite: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
