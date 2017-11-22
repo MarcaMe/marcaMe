@@ -29,7 +29,6 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      const type = 'article'; // HARD CODED type
       Content.create({ title, author, description, content, imageUrl, type, userId, url })
       .then(() => response.sendStatus(201))
     })
@@ -46,7 +45,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
   req.content.destroy()
-  .then(_=> res.sendStatus(204))
+  .then(_ => res.sendStatus(204))
   .catch(next)
 })
 

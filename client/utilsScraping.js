@@ -17,7 +17,6 @@ export const webScraping = (mercuryUrl, userId) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = res.data.url;
-      const type = 'article'; // HARD CODED type
       return { title, author, description, content, imageUrl, type, userId, url };
     })
     .catch(error => console.error(error));

@@ -35,16 +35,6 @@ const Content = db.define('content', {
     defaultValue:
       'https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg'
   },
-  type: {
-    type: Sequelize.ENUM('video', 'article', 'pdf'),
-    allowNull: false
-  },
-  embedLink: {
-    type: Sequelize.STRING,
-    validate: {
-      isUrl: true
-    }
-  },
   isFavorite: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
