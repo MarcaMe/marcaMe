@@ -11,6 +11,7 @@ export { default as LeftSideBar } from './LeftSideBar';
 export { default as AddByUrlForm } from './AddByUrlForm';
 export { default as VideoViewer } from './VideoViewer';
 export { default as AddPopup } from './AddPopUp';
+export {default as ContentCard } from './ContentCard';
 export { default as Folder } from './Folder';
 export { default as ChangeTheme } from './ChangeTheme';
 export { default as OneArticle } from  './OneArticle';

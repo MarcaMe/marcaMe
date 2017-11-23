@@ -15,7 +15,7 @@ class OneArticle extends React.Component {
       article && (
         <div>
           <Sticky>
-            <ReaderNav content={article}/>
+            <ReaderNav content={article} />
           </Sticky>
           <Container text>
             <h1>{article.title}</h1>
