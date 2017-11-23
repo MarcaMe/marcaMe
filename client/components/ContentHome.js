@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
-import { ContentCard } from './ContentCard';
+import  ContentCard  from './ContentCard';
 import { LeftSideBar } from '../components'
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
