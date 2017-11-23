@@ -29,7 +29,7 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      Content.create({ title, author, description, content, imageUrl, type, userId, url })
+      Content.create({ title, author, description, content, imageUrl, userId, url })
       .then(() => response.sendStatus(201))
     })
     .catch(next);

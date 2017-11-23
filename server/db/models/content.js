@@ -38,6 +38,10 @@ const Content = db.define('content', {
   isFavorite: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  isArchived: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
