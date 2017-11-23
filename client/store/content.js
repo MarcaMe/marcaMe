@@ -66,9 +66,7 @@ export default function(state = defaultContent, action) {
     case GET_SINGLE_CONTENT:
       return [action.content];
     case EDIT_SINGLE_CONTENT:
-      return state.map(
-        content => (content.id === action.content.id ? action.content : content)
-      );
+      return state.map(content => (content.id === action.content.id ? action.content : content));
     case DELETE_SINGLE_CONTENT:
       return state.filter(content => +content.id !== +action.contentId);
     default:
