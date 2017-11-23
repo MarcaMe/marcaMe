@@ -62,7 +62,7 @@ export default function(state = defaultContent, action) {
     case GET_ALL_CONTENT:
       return action.content;
     case ADD_CONTENT:
-      return [...state, action.content];
+      return [action.content, ...state];
     case GET_SINGLE_CONTENT:
       return [action.content];
     case EDIT_SINGLE_CONTENT:
