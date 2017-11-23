@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
 import { Container, Sticky } from 'semantic-ui-react';
-import ReaderNav from './ReaderNav'
+import ReaderNav from './ReaderNav';
 
 class OneArticle extends React.Component {
   componentDidMount() {
@@ -19,11 +19,14 @@ class OneArticle extends React.Component {
           </Sticky>
           <Container text>
             <h1>{article.title}</h1>
-            <h5>{article.author && article.author}</h5>
             <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
-            <h5>
-              <a href={article.url}> Go to original </a>
-            </h5>
+            <div className="header-container">
+              <h3>{article.author && `By ${article.author}`}</h3>
+              <a href={article.url}>
+                {' '}
+                <h3>Go to original </h3>
+              </a>
+            </div>
           </Container>
           <Container text>{ReactHtmlParser(article.content)}</Container>
         </div>
