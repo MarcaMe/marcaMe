@@ -30,8 +30,12 @@ body {
     display: inline-block;
   }
 
+  figure {
+    margin:0;
+  }
   img {
-    width: 50vw;
+    width: 100%;
+    object-fit: contain;
   }
 
   #login-nav {
@@ -46,7 +50,11 @@ body {
     align-items: center;
     padding-right: 6vw;
   }
-
+  #reader-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2vw;  
+  }
   #main-page {
     display: flex;
     flex-direction: row;

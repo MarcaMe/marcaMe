@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
-import { Container } from 'semantic-ui-react';
+import { Container, Icon } from 'semantic-ui-react';
 
 class OneArticle extends React.Component {
   componentDidMount() {
@@ -14,6 +14,9 @@ class OneArticle extends React.Component {
     return (
       article && (
         <div>
+          <div id="reader-nav">
+            <Icon name="arrow left" size="large"/>
+          </div>
           <Container text>
             <h1>{article.title}</h1>
             <h5>{article.author && article.author}</h5>
