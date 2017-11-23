@@ -36,8 +36,9 @@ export const getSingleContent = contentId => dispatch => {
     .catch(err => console.error(err));
 };
 
-export const deleteOneContent = contentId => dispatch => {
+export const deleteOneContent = (contentId, history) => dispatch => {
   dispatch(deleteSingleContent(contentId))
+  if (history) history.push('/home')
   axios
   .delete(`/api/contents/${contentId}`)
   .catch(err => console.error(err))

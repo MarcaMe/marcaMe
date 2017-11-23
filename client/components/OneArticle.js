@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSingleContent } from '../store/content';
+import { getSingleContent, deleteOneContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
 import { Container, Icon, Sticky } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -30,7 +30,7 @@ class OneArticle extends React.Component {
                 <Icon className="reader-nav-icon" id="archive" name="archive" size="big" />
                 <h5 className="reader-nav-text">Archive</h5>
               </div>
-              <div className="reader-icon-container">
+              <div className="reader-icon-container" onClick={ evt => this.props.deleteContent(evt)}>
                 <Icon className="reader-nav-icon" id="trash" name="trash" size="big" />
                 <h5 className="reader-nav-text">Trash</h5>
               </div>
@@ -60,6 +60,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getSingleContent() {
       dispatch(getSingleContent(id));
+    },
+    deleteContent(evt){
+      evt.preventDefault();
+      dispatch(deleteOneContent(id, ownProps.history))
     }
   };
 };
