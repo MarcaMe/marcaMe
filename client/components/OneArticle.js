@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
 import { Container, Icon, Sticky } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class OneArticle extends React.Component {
   componentDidMount() {
     this.props.getSingleContent();
   }
-
   render() {
     const article = this.props.article.length ? this.props.article[0] : null;
     return (
@@ -17,19 +17,21 @@ class OneArticle extends React.Component {
           <Sticky>
             <div id="reader-nav">
               <div className="reader-icon-container">
-                <Icon className="reader-nav-icon" name="arrow left" size="big" />
+              <Link to={"/home"}>
+                <Icon className="reader-nav-icon" id="back" name="arrow left" size="big" />
                 <h5 className="reader-nav-text">Go back</h5>
+              </Link>
               </div>
               <div className="reader-icon-container">
-                <Icon className="reader-nav-icon" name="heart" size="big" />
+                <Icon className="reader-nav-icon" id="heart" name="heart" size="big" />
                 <h5 className="reader-nav-text">Favorite</h5>
               </div>
               <div className="reader-icon-container">
-                <Icon className="reader-nav-icon" name="archive" size="big" />
-                <h5 className="reader-nav-text">archive</h5>
+                <Icon className="reader-nav-icon" id="archive" name="archive" size="big" />
+                <h5 className="reader-nav-text">Archive</h5>
               </div>
               <div className="reader-icon-container">
-                <Icon className="reader-nav-icon" name="trash" size="big" />
+                <Icon className="reader-nav-icon" id="trash" name="trash" size="big" />
                 <h5 className="reader-nav-text">Trash</h5>
               </div>
             </div>

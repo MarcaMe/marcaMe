@@ -37,7 +37,9 @@ body {
     width: 100%;
     object-fit: contain;
   }
-
+  Link{
+  
+  }
   #logout-nav {
     display: flex;
     justify-content: flex-end;
@@ -59,6 +61,23 @@ body {
   .reader-nav-icon {
     margin-bottom: 1.5vh;
   }
+
+  #back.reader-nav-icon:hover {
+    color:#595959;
+  }
+
+  #heart.reader-nav-icon:hover {
+    color:#ff9999;
+  }
+
+  #archive.reader-nav-icon:hover {
+    color: #7de8e8;
+  }  
+
+  #trash.reader-nav-icon:hover {
+    color: #ff6666;
+  }
+
   #reader-nav {
     position:fixed;
     display: flex;
