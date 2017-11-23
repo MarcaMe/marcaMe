@@ -33,7 +33,10 @@ body {
   img {
     width: 50vw;
   }
-
+  iframe {
+    width: 50vw;
+    height: 28vw;
+  }
   #login-nav {
     display: flex;
     justify-content: flex-end;
