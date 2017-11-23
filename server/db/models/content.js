@@ -16,7 +16,7 @@ const Content = db.define('content', {
     type: Sequelize.TEXT
   },
   url: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       isUrl: true

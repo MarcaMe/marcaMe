@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 
-const truncateDescription = des => {
-  const desArr = des.split(' ');
-  if (desArr.length > 19) return desArr.slice(0, 19).join(' ') + '...';
-  else return des;
+const truncateDescription = story => {
+  const titleArr = story.title.split(' ')
+  const desArr = story.description.split(' ');
+  if (titleArr.length > 11 && desArr.length > 9) return desArr.slice(0, 9).join(' ') + '...'
+  else if (desArr.length > 19) return desArr.slice(0, 19).join(' ') + '...';
+  else return story.description;
 };
 
 export const ContentCard = props => {
@@ -31,7 +33,7 @@ export const ContentCard = props => {
           <span className="date">{props.story.date}</span>
         </Card.Meta>
         <Card.Description style={{ fontSize: '1em' }} className="description">
-          {truncateDescription(props.story.description)}
+          {truncateDescription(props.story)}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
