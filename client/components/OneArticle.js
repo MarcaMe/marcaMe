@@ -2,18 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
-import { Container } from 'semantic-ui-react';
+import { Container, Sticky } from 'semantic-ui-react';
+import ReaderNav from './ReaderNav'
 
 class OneArticle extends React.Component {
   componentDidMount() {
     this.props.getSingleContent();
   }
-
   render() {
     const article = this.props.article.length ? this.props.article[0] : null;
     return (
       article && (
         <div>
+          <Sticky>
+            <ReaderNav content={article} />
+          </Sticky>
           <Container text>
             <h1>{article.title}</h1>
             <h5>{article.author && article.author}</h5>

@@ -16,7 +16,7 @@ const Content = db.define('content', {
     type: Sequelize.TEXT
   },
   url: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       isUrl: true
@@ -36,6 +36,10 @@ const Content = db.define('content', {
       'https://pbs.twimg.com/profile_images/877592634096705536/-cl1NgG4_400x400.jpg'
   },
   isFavorite: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  isArchived: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   }

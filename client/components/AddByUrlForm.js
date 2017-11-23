@@ -40,7 +40,6 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId) {
     evt.preventDefault();
-    // const url = evt.target.url.value.includes('http') ? evt.target.url.value : `https://${evt.target.url.value}`
     const mercuryUrl = 'https://mercury.postlight.com/parser?url=' + evt.target.url.value;
     webScraping(mercuryUrl, userId)
     .then(res => dispatch(postContentThunk(res)))
