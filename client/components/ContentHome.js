@@ -12,8 +12,7 @@ export class ContentHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerRow: '4',
-      ordered: false
+      itemsPerRow: '4'
     };
     this._getColor = this._getColor.bind(this);
   }
