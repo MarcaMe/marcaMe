@@ -56,7 +56,10 @@ body {
     align-items: center;
     padding-right: 6vw;
   }
-  
+  .header-container {
+    display:flex;
+    justify-content: space-between;
+  }
   .reader-icon-container {
     display: flex;
     flex-direction: column;
