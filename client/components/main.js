@@ -33,7 +33,7 @@ class Main extends Component {
         <h1 id="logo">MarcaMe</h1>
           {
             isLoggedIn
-              ? <div id="logout-nav">
+              ? <div id="login-nav">
                 {/* The navbar will show these links after you log in */}
                 <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
@@ -44,7 +44,7 @@ class Main extends Component {
                 <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
               </div>
-              : <div id="login-nav">
+              : <div id="logout-nav">
               {/* The navbar will show these links before you log in */}
               <Link to="/login">
                 <Button color="instagram">Login</Button>

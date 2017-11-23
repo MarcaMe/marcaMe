@@ -15,7 +15,10 @@ class OneArticle extends React.Component {
       article && (
         <div>
           <div id="reader-nav">
-            <Icon name="arrow left" size="large"/>
+            <Icon name="arrow left" size="big"/>
+            <Icon name="heart" size="big"/>
+            <Icon name="archive" size="big"/>
+            <Icon name="trash" size="big"/>
           </div>
           <Container text>
             <h1>{article.title}</h1>
