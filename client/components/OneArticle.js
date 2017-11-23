@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
-import { Container, Icon } from 'semantic-ui-react';
+import { Container, Icon, Sticky } from 'semantic-ui-react';
 
 class OneArticle extends React.Component {
   componentDidMount() {
@@ -14,12 +14,26 @@ class OneArticle extends React.Component {
     return (
       article && (
         <div>
-          <div id="reader-nav">
-            <Icon name="arrow left" size="big"/>
-            <Icon name="heart" size="big"/>
-            <Icon name="archive" size="big"/>
-            <Icon name="trash" size="big"/>
-          </div>
+          <Sticky>
+            <div id="reader-nav">
+              <div className="reader-icon-container">
+                <Icon className="reader-nav-icon" name="arrow left" size="big" />
+                <h5 className="reader-nav-text">Go back</h5>
+              </div>
+              <div className="reader-icon-container">
+                <Icon className="reader-nav-icon" name="heart" size="big" />
+                <h5 className="reader-nav-text">Favorite</h5>
+              </div>
+              <div className="reader-icon-container">
+                <Icon className="reader-nav-icon" name="archive" size="big" />
+                <h5 className="reader-nav-text">archive</h5>
+              </div>
+              <div className="reader-icon-container">
+                <Icon className="reader-nav-icon" name="trash" size="big" />
+                <h5 className="reader-nav-text">Trash</h5>
+              </div>
+            </div>
+          </Sticky>
           <Container text>
             <h1>{article.title}</h1>
             <h5>{article.author && article.author}</h5>
