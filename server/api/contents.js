@@ -61,7 +61,7 @@ router.delete('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   req.content
     .update(req.body)
-    .then(content => {console.log(content);res.json(content)})
+    .then(content => res.json(content))
     .catch(next);
 });
 

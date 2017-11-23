@@ -41,6 +41,7 @@ class ReaderNav extends React.Component {
             id="heart"
             name="heart"
             size="big"
+            color={this.state.isFavorite && 'red'}
           />
           <h5 className="reader-nav-text">Favorite</h5>
         </div>
@@ -50,6 +51,7 @@ class ReaderNav extends React.Component {
             id="archive"
             name="archive"
             size="big"
+            color={this.state.isArchived && 'teal'}
           />
           <h5 className="reader-nav-text">Archive</h5>
         </div>
