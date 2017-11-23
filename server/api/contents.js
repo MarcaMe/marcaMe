@@ -8,10 +8,11 @@ require('../../secrets');
 const axios = require('axios');
 
 router.post('/chrome', (request, response, next) => {
-  console.log(chalk.bgBlue('Im in the request'))
+  console.log(chalk.bgBlue('Im in the request'));
 
-  const userId = 1 // HARD CODED userID
-  const mercuryUrl = 'https://mercury.postlight.com/parser?url=' + request.body.url;
+  const userId = 1; // HARD CODED userID
+  const mercuryUrl =
+    'https://mercury.postlight.com/parser?url=' + request.body.url;
   const config = {
     headers: {
       'content-type': 'application/json',
@@ -22,15 +23,22 @@ router.post('/chrome', (request, response, next) => {
   return axios
     .get(mercuryUrl, config)
     .then(res => {
-      console.log(chalk.bgGreen(res.data.title))
+      console.log(chalk.bgGreen(res.data.title));
       const title = res.data.title;
       const author = res.data.author;
       const description = res.data.excerpt;
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      Content.create({ title, author, description, content, imageUrl, userId, url })
-      .then(() => response.sendStatus(201))
+      Content.create({
+        title,
+        author,
+        description,
+        content,
+        imageUrl,
+        userId,
+        url
+      }).then(() => response.sendStatus(201));
     })
     .catch(next);
 });
@@ -44,10 +52,18 @@ router.post('/', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-  req.content.destroy()
-  .then(_ => res.sendStatus(204))
-  .catch(next)
-})
+  req.content
+    .destroy()
+    .then(_ => res.sendStatus(204))
+    .catch(next);
+});
+
+router.put('/:id', (req, res, next) => {
+  req.content
+    .update(req.body)
+    .then(content => res.json(content))
+    .catch(next);
+});
 
 router.param('id', (req, res, next, id) => {
   Content.findById(id)
@@ -65,7 +81,7 @@ router.get('/', (req, res, next) => {
     attributes: ['id', 'title', 'description', 'imageUrl', 'userId']
   })
     .then(content => res.json(content))
-    .catch(next)
+    .catch(next);
 });
 
 router.get('/:id', (req, res) => res.json(req.content));
