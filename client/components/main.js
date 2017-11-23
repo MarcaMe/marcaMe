@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AddPopup } from './index'
-import { Button, Icon, Divider, Sticky } from 'semantic-ui-react'
+import { Button, Icon, Divider } from 'semantic-ui-react'
 import { ChangeTheme } from '../components'
 /**
  * COMPONENT
@@ -26,7 +26,7 @@ class Main extends Component {
   }
 
   render(){
-  const { children, handleClick, isLoggedIn, user, theme } = this.props
+  const { children, handleClick, isLoggedIn, theme } = this.props
     return (
       <div>
         <nav>

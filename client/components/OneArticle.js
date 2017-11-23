@@ -17,7 +17,7 @@ class OneArticle extends React.Component {
           <Sticky>
             <div id="reader-nav">
               <div className="reader-icon-container">
-              <Link to={"/home"}>
+              <Link to={'/home'}>
                 <Icon className="reader-nav-icon" id="back" name="arrow left" size="big" />
                 <h5 className="reader-nav-text">Go back</h5>
               </Link>
