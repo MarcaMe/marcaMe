@@ -43,7 +43,7 @@ export class ContentHome extends Component {
   }
   render() {
     const content = this.props.content;
-    return (
+    return content.length ? (
       <div id="main-page">
         <LeftSideBar />
         <div id="content-home">
@@ -83,6 +83,8 @@ export class ContentHome extends Component {
           </Card.Group>
         </div>
       </div>
+    ) : (
+      <div />
     );
   }
 }
