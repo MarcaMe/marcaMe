@@ -26,7 +26,7 @@ class Main extends Component {
   }
 
   render(){
-  const { children, handleClick, isLoggedIn, theme } = this.props
+  const { children, handleClick, isLoggedIn, theme, user } = this.props
     return (
       <div>
         <nav>
@@ -38,10 +38,13 @@ class Main extends Component {
                 <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
                 <Link to="/home">
-                <Icon name="home" color={theme} size="big" />
+                  <Icon name="home" color={theme} size="big" />
+                </Link>
+                <Link to={`/profile/${user.id}`}>
+                  <Icon name="user" color="pink" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
-                <Icon name="log out" color="grey" size="large">Logout</Icon>
+                  <Icon name="log out" color="grey" size="large"> Logout</Icon>
                 </Link>
               </div>
               : <div id="logout-nav">

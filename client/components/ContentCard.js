@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card,  Image } from 'semantic-ui-react';
+import { editOneContent } from '../store/content';
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -14,11 +15,17 @@ class ContentCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLike: false
+      isLike: false,
+      isPublic: this.props.story.isPublic
     };
     this.toggleLike = this.toggleLike.bind(this);
+    this._handleShareClick = this._handleShareClick.bind(this);
   }
 
+  _handleShareClick(evt){
+    evt.preventDefault()
+    this.setState({isPublic: !this.state.isPublic}, () => this.props.editContent(this.props.id, 'isPublic', this.state.isPublic))
+  }
   toggleLike(evt) {
     evt.preventDefault();
     this.setState({ isLike: !this.state.isLike });
@@ -27,12 +34,6 @@ class ContentCard extends React.Component {
 
   render() {
     return (
-      <Card
-        style={{ width: '300px', height: '350px', margin: '0.5vw' }}
-        color={this.props.color}
-        className="card"
-        fluid
-      >
         <Card.Content style={{ overflow: 'hidden' }}>
           <Card.Header>{this.props.story.title}</Card.Header>
           <div
@@ -51,22 +52,20 @@ class ContentCard extends React.Component {
             {truncateDescription(this.props.story)}
           </Card.Description>
         </Card.Content>
-        <Card.Content extra>
-          <Icon
-            size="large"
-            name={this.state.isLike ? 'heart' : 'empty heart'}
-            onClick={evt => this.toggleLike(evt)}
-          />
-
-          <Icon
-            size="large"
-            name="trash"
-            onClick={evt => this.props.deleteContent(evt, this.props.id)}
-          />
-        </Card.Content>
-      </Card>
     );
   }
 }
+const mapState = state => ({
+  article: state.content
+});
 
-export default connect(null)(ContentCard);
+const mapDispatch = dispatch => {
+  return {
+    editContent(id, field, value) {
+      const contentBody = {id, [field]: value}
+      dispatch(editOneContent(contentBody));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(ContentCard);

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
+import { Card, Divider } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
-import GeneralCardIcons from './GeneralCardIcons';
-import { LeftSideBar } from '../components';
+import { ProfileSidebar } from './ProfileSidebar';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
-export class ContentHome extends Component {
+export class MyProfile extends Component {
   //hardcoding screen sizes for testing
   //need to change based on document size
   constructor(props) {
@@ -19,14 +18,6 @@ export class ContentHome extends Component {
   }
   componentDidMount() {
     this.props.fetchAllContentofUser();
-    if (window.innerWidth < 900) this.setState({ itemsPerRow: '3' });
-    if (window.innerWidth < 500) this.setState({ itemsPerRow: '1' });
-    if (window.innerWidth > 900) this.setState({ itemsPerRow: '4' });
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 900) this.setState({ itemsPerRow: '3' });
-      if (window.innerWidth < 500) this.setState({ itemsPerRow: '1' });
-      if (window.innerWidth > 900) this.setState({ itemsPerRow: '4' });
-    });
   }
 
   _getColor(index) {
@@ -41,16 +32,22 @@ export class ContentHome extends Component {
     ];
     return colors[index % this.props.content.length];
   }
+
   render() {
     const content = this.props.content;
-    return content.length ? (
-      <div id="main-page">
-        <LeftSideBar />
-        <div id="content-home">
+    const user = this.props.user;
+    return (
+      user && (
+        <div id="profile-body">
+          <ProfileSidebar user={user} />
+          <Divider />
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
             {content.length &&
               content
-                .filter(content => content.userId === this.props.user.id)
+                .filter(
+                  content =>
+                    content.userId === this.props.user.id && content.isPublic
+                )
                 .map((story, index) => {
                   return (
                     <NavLink key={story.id} to={`content/${story.id}`}>
@@ -67,24 +64,16 @@ export class ContentHome extends Component {
                         <ContentCard
                           color={this._getColor(index % 7)}
                           story={story}
-                          id={this.props.user.id}
+                          id={story.id}
                           deleteContent={this.props.deleteSingleContent}
                         />
-                        <Card.Content extra>
-                          <GeneralCardIcons
-                            id={this.props.user.id}
-                            story={story}
-                          />
-                        </Card.Content>
                       </Card>
                     </NavLink>
                   );
                 })}
           </Card.Group>
         </div>
-      </div>
-    ) : (
-      <div />
+      )
     );
   }
 }
@@ -104,4 +93,4 @@ const mapDispatch = dispatch => ({
   }
 });
 
-export default connect(mapState, mapDispatch)(ContentHome);
+export default connect(mapState, mapDispatch)(MyProfile);

@@ -16,3 +16,4 @@ export { default as Folder } from './Folder';
 export { default as ChangeTheme } from './ChangeTheme';
 export { default as OneArticle } from  './OneArticle';
 export { default as ReaderNav } from './ReaderNav';
+export { default as MyProfile } from './MyProfile';
