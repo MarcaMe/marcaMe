@@ -12,21 +12,10 @@ export class ContentHome extends Component {
   //need to change based on document size
   constructor(props) {
     super(props);
-    this.state = {
-      itemsPerRow: '4'
-    };
     this._getColor = this._getColor.bind(this);
   }
   componentDidMount() {
     this.props.fetchAllContentofUser();
-    if (window.innerWidth < 900) this.setState({ itemsPerRow: '3' });
-    if (window.innerWidth < 500) this.setState({ itemsPerRow: '1' });
-    if (window.innerWidth > 900) this.setState({ itemsPerRow: '4' });
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 900) this.setState({ itemsPerRow: '3' });
-      if (window.innerWidth < 500) this.setState({ itemsPerRow: '1' });
-      if (window.innerWidth > 900) this.setState({ itemsPerRow: '4' });
-    });
   }
 
   _getColor(index) {
@@ -41,13 +30,14 @@ export class ContentHome extends Component {
     ];
     return colors[index % this.props.content.length];
   }
+
   render() {
     const content = this.props.content;
     return content.length ? (
       <div id="main-page">
         <LeftSideBar />
         <div id="content-home">
-          <Card.Group itemsPerRow={this.state.itemsPerRow}>
+          <Card.Group >
             {content.length &&
               content
                 .filter(content => content.userId === this.props.user.id)

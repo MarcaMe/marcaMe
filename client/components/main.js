@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AddPopup } from './index'
-import { Button, Icon, Divider } from 'semantic-ui-react'
+import { Button, Icon, Divider, Image } from 'semantic-ui-react'
 import { ChangeTheme } from '../components'
 /**
  * COMPONENT
@@ -44,7 +44,7 @@ class Main extends Component {
                   <Icon name="user" color="pink" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
-                  <Icon name="log out" color="grey" size="large"> Logout</Icon>
+                  <Icon name="log out" color="grey" size="large">Logout</Icon>
                 </Link>
               </div>
               : <div id="logout-nav">

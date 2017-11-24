@@ -22,18 +22,20 @@ class LeftSideBar extends Component {
         return (
             <div id="sidebar">
             <Sticky>
+            <div className="collection">
             <Icon name="add" color={theme} size="huge" onClick={() => this.setState({showForm: true})} />
-            <Label color={theme} size="medium">Add a collection</Label>
+            <Label color={theme} size="small">Add a collection</Label>
             {showForm ?
             <Form onSubmit={(evt) => addCollection(evt)} >
                 <Input name="input" placeholder="add collection"  />
             </Form> : ''}
+            </div>
             {collections ?
             collections.map(collection => {
             return (
-            <div key={collection.id}>
+            <div key={collection.id} className="collection">
                 <Folder />
-                <Label color={theme} size="medium">{collection.name}</Label>
+                <Label color={theme} size="small">{collection.name}</Label>
             </div>
             )
             }) : 'No Collections'}

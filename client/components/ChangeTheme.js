@@ -19,7 +19,9 @@ const colorOptions = [
 ]
 
 const ChangeTheme = (props) => (
+  <div id="change-theme">
   <Select placeholder="Select your theme" options={colorOptions} onChange={(evt, data) => props.changeUserTheme(evt, data)} />
+  </div>
 )
 
 const mapDispatch = dispatch => {
