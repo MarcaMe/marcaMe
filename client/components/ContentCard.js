@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { getSingleContent, deleteOneContent, editOneContent } from '../store/content';
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -14,11 +15,17 @@ class ContentCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLike: false
+      isLike: false,
+      isPublic: false
     };
     this.toggleLike = this.toggleLike.bind(this);
+    this._handleShareClick = this._handleShareClick.bind(this);
   }
 
+  _handleShareClick(evt){
+    evt.preventDefault()
+    this.setState({isPublic: !this.state.isPublic}, () => this.props.editContent(this.props.id, 'isPublic', this.state.isPublic))
+  }
   toggleLike(evt) {
     evt.preventDefault();
     this.setState({ isLike: !this.state.isLike });
@@ -54,11 +61,22 @@ class ContentCard extends React.Component {
         <Card.Content extra>
           <Icon
             size="large"
+            name="tags"
+            />
+          <Icon
+            id="share-icon"
+            size="large"
+            name="external"
+            onClick={evt=>this._handleShareClick(evt)}
+            />
+          <Icon
+            size="large"
             name={this.state.isLike ? 'heart' : 'empty heart'}
             onClick={evt => this.toggleLike(evt)}
           />
 
           <Icon
+            id="trash-icon"
             size="large"
             name="trash"
             onClick={evt => this.props.deleteContent(evt, this.props.id)}
@@ -68,5 +86,17 @@ class ContentCard extends React.Component {
     );
   }
 }
+const mapState = state => ({
+  article: state.content
+});
 
-export default connect(null)(ContentCard);
+const mapDispatch = dispatch => {
+  return {
+    editContent(id, field, value) {
+      const contentBody = {id, [field]: value}
+      dispatch(editOneContent(contentBody));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(ContentCard);

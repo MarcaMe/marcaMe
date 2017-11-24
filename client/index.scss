@@ -38,6 +38,7 @@ body {
     width: 100%;
     object-fit: contain;
   }
+  
   #followers-container{
     display: flex;
     height: 4em;
@@ -50,9 +51,11 @@ body {
   .follow-text{
     margin: 0;
   }
+
   #profile-body{
     display:flex;
   }
+
   #profile-sidebar{
     padding: 2em;
     border-top-right-radius: 2em;
@@ -66,13 +69,24 @@ body {
       white 5px,
       white 10px);   
   }
+
   #profile-info{
     margin-top:3em;
   }
+
   iframe {
     width: 50vw;
     height: 28vw;
   }
+
+  #share-icon:hover{
+    color: teal;
+  }
+
+  #trash-icon:hover {
+    color: red;
+  }
+
 
   #logout-nav {
     display: flex;
@@ -110,7 +124,6 @@ body {
   #heart.reader-nav-icon:active {
     color:#ff9999;
   }
-
 
   #archive.reader-nav-icon:hover {
     color: #7de8e8;
