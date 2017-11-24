@@ -8,8 +8,9 @@ class ReaderNav extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isFavorite: false,
-      isArchived: false
+      isFavorite: this.props.article[0].isFavorite,
+      isArchived: this.props.article[0].isArchived,
+      isPublic: this.props.article[0].isPublic
     }
     this._handleClick = this._handleClick.bind(this)
   }
@@ -38,22 +39,32 @@ class ReaderNav extends React.Component {
         <div className="reader-icon-container" onClick={ evt => this._handleClick(evt, 'isFavorite')}>
           <Icon
             className="reader-nav-icon"
-            id="heart"
+            id="heart-icon"
             name="heart"
             size="big"
             color={this.state.isFavorite && 'red'}
           />
-          <h5 className="reader-nav-text">Favorite</h5>
+          <h5 className="reader-nav-text">{this.state.isFavorite ? 'Liked!' : 'Like'}</h5>
+        </div>
+        <div className="reader-icon-container">
+          <Icon
+            id="share-icon"
+            size="big"
+            name="external"
+            onClick={evt => this._handleClick(evt, 'isPublic')}
+            color={this.state.isPublic && 'blue'}
+          />
+          <h5 className="reader-nav-text">{this.state.isPublic ? 'Shared!' : 'Share'}</h5>
         </div>
         <div className="reader-icon-container" onClick={ evt => this._handleClick(evt, 'isArchived')}>
           <Icon
             className="reader-nav-icon"
-            id="archive"
+            id="archive-icon"
             name="archive"
             size="big"
             color={this.state.isArchived && 'teal'}
           />
-          <h5 className="reader-nav-text">Archive</h5>
+          <h5 className="reader-nav-text">{this.state.isArchived ? 'Archived!' : 'Archive'}</h5>
         </div>
         <div
           className="reader-icon-container"
@@ -61,7 +72,7 @@ class ReaderNav extends React.Component {
         >
           <Icon
             className="reader-nav-icon"
-            id="trash"
+            id="trash-icon"
             name="trash"
             size="big"
           />
