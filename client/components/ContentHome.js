@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
-import  ContentCard  from './ContentCard';
-import { LeftSideBar } from '../components'
+import ContentCard from './ContentCard';
+import { LeftSideBar } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
@@ -42,14 +42,13 @@ export class ContentHome extends Component {
   }
   render() {
     const content = this.props.content;
-    return (
+    return content.length ? (
       <div id="main-page">
-      <LeftSideBar />
-      <div id="content-home">
-        <Card.Group itemsPerRow={this.state.itemsPerRow}>
-          {content.length &&
-            content
-              .filter(content => content.userId === this.props.user.id)
+        <LeftSideBar />
+        <div id="content-home">
+          <Card.Group itemsPerRow={this.state.itemsPerRow}>
+            {content
+              .filter(contentItem => contentItem.userId === this.props.user.id)
               .map((story, index) => {
                 return (
                   <NavLink key={story.id} to={`content/${story.id}`}>
@@ -62,9 +61,11 @@ export class ContentHome extends Component {
                   </NavLink>
                 );
               })}
-        </Card.Group>
+          </Card.Group>
+        </div>
       </div>
-      </div>
+    ) : (
+      <div />
     );
   }
 }
