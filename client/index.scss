@@ -1,4 +1,5 @@
 body {
+  background-color: rgb(244, 244, 246);
   position: relative;
   box-sizing: border-box;
   font-family: sans-serif;
@@ -14,12 +15,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 10%;
   }
   nav a {
     display: flex;
     margin: .4em;
   }
-
+  #change-theme {
+    padding-top: .5em;
+  }
   #logo {
     margin-bottom: 0;
     padding-left: 2vw;
@@ -38,7 +42,7 @@ body {
     width: 100%;
     object-fit: contain;
   }
-  
+
   #followers-container{
     display: flex;
     height: 4em;
@@ -67,7 +71,7 @@ body {
       rgba(114, 38, 38, 0.1),
       rgba(114, 38, 38, 0.1) 9px,
       white 5px,
-      white 10px);   
+      white 10px);
   }
 
   #profile-info{
@@ -91,6 +95,9 @@ body {
     display: flex;
     justify-content: flex-end;
     padding-right: 2vw;
+  }
+    .collection {
+    margin-bottom: 15px;
   }
 
   #login-nav {
@@ -126,7 +133,7 @@ body {
 
   #archive-icon:hover {
     color: #7de8e8;
-  }  
+  }
 
   #trash-icon:hover {
     color: #ff6666;
@@ -151,13 +158,14 @@ body {
   }
 
   #sidebar {
-    width: 30vw;
+    width: 240px;
     position: sticky;
+    padding-left: 20px;
+    margin-right: 20px;
   }
 
   #content-home {
-    padding-right: .5vw;
-    padding-left: .5vw;
+    width: 100%;
   }
 
   .description {
