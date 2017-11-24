@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { getSingleContent, deleteOneContent, editOneContent } from '../store/content';
+import GeneralCardIcons from './GeneralCardIcons';
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -16,7 +17,7 @@ class ContentCard extends React.Component {
     super(props);
     this.state = {
       isLike: false,
-      isPublic: false
+      isPublic: this.props.story.isPublic
     };
     this.toggleLike = this.toggleLike.bind(this);
     this._handleShareClick = this._handleShareClick.bind(this);
@@ -34,12 +35,6 @@ class ContentCard extends React.Component {
 
   render() {
     return (
-      <Card
-        style={{ width: '300px', height: '350px', margin: '0.5vw' }}
-        color={this.props.color}
-        className="card"
-        fluid
-      >
         <Card.Content style={{ overflow: 'hidden' }}>
           <Card.Header>{this.props.story.title}</Card.Header>
           <div
@@ -58,31 +53,6 @@ class ContentCard extends React.Component {
             {truncateDescription(this.props.story)}
           </Card.Description>
         </Card.Content>
-        <Card.Content extra>
-          <Icon
-            size="large"
-            name="tags"
-            />
-          <Icon
-            id="share-icon"
-            size="large"
-            name="external"
-            onClick={evt=>this._handleShareClick(evt)}
-            />
-          <Icon
-            size="large"
-            name={this.state.isLike ? 'heart' : 'empty heart'}
-            onClick={evt => this.toggleLike(evt)}
-          />
-
-          <Icon
-            id="trash-icon"
-            size="large"
-            name="trash"
-            onClick={evt => this.props.deleteContent(evt, this.props.id)}
-          />
-        </Card.Content>
-      </Card>
     );
   }
 }

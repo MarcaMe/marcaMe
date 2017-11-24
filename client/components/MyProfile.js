@@ -17,7 +17,7 @@ export class MyProfile extends Component {
     this._getColor = this._getColor.bind(this);
   }
   componentDidMount() {
-    this.props.fetchAllContentofUser()
+    this.props.fetchAllContentofUser();
   }
 
   _getColor(index) {
@@ -32,6 +32,7 @@ export class MyProfile extends Component {
     ];
     return colors[index % this.props.content.length];
   }
+
   render() {
     const content = this.props.content;
     const user = this.props.user;
@@ -39,7 +40,7 @@ export class MyProfile extends Component {
       user && (
         <div id="profile-body">
           <ProfileSidebar user={user} />
-          <Divider/>
+          <Divider />
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
             {content.length &&
               content
@@ -50,12 +51,23 @@ export class MyProfile extends Component {
                 .map((story, index) => {
                   return (
                     <NavLink key={story.id} to={`content/${story.id}`}>
-                      <ContentCard
-                        color={this._getColor(index % 7)}
-                        story={story}
-                        id={story.id}
-                        deleteContent={this.props.deleteSingleContent}
-                      />
+                      <Card
+                        style={{
+                          width: '300px',
+                          height: '350px',
+                          margin: '0.5vw'
+                        }}
+                        color={this.props.color}
+                        className="card"
+                        fluid
+                      >
+                        <ContentCard
+                          color={this._getColor(index % 7)}
+                          story={story}
+                          id={story.id}
+                          deleteContent={this.props.deleteSingleContent}
+                        />
+                      </Card>
                     </NavLink>
                   );
                 })}

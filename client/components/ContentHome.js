@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
-import  ContentCard  from './ContentCard';
-import { LeftSideBar } from '../components'
+import ContentCard from './ContentCard';
+import GeneralCardIcons from './GeneralCardIcons';
+import { LeftSideBar } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
@@ -44,26 +45,43 @@ export class ContentHome extends Component {
     const content = this.props.content;
     return (
       <div id="main-page">
-      <LeftSideBar />
-      <div id="content-home">
-        <Card.Group itemsPerRow={this.state.itemsPerRow}>
-          {content.length &&
-            content
-              .filter(content => content.userId === this.props.user.id)
-              .map((story, index) => {
-                return (
-                  <NavLink key={story.id} to={`content/${story.id}`}>
-                    <ContentCard
-                      color={this._getColor(index % 7)}
-                      story={story}
-                      id={story.id}
-                      deleteContent={this.props.deleteSingleContent}
-                    />
-                  </NavLink>
-                );
-              })}
-        </Card.Group>
-      </div>
+        <LeftSideBar />
+        <div id="content-home">
+          <Card.Group itemsPerRow={this.state.itemsPerRow}>
+            {content.length &&
+              content
+                .filter(content => content.userId === this.props.user.id)
+                .map((story, index) => {
+                  return (
+                    <NavLink key={story.id} to={`content/${story.id}`}>
+                      <Card
+                        style={{
+                          width: '300px',
+                          height: '350px',
+                          margin: '0.5vw'
+                        }}
+                        color={this.props.color}
+                        className="card"
+                        fluid
+                      >
+                        <ContentCard
+                          color={this._getColor(index % 7)}
+                          story={story}
+                          id={this.props.user.id}
+                          deleteContent={this.props.deleteSingleContent}
+                        />
+                        <Card.Content extra>
+                          <GeneralCardIcons
+                            id={this.props.user.id}
+                            story={story}
+                          />
+                        </Card.Content>
+                      </Card>
+                    </NavLink>
+                  );
+                })}
+          </Card.Group>
+        </div>
       </div>
     );
   }
