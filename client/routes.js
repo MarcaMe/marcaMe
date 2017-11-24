@@ -8,10 +8,10 @@ import {
   Main,
   Login,
   Signup,
-  UserHome,
   LeftSideBar,
   VideoViewer,
-  OneArticle
+  OneArticle,
+  MyProfile
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -40,6 +40,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
+                <Route path="/profile/:id" component={MyProfile} />
                 <Route component={ContentHome} />
               </Switch>
             )}
