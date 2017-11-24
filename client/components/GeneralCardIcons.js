@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
-import {editOneContent} from '../store/content';
+import { editOneContent } from '../store/content';
 
 class GeneralCardIcons extends React.Component {
   constructor(props) {
@@ -17,7 +17,11 @@ class GeneralCardIcons extends React.Component {
   _handleShareClick(evt) {
     evt.preventDefault();
     this.setState({ isPublic: !this.state.isPublic }, () =>
-      this.props.editContent(this.props.id, 'isPublic', this.state.isPublic)
+      this.props.editContent(
+        this.props.story.id,
+        'isPublic',
+        this.state.isPublic
+      )
     );
   }
   toggleLike(evt) {
