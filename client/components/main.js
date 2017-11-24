@@ -41,7 +41,7 @@ class Main extends Component {
                   <Icon name="home" color={theme} size="big" />
                 </Link>
                 <Link to={`/profile/${user.id}`}>
-                  <Icon name="user" color="pink" size="big"/>
+                  <Icon name="user" color="pink" size="big" />
                 </Link>
                 <Link to="/signup" onClick={handleClick}>
                   <Icon name="log out" color="grey" size="large"> Logout</Icon>

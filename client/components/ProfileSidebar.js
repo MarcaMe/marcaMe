@@ -10,7 +10,7 @@ export class ProfileSidebar extends Component {
           <div id="profile-info">
             <Image
               id="Image-profile-pic"
-              src="https://react.semantic-ui.com/assets/images/avatar/large/matthew.png"
+              src={user.profilePicture}
               size="medium"
               circular
             />
@@ -20,7 +20,7 @@ export class ProfileSidebar extends Component {
               <Icon size="large" name="user circle" />
               <h5 className="follow-text">Followers</h5>
               </div>
-              <div className="follow-icon-container">              
+              <div className="follow-icon-container">
               <Icon size="large" name="user circle outline" />
               <h5 className="follow-text">Following</h5>
               </div>

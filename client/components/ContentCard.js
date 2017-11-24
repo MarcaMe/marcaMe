@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Icon, Image } from 'semantic-ui-react';
-import { getSingleContent, deleteOneContent, editOneContent } from '../store/content';
-import GeneralCardIcons from './GeneralCardIcons';
+import { Card,  Image } from 'semantic-ui-react';
+import { editOneContent } from '../store/content';
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');

@@ -5,7 +5,7 @@ const db = require('../db');
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
-    unique: true,
+    unique: true
   },
   firstName: {
     type: Sequelize.STRING,
@@ -20,6 +20,11 @@ const User = db.define('user', {
       const newLastName = val ? val[0].toUpperCase() + val.slice(1) : '';
       this.setDataValue('lastName', newLastName);
     }
+  },
+  profilePicture: {
+    type: Sequelize.TEXT,
+    defaultValue:
+      'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png'
   },
   followers: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
