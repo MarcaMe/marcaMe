@@ -43,19 +43,18 @@ export class ContentHome extends Component {
                 .filter(content => content.userId === this.props.user.id)
                 .map((story, index) => {
                   return (
-                    <NavLink key={story.id} to={`content/${story.id}`}>
+                    <NavLink key={story.id} to={`/content/${story.id}`}>
                       <Card
                         style={{
                           width: '300px',
                           height: '350px',
                           margin: '0.5vw'
                         }}
-                        color={this.props.color}
+                        color={this._getColor(index)}
                         className="card"
                         fluid
                       >
                         <ContentCard
-                          color={this._getColor(index % 7)}
                           story={story}
                           id={this.props.user.id}
                           deleteContent={this.props.deleteSingleContent}
