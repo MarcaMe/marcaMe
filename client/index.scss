@@ -87,7 +87,6 @@ body {
     color: red;
   }
 
-
   #logout-nav {
     display: flex;
     justify-content: flex-end;
@@ -118,18 +117,18 @@ body {
     color:#595959;
   }
 
-  #heart.reader-nav-icon:hover {
+  #heart-icon:hover {
     color:#ff9999;
   }
   #heart.reader-nav-icon:active {
     color:#ff9999;
   }
 
-  #archive.reader-nav-icon:hover {
+  #archive-icon:hover {
     color: #7de8e8;
   }  
 
-  #trash.reader-nav-icon:hover {
+  #trash-icon:hover {
     color: #ff6666;
   }
 

@@ -1,26 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
-import { editOneContent } from '../store/content';
+import { editOneContent, deleteOneContent } from '../store/content';
 
 class GeneralCardIcons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLike: false,
+      isFavorite: this.props.story.isFavorite,
+      isArchived: this.props.story.isArchived,
       isPublic: this.props.story.isPublic
     };
     this.toggleLike = this.toggleLike.bind(this);
-    this._handleShareClick = this._handleShareClick.bind(this);
+    this._handleEditClick = this._handleEditClick.bind(this);
   }
 
-  _handleShareClick(evt) {
+  _handleEditClick(evt, fieldName) {
     evt.preventDefault();
-    this.setState({ isPublic: !this.state.isPublic }, () =>
+    this.setState({ [fieldName]: !this.state[fieldName] }, () =>
       this.props.editContent(
         this.props.story.id,
-        'isPublic',
-        this.state.isPublic
+        fieldName,
+        this.state[fieldName]
       )
     );
   }
@@ -38,20 +39,28 @@ class GeneralCardIcons extends React.Component {
           id="share-icon"
           size="large"
           name="external"
-          onClick={evt => this._handleShareClick(evt)}
-          color={this.state.isPublic && 'teal'}
+          onClick={evt => this._handleEditClick(evt, 'isPublic')}
+          color={this.state.isPublic && 'blue'}
         />
         <Icon
+            id="archive-icon"
+            name="archive"
+            size="large"
+            color={this.state.isArchived && 'teal'}
+            onClick={evt => this._handleEditClick(evt, 'isArchived')}
+          />
+        <Icon
+          id="heart-icon"
+          name="heart"
           size="large"
-          name={this.state.isLike ? 'heart' : 'empty heart'}
-          onClick={evt => this.toggleLike(evt)}
+          color={this.state.isFavorite && 'red'}
+          onClick={evt => this._handleEditClick(evt, 'isFavorite')}
         />
-
         <Icon
           id="trash-icon"
           size="large"
           name="trash"
-          onClick={evt => this.props.deleteContent(evt, this.props.id)}
+          onClick={evt => this.props.deleteContent(evt, this.props.story.id)}
         />
       </div>
     );
@@ -66,7 +75,11 @@ const mapDispatch = dispatch => {
     editContent(id, field, value) {
       const contentBody = { id, [field]: value };
       dispatch(editOneContent(contentBody));
-    }
+    },
+    deleteContent(evt, contentId) {
+      evt.preventDefault();
+      dispatch(deleteOneContent(contentId));
+    },
   };
 };
 
