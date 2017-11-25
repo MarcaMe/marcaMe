@@ -143,10 +143,9 @@ body {
     position:fixed;
     display: flex;
     height: 25vw;
-    justify-content: space-evenly;
     flex-direction: column;
     padding-left: 3vw;
-    z-index:2;
+
   }
 
   .reader-nav-text{
@@ -210,6 +209,14 @@ body {
     #content-home {
       margin-left: 25px;
       margin-right: 25px;
+    }
+    #one-article-viewer {
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #reader-nav {
+      margin-left:28em;
     }
   }
   @media only screen
