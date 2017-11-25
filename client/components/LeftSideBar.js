@@ -34,7 +34,7 @@ class LeftSideBar extends Component {
             collections.map(collection => {
             return (
             <div key={collection.id} className="collection">
-                <Folder />
+                <Folder id={collection.id} />
                 <Label color={theme} size="small">{collection.name}</Label>
             </div>
             )

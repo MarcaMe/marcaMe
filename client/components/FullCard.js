@@ -8,7 +8,7 @@ export const ItemTypes = {
 };
 const cardSource = {
   beginDrag(props) {
-    return {};
+    return props.story;
   }
 };
 
