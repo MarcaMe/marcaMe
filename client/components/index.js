@@ -19,3 +19,4 @@ export { default as ReaderNav } from './ReaderNav';
 export { default as MyProfile } from './MyProfile';
 export { default as FullCard } from './FullCard'
 export { default as GeneralCardIcons } from './GeneralCardIcons'
+export { default as SingleCollection } from './SingleCollection'

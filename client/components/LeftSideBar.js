@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Icon, Input, Form, Label, Sticky } from 'semantic-ui-react';
 import { Folder } from '../components'
 import { fetchCollections, postCollection } from '../store'
-
+import { NavLink } from 'react-router-dom';
 
 class LeftSideBar extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class LeftSideBar extends Component {
             <Sticky>
             <div className="collection">
             <Icon name="add" color={theme} size="huge" onClick={() => this.setState({showForm: true})} />
-            <Label color={theme} size="small">Add a collection</Label>
+            <Label basic color={theme} size="small">Add a collection</Label>
             {showForm ?
             <Form onSubmit={(evt) => addCollection(evt)} >
                 <Input name="input" placeholder="add collection"  />
@@ -34,8 +34,9 @@ class LeftSideBar extends Component {
             collections.map(collection => {
             return (
             <div key={collection.id} className="collection">
-                <Folder id={collection.id} />
-                <Label color={theme} size="small">{collection.name}</Label>
+                <NavLink to={`/collections/${collection.id}`}>
+                    <Folder id={collection.id} name={collection.name} />
+                </NavLink>
             </div>
             )
             }) : 'No Collections'}

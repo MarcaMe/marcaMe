@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { logout } from '../store'
+import { logout, fetchAllContent } from '../store'
 import { AddPopup } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
 import { ChangeTheme } from '../components'
@@ -20,9 +20,12 @@ class Main extends Component {
     }
    this.handleUrlButtonClick = this.handleUrlButtonClick.bind(this)
   }
-
   handleUrlButtonClick(){
     this.setState({showUrlForm: !this.state.showUrlForm})
+  }
+
+  componentDidMount() {
+    this.props.fetchAllContentofUser();
   }
 
   render(){
@@ -80,6 +83,9 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    fetchAllContentofUser() {
+      dispatch(fetchAllContent());
     }
   }
 }

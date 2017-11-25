@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Icon, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './FullCard'
@@ -32,10 +32,11 @@ class Folder extends Component {
 
   render() {
     const { open } = this.state;
-    const { theme, connectDropTarget, isOver } = this.props;
+    const { theme, connectDropTarget, isOver, name } = this.props;
     return connectDropTarget(
       <div>
-      <Icon color={theme} name={open || isOver ? 'folder open' : 'folder'} size="huge" onMouseOver={() => this.setState({open: true})} onMouseOut={() => this.setState({open: false})} />
+      <Icon color={theme} name={open || isOver ? 'folder open outline' : 'folder outline'} size="huge" onMouseOver={() => this.setState({open: true})} onMouseOut={() => this.setState({open: false})} />
+      <Label basic color={theme} size="small">{name}</Label>
       </div>
     )
   }
