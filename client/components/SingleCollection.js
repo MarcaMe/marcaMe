@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
+import { Card, Header } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
@@ -14,12 +14,13 @@ export class SingleCollection extends Component {
 
   render() {
     const { content, collections } = this.props;
-    console.log(collections)
+    let collectionName;
+    if (collections.length) collectionName = collections.find(collection => collection.id === +this.props.match.params.collectionId).name
     return (
       <div id="main-page">
       <LeftSideBar />
       <div id="content-home">
-        <h2>Test Name</h2>
+      <Header size="huge">{collectionName}</Header>
         <Card.Group >
           {content.length &&
             content
