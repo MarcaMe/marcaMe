@@ -100,6 +100,10 @@ body {
     margin-bottom: 15px;
   }
 
+  .collection {
+    margin-bottom: 15px;
+  }
+
   #login-nav {
     display: flex;
     justify-content: flex-end;
@@ -121,7 +125,7 @@ body {
   }
 
   #back.reader-nav-icon:hover {
-    color:#595959;
+    color:rgb(46, 125, 243);
   }
 
   #heart-icon:hover {
@@ -142,7 +146,7 @@ body {
   #one-article-viewer {
     padding-right: 10em;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   #reader-nav {
@@ -163,7 +167,7 @@ body {
   }
 
   #sidebar {
-    width: 240px;
+    width: 250px;
     position: sticky;
     padding-left: 20px;
     margin-right: 20px;
@@ -243,7 +247,7 @@ body {
 
   @media only screen
   and (min-device-width: 760px)
-  and (max-device-width: 1400px) {
+  and (max-device-width: 1240px) {
     #one-article-text {
       margin-left: 14em;
       padding-right: 6em;

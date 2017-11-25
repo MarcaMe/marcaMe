@@ -50,6 +50,7 @@ export const deleteOneContent = contentId => dispatch => {
 };
 
 export const editOneContent = contentBody => dispatch => {
+  console.log(contentBody)
   axios
     .put(`/api/contents/${contentBody.id}`, contentBody)
     .then(res => res.data)

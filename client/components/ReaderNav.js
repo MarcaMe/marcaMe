@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { getSingleContent, deleteOneContent, editOneContent } from '../store/content';
 import { Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import history from '../history';
+
 
 class ReaderNav extends React.Component {
   constructor(props){
@@ -23,18 +25,18 @@ class ReaderNav extends React.Component {
   }
 
   render() {
+    console.log(history)
     return (
       <div id="reader-nav">
         <div className="reader-icon-container">
-          <Link to={'/home'}>
             <Icon
+              onClick={() => history.goBack()}
               className="reader-nav-icon"
               id="back"
               name="arrow left"
               size="big"
             />
             <h5 className="reader-nav-text">Go back</h5>
-          </Link>
         </div>
         <div className="reader-icon-container" onClick={ evt => this._handleClick(evt, 'isFavorite')}>
           <Icon
