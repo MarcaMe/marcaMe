@@ -42,6 +42,7 @@ export class FullCard extends Component {
     const { connectDragSource, isDragging } = this.props;
     return connectDragSource(
       <div>
+      {isDragging ? <h1>Grabbed Story</h1> :
         <Card
           style={{
             width: '300px',
@@ -64,6 +65,7 @@ export class FullCard extends Component {
             />
           </Card.Content>
         </Card>
+        }
       </div>
     );
   }
