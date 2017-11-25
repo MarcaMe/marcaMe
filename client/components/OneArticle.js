@@ -23,7 +23,7 @@ class OneArticle extends React.Component {
             <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
             <div className="header-container">
               <h3>{article.author && `By ${article.author}`}</h3>
-              <Link href={article.url}>
+              <Link to={article.url} target="_blank">
                 {' '}
                 <h3>Go to original </h3>
               </Link>
