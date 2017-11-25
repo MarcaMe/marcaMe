@@ -14,21 +14,23 @@ class OneArticle extends React.Component {
     return (
       article && (
         <div id="one-article-viewer">
-          <Sticky>
+            <Sticky>
             <ReaderNav content={article} />
-          </Sticky>
-          <Container text>
-            <h1>{article.title}</h1>
-            <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
-            <div className="header-container">
-              <h3>{article.author && `By ${article.author}`}</h3>
-              <a href={article.url}>
-                {' '}
-                <h3>Go to original </h3>
-              </a>
-            </div>
-          </Container>
-          <Container text>{ReactHtmlParser(article.content)}</Container>
+            </Sticky>
+          <div id="one-article-text">
+            <Container text>
+              <h1>{article.title}</h1>
+              <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
+              <div className="header-container">
+                <h3>{article.author && `By ${article.author}`}</h3>
+                <a href={article.url}>
+                  {' '}
+                  <h3>Go to original </h3>
+                </a>
+              </div>
+            </Container>
+            <Container text>{ReactHtmlParser(article.content)}</Container>
+          </div>
         </div>
       )
     );
