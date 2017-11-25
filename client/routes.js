@@ -8,10 +8,10 @@ import {
   Main,
   Login,
   Signup,
-  LeftSideBar,
   VideoViewer,
   OneArticle,
-  MyProfile
+  MyProfile,
+  SingleCollection
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -41,6 +41,7 @@ class Routes extends Component {
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
                 <Route path="/profile/:id" component={MyProfile} />
+                <Route path="/collections/:collectionId" component={SingleCollection} />
                 <Route component={ContentHome} />
               </Switch>
             )}

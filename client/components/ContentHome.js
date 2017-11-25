@@ -1,34 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
-import ContentCard from './ContentCard';
-import GeneralCardIcons from './GeneralCardIcons';
-import { LeftSideBar } from '../components';
+import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 
 export class ContentHome extends Component {
-  //hardcoding screen sizes for testing
-  //need to change based on document size
-  constructor(props) {
-    super(props);
-    this._getColor = this._getColor.bind(this);
-  }
+
   componentDidMount() {
     this.props.fetchAllContentofUser();
-  }
-
-  _getColor(index) {
-    const colors = [
-      'green',
-      'teal',
-      'blue',
-      'green',
-      'olive',
-      'violet',
-      'purple'
-    ];
-    return colors[index % this.props.content.length];
   }
 
   render() {
@@ -43,29 +23,14 @@ export class ContentHome extends Component {
                 .filter(content => content.userId === this.props.user.id)
                 .map((story, index) => {
                   return (
-                    <NavLink key={story.id} to={`/content/${story.id}`}>
-                      <Card
-                        style={{
-                          width: '300px',
-                          height: '350px',
-                          margin: '0.5vw'
-                        }}
-                        color={this._getColor(index)}
-                        className="card"
-                        fluid
-                      >
-                        <ContentCard
-                          story={story}
-                          id={this.props.user.id}
-                          deleteContent={this.props.deleteSingleContent}
-                        />
-                        <Card.Content extra>
-                          <GeneralCardIcons
-                            id={this.props.user.id}
-                            story={story}
-                          />
-                        </Card.Content>
-                      </Card>
+                    <NavLink key={story.id} to={`content/${story.id}`}>
+                    <FullCard
+                    story={story}
+                    id={this.props.user.id}
+                    deleteContent={this.props.deleteSingleContent}
+                    index={index}
+                    length={this.props.content.length}
+                    />
                     </NavLink>
                   );
                 })}
