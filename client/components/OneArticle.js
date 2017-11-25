@@ -26,7 +26,7 @@ class OneArticle extends React.Component {
               <Link href={article.url}>
                 {' '}
                 <h3>Go to original </h3>
-              </>
+              </Link>
             </div>
           </Container>
           <Container text>{ReactHtmlParser(article.content)}</Container>
