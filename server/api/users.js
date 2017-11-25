@@ -13,6 +13,29 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+
+// router.put('/:id', (req, res, next) => {
+//   const id = req.params.id
+//   const newComment = req.body.comment;
+//   const newLove = req.body.love;
+//   Log.findById(id)
+//   .then(log => {
+//       log.comment = newComment;
+//       log.love = newLove;
+//       log.save({fileds : ['comment', 'love'] })
+//   })
+//   .then( () => res.end())
+//   .catch(next)
+// })
+
+
+// router.put('/:id', (req, res, next) => {
+//   // expecting a follow
+//   const userId = req.params.id;
+//   const 
+// })
+
+
 // to test out the chrome extension
 router.post('/test', (req, res, next) => {
 
