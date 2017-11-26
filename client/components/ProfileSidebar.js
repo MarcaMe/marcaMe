@@ -4,7 +4,7 @@ import { Image, Icon, Divider } from 'semantic-ui-react';
 
 export class ProfileSidebar extends Component {
   render() {
-    const user = this.props.user;
+    const user = this.props.host;
     return (
         <div id="profile-sidebar">
           <div id="profile-info">

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Card, Divider } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
 import { ProfileSidebar } from './ProfileSidebar';
-import { fetchAllContent, deleteOneContent } from '../store/content';
+import { fetchAllContent, deleteOneContent, fetchHost } from '../store';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
+
 
 export class MyProfile extends Component {
   //hardcoding screen sizes for testing
@@ -12,10 +14,16 @@ export class MyProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemsPerRow: '4'
+      itemsPerRow: '4',
     };
     this._getColor = this._getColor.bind(this);
   }
+
+  componentWillMount(){
+    const hostId = this.props.match.params.id;    
+    this.props.getTheHost(hostId)    
+  }
+
   componentDidMount() {
     this.props.fetchAllContentofUser();
   }
@@ -36,17 +44,18 @@ export class MyProfile extends Component {
   render() {
     const content = this.props.content;
     const user = this.props.user;
+    const host = this.props.host;
     return (
-      user && (
+      host && (
         <div id="profile-body">
-          <ProfileSidebar user={user} />
+          <ProfileSidebar host={this.props.host} />
           <Divider />
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
             {content.length &&
               content
                 .filter(
                   content =>
-                    content.userId === this.props.user.id && content.isPublic
+                    content.userId === host.id && content.isPublic
                 )
                 .map((story, index) => {
                   return (
@@ -79,7 +88,8 @@ export class MyProfile extends Component {
 
 const mapState = state => ({
   user: state.user,
-  content: state.content
+  content: state.content,
+  host: state.host
 });
 
 const mapDispatch = dispatch => ({
@@ -89,7 +99,10 @@ const mapDispatch = dispatch => ({
   deleteSingleContent(evt, contentId) {
     evt.preventDefault();
     dispatch(deleteOneContent(contentId));
+  },
+  getTheHost(id){
+    dispatch(fetchHost(id))
   }
 });
 
-export default connect(mapState, mapDispatch)(MyProfile);
+export default withRouter(connect(mapState, mapDispatch)(MyProfile));

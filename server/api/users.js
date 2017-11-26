@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Relationship} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -13,6 +13,13 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+    .then(user => res.json(user))
+    .catch(next)
+})
 
 // router.put('/:id', (req, res, next) => {
 //   const id = req.params.id
@@ -29,11 +36,14 @@ router.get('/', (req, res, next) => {
 // })
 
 
-// router.put('/:id', (req, res, next) => {
-//   // expecting a follow
-//   const userId = req.params.id;
-//   const 
-// })
+router.post('/:id', (req, res, next) => {
+  // expecting the followed ID from req.body 
+  const userId = req.params.id;
+  const followed = req.body.followedId;
+  Relationship.create({userId, followed})
+  .then(newRecord => res.json(newRecord.dataValues))
+  .catch(next);
+})
 
 
 // to test out the chrome extension
