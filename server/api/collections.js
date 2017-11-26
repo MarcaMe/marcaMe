@@ -22,6 +22,7 @@ router.get('/', (req, res, next) => {
         .then(userCollections => {
             res.json(userCollections)
         })
+        .catch(next)
 })
 
 router.post('/', (req, res, next) => {
@@ -38,14 +39,14 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
-    req.collection.delete()
+    req.collection.destroy()
         .then(() => res.send('Collection was Deleted'))
         .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
     req.collection.update(req.body)
-        .then(updatedCollection => res.jsont(updatedCollection))
+        .then(updatedCollection => res.json(updatedCollection))
         .catch(next);
 })
 
