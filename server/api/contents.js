@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const { Content } = require('../db/models');
 const chalk = require('chalk');
+require('../../secrets');
+const axios = require('axios');
 module.exports = router;
 
 /* *************************************************** */
-require('../../secrets');
-const axios = require('axios');
-
 router.post('/chrome', (request, response, next) => {
   console.log(chalk.bgBlue('Im in the request'));
 
@@ -23,13 +22,13 @@ router.post('/chrome', (request, response, next) => {
   return axios
     .get(mercuryUrl, config)
     .then(res => {
-      console.log(chalk.bgGreen(res.data.title));
       const title = res.data.title;
       const author = res.data.author;
       const description = res.data.excerpt;
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
+      const tags = request.body.tags.split(',');
       Content.create({
         title,
         author,
@@ -37,15 +36,17 @@ router.post('/chrome', (request, response, next) => {
         content,
         imageUrl,
         userId,
-        url
-      }).then(() => response.sendStatus(201));
+        url,
+        tags
+      })
+      .then(() => response.sendStatus(201));
     })
     .catch(next);
 });
-
 /* *************************************************** */
 
 router.post('/', (req, res, next) => {
+  req.body.tags = req.body.tags.split(',')
   Content.create(req.body)
     .then(content => res.json(content))
     .catch(next);
