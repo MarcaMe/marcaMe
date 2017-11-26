@@ -21,6 +21,10 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
+
+
+
+
 // router.put('/:id', (req, res, next) => {
 //   const id = req.params.id
 //   const newComment = req.body.comment;

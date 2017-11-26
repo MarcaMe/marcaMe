@@ -18,3 +18,4 @@ export { default as OneArticle } from  './OneArticle';
 export { default as ReaderNav } from './ReaderNav';
 export { default as MyProfile } from './MyProfile';
 export {default as SearchFriends} from './SearchFriends';
+export {default as SearchResult} from './SearchResult';
