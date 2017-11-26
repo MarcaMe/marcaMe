@@ -23,7 +23,6 @@ router.get('/:id', (req, res, next) => {
 
 
 router.post('/:id', (req, res, next) => {
-  // expecting the followed ID from req.body 
   const userId = req.params.id;
   const followed = req.body.followedId;
   Relationship.findOrCreate({userId, followed})
