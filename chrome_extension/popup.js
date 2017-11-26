@@ -2,9 +2,8 @@ function addBookmark(url) {
   // const status = document.getElementById('status-display')
 
   let data = {
-    url
-    // summary: document.getElementById('summary').value,
-    // tags: document.getElementById('tags').value
+    url,
+    tags: document.getElementById('tags').value
   };
 
   return fetch('http://localhost:8080/api/contents/chrome', {

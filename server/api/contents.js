@@ -30,6 +30,7 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
+      const tags = request.body.tags.split(',');
       Content.create({
         title,
         author,
@@ -37,7 +38,8 @@ router.post('/chrome', (request, response, next) => {
         content,
         imageUrl,
         userId,
-        url
+        url,
+        tags
       }).then(() => response.sendStatus(201));
     })
     .catch(next);
