@@ -23,6 +23,7 @@ export const postCollection = collection => dispatch => {
 export const editCollection = collection => dispatch => {
   return axios
     .put(`/api/collections/${collection.id}`)
+    .then(res => res.data)
     .then(updatedCollection => dispatch(getUpdatedCollection(updatedCollection)))
 }
 

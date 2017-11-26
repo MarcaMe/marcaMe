@@ -50,7 +50,33 @@ describe('Collection routes', () => {
         expect(res.body.name).to.be.equal('An Amazing Collection')
         expect(res.body.id).to.equal(1)
       })
-    })
+    });
 
+    it('PUT /api/collections/:id', () => {
+      return request(app)
+      .get('/api/collections/1')
+      .then(res => {
+        const firstReqId = res.body.id;
+        return request(app)
+        .put(`/api/collections/${res.body.id}`)
+        .send({name: 'Updated Name'})
+        .expect(200)
+        .then(res => {
+          const secondReqId = res.body.id
+          expect(res.body.name).to.be.equal('Updated Name')
+          expect(secondReqId).to.equal(firstReqId)
+        })
+      })
+    });
+
+    it('DELETE /api/collections/:id', () => {
+      return request(app)
+      .delete('/api/collections/3')
+      .expect(200)
+      .then(res => {
+        expect(res.text).to.be.a('string')
+        expect(res.text).to.equal('Collection was Deleted')
+      })
+    })
   });
 });

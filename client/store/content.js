@@ -19,7 +19,7 @@ const deleteSingleContent = contentId => ({
 const editSingleContent = content => ({ type: EDIT_SINGLE_CONTENT, content });
 
 export const fetchAllContent = () => dispatch => {
-  axios
+  return axios
     .get('/api/contents')
     .then(res => res.data)
     .then(content => dispatch(getAllContent(content)))
@@ -27,7 +27,7 @@ export const fetchAllContent = () => dispatch => {
 };
 
 export const postContentThunk = contentBody => dispatch => {
-  axios
+  return axios
     .post(`/api/contents`, contentBody)
     .then(res => res.data)
     .then(content => dispatch(addContent(content)))
@@ -35,7 +35,7 @@ export const postContentThunk = contentBody => dispatch => {
 };
 
 export const getSingleContent = contentId => dispatch => {
-  axios
+  return axios
     .get(`/api/contents/${contentId}`)
     .then(res => res.data)
     .then(content => dispatch(getContent(content)))
@@ -44,14 +44,14 @@ export const getSingleContent = contentId => dispatch => {
 
 export const deleteOneContent = contentId => dispatch => {
   dispatch(deleteSingleContent(contentId));
-  axios.delete(`/api/contents/${contentId}`)
+  return axios.delete(`/api/contents/${contentId}`)
   .then(_ => history.push('/home'))
   .catch(err => console.error(err));
 };
 
 export const editOneContent = contentBody => dispatch => {
   console.log(contentBody)
-  axios
+  return axios
     .put(`/api/contents/${contentBody.id}`, contentBody)
     .then(res => res.data)
     .then(content => dispatch(editSingleContent(content)))
