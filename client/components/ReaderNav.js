@@ -7,15 +7,7 @@ import history from '../history';
 
 
 class ReaderNav extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isFavorite: this.props.article[0].isFavorite,
-      isArchived: this.props.article[0].isArchived,
-      isPublic: this.props.article[0].isPublic
-    }
-    this._handleClick = this._handleClick.bind(this)
-  }
+
   componentDidMount() {
     this.props.getSingleContent();
   }
@@ -26,6 +18,8 @@ class ReaderNav extends React.Component {
 
   render() {
     console.log(history)
+    const content = this.props.content;
+    const editContent = this.props.editContent;
     return (
       <div id="reader-nav">
         <div className="reader-icon-container">
@@ -38,35 +32,35 @@ class ReaderNav extends React.Component {
             />
             <h5 className="reader-nav-text">Go back</h5>
         </div>
-        <div className="reader-icon-container" onClick={ evt => this._handleClick(evt, 'isFavorite')}>
+        <div className="reader-icon-container" onClick={ evt => editContent(evt, 'isFavorite', !content.isFavorite)}>
           <Icon
             className="reader-nav-icon"
             id="heart-icon"
             name="heart"
             size="big"
-            color={this.state.isFavorite && 'red'}
+            color={content.isFavorite && 'red'}
           />
-          <h5 className="reader-nav-text">{this.state.isFavorite ? 'Liked!' : 'Like'}</h5>
+          <h5 className="reader-nav-text">{content.isFavorite ? 'Liked!' : 'Like'}</h5>
         </div>
         <div className="reader-icon-container">
           <Icon
             id="share-icon"
             size="big"
             name="external"
-            onClick={evt => this._handleClick(evt, 'isPublic')}
-            color={this.state.isPublic && 'blue'}
+            onClick={evt => editContent(evt, 'isPublic', !content.isPublic)}
+            color={content.isPublic && 'blue'}
           />
-          <h5 className="reader-nav-text">{this.state.isPublic ? 'Shared!' : 'Share'}</h5>
+          <h5 className="reader-nav-text">{content.isPublic ? 'Shared!' : 'Share'}</h5>
         </div>
-        <div className="reader-icon-container" onClick={ evt => this._handleClick(evt, 'isArchived')}>
+        <div className="reader-icon-container" onClick={ evt => editContent(evt,'isArchived', !content.isArchived)}>
           <Icon
             className="reader-nav-icon"
             id="archive-icon"
             name="archive"
             size="big"
-            color={this.state.isArchived && 'teal'}
+            color={content.isArchived && 'teal'}
           />
-          <h5 className="reader-nav-text">{this.state.isArchived ? 'Archived!' : 'Archive'}</h5>
+          <h5 className="reader-nav-text">{content.isArchived ? 'Archived!' : 'Archive'}</h5>
         </div>
         <div
           className="reader-icon-container"
@@ -85,10 +79,6 @@ class ReaderNav extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  article: state.content
-});
-
 const mapDispatchToProps = (dispatch, ownProps) => {
   const id = Number(ownProps.content.id);
   return {
@@ -99,11 +89,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       evt.preventDefault();
       dispatch(deleteOneContent(id));
     },
-    editContent(field, value) {
+    editContent(evt, field, value) {
+      evt.preventDefault();
       const contentBody = {id, [field]: value}
       dispatch(editOneContent(contentBody));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReaderNav);
+export default connect(null, mapDispatchToProps)(ReaderNav);
