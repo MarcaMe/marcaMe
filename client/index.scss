@@ -42,6 +42,10 @@ body {
     width: 100%;
     object-fit: contain;
   }
+  #test {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   #followers-container{
     display: flex;
