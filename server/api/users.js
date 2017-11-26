@@ -22,29 +22,11 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-
-
-
-// router.put('/:id', (req, res, next) => {
-//   const id = req.params.id
-//   const newComment = req.body.comment;
-//   const newLove = req.body.love;
-//   Log.findById(id)
-//   .then(log => {
-//       log.comment = newComment;
-//       log.love = newLove;
-//       log.save({fileds : ['comment', 'love'] })
-//   })
-//   .then( () => res.end())
-//   .catch(next)
-// })
-
-
 router.post('/:id', (req, res, next) => {
   // expecting the followed ID from req.body 
   const userId = req.params.id;
   const followed = req.body.followedId;
-  Relationship.create({userId, followed})
+  Relationship.findOrCreate({userId, followed})
   .then(newRecord => res.json(newRecord.dataValues))
   .catch(next);
 })

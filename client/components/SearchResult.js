@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { followFriend } from '../store'
 
 class SearchResult extends Component{
     constructor(props){
         super(props)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        // go to database, update it
+        const followingId = this.props.searchFriends[0].id
+        console.log("!!!!!", followingId)
+        const userId = this.props.user.id;
+        this.props.followAFriend(followingId ,userId )
+
     }
 
     render(){
@@ -29,7 +35,18 @@ class SearchResult extends Component{
 }
 
 const mapState = state => ({
-    searchFriends: state.searchFriends
+    searchFriends: state.searchFriends,
+    user: state.user
 })
 
-export default connect(mapState)(SearchResult);
+const mapDispatch = dispatch => {
+    return {
+        followAFriend(followingId, userId){
+            dispatch(followFriend(followingId, userId))
+        }
+    }
+}
+
+
+
+export default connect(mapState, mapDispatch)(SearchResult);
