@@ -14,10 +14,11 @@ class OneArticle extends React.Component {
     const article = this.props.article.length ? this.props.article[0] : null;
     return (
       article && (
-        <div>
-          <Sticky>
+        <div id="one-article-viewer">
+            <Sticky>
             <ReaderNav content={article} />
-          </Sticky>
+            </Sticky>
+          <div id="one-article-text">
           <Container text>
             <h1>{article.title}</h1>
             <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
@@ -29,7 +30,22 @@ class OneArticle extends React.Component {
               </NavLink>
             </div>
           </Container>
-          <Container text>{ReactHtmlParser(article.content)}</Container>
+          <Container text>{ReactHtmlParser(article.content)}</Container>          
+            {
+            //   <Container text>
+            //   <h1>{article.title}</h1>
+            //   <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
+            //   <div className="header-container">
+            //     <h3>{article.author && `By ${article.author}`}</h3>
+            //     <a href={article.url}>
+            //       {' '}
+            //       <h3>Go to original </h3>
+            //     </a>
+            //   </div>
+            // </Container>
+            // <Container text>{ReactHtmlParser(article.content)}</Container>
+          }
+          </div>
         </div>
       )
     );
