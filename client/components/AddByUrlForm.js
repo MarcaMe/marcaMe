@@ -21,7 +21,6 @@ class AddByUrlForm extends Component {
 
   handleTags(evt) {
     this.setState({ tags: evt.target.value })
-    console.log(this.state.tags)
   }
 
   render() {
