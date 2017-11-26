@@ -46,6 +46,9 @@ router.post('/chrome', (request, response, next) => {
 /* *************************************************** */
 
 router.post('/', (req, res, next) => {
+  console.log(chalk.bgBlue('tags: ', req.body.tags))
+  req.body.tags = req.body.tags.split(',')
+  console.log(chalk.bgBlue('tags: ', req.body.tags))
   Content.create(req.body)
     .then(content => res.json(content))
     .catch(next);
