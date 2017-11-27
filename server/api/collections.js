@@ -36,7 +36,6 @@ router.post('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
     res.json(req.collection)
-    .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {

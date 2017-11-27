@@ -16,7 +16,6 @@ class ReaderNav extends React.Component {
   }
 
   render() {
-    console.log(history)
     const content = this.props.content;
     const editContent = this.props.editContent;
     return (

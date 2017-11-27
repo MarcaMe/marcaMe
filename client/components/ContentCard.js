@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image } from 'semantic-ui-react';
 import { editOneContent } from '../store/content';
+import PropTypes from 'prop-types'
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -69,3 +70,7 @@ const mapDispatch = dispatch => {
 };
 
 export default connect(mapState, mapDispatch)(ContentCard);
+
+ContentCard.propTypes = {
+  editContent: PropTypes.func.isRequired
+}

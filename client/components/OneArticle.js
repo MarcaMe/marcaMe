@@ -5,6 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { Container, Sticky } from 'semantic-ui-react';
 import ReaderNav from './ReaderNav';
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class OneArticle extends React.Component {
   componentDidMount() {
@@ -52,3 +53,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OneArticle);
+
+OneArticle.propTypes = {
+  article: PropTypes.object.isRequired,
+  getSingleContent: PropTypes.func.isRequired
+}

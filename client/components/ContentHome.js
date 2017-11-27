@@ -4,6 +4,7 @@ import { Card } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 export class ContentHome extends Component {
 
@@ -59,3 +60,10 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(ContentHome);
+
+ContentHome.propTypes = {
+  user: PropTypes.object.isRequired,
+  content: PropTypes.array.isRequired,
+  fetchAllContentofUser: PropTypes.func.isRequired,
+  deleteSingleContent: PropTypes.func.isRequired
+}

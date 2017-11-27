@@ -4,6 +4,7 @@ import { Card, Header } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchCollectionContent, deleteOneContent } from '../store';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 
 export class SingleCollection extends Component {
@@ -60,3 +61,10 @@ const mapDispatch = dispatch => ({
 });
 
 export default connect(mapState, mapDispatch)(SingleCollection);
+
+SingleCollection.propTypes = {
+  fetchAllCollectionContent: PropTypes.func.isRequired,
+  deleteSingleContent: PropTypes.func.isRequired,
+  singlecollection: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
+}

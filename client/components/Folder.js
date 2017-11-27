@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './FullCard'
 import { postToCollection } from '../store'
+import PropTypes from 'prop-types'
 
 
 const folderTarget = {
@@ -57,3 +58,9 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(DropTarget(ItemTypes.CARD, folderTarget, collect)(Folder));
 
+Folder.propTypes = {
+  theme: PropTypes.string,
+  connectDropTarget: PropTypes.func.isRequired,
+  isOver: PropTypes.bool.isRequired,
+  addToCollection: PropTypes.func.isRequired
+}
