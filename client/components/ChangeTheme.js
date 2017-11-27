@@ -2,6 +2,7 @@ import React from 'react'
 import { Select } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { changeColor } from '../store'
+import PropTypes from 'prop-types'
 
 const colorOptions = [
   {key: 'teal', text: 'teal', value: 'teal'},
@@ -33,3 +34,7 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(null, mapDispatch)(ChangeTheme)
+
+ChangeTheme.propTypes = {
+  changeUserTheme: PropTypes.func.isRequired
+}

@@ -20,8 +20,8 @@ export class MyProfile extends Component {
   }
 
   componentWillMount(){
-    const hostId = this.props.match.params.id;    
-    this.props.getTheHost(hostId)    
+    const hostId = this.props.match.params.id;
+    this.props.getTheHost(hostId)
   }
 
   componentDidMount() {
