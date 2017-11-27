@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image, Icon, Divider } from 'semantic-ui-react';
-import { fetchFollowing, fetchFollower } from '../store';
+import { fetchFollowing, fetchFollower, updateOneUserName } from '../store';
 import { withRouter, NavLink } from 'react-router-dom';
+import { setTimeout } from 'timers';
 
 export class ProfileSidebar extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isEditName: false,
+      changeName: "", 
+    }
+    this._showChangeNameField = this._showChangeNameField.bind(this);
+    this._handleChangeName = this._handleChangeName.bind(this);
+  }
+
+  _showChangeNameField(e){
+    e.preventDefault();
+    this.setState({isEditName : true})
+  }
+
+  _handleChangeName(e) {
+    e.preventDefault();
+    const userId = this.props.match.params.id;
+    const newName = this.state.changeName;
+    this.props.updateUserName(userId, newName)
+    setTimeout(this.setState({isEditName: false}), 100)
+
+  }
+
   componentWillMount() {
     const hostId = this.props.match.params.id;
     this.props.getFollower(hostId);
@@ -24,7 +49,16 @@ export class ProfileSidebar extends Component {
               size="medium"
               circular
             />
-            <h2>{`${user.firstName} ${user.lastName}`}</h2>
+            {this.state.isEditName
+              ? <div>
+                <input value={this.state.changeName} onChange={ (e) => this.setState({changeName: e.target.value})} />
+                <Icon name="check" onClick={this._handleChangeName} /> 
+              </div>
+              : <div>
+                <span>{`${user.firstName}`}</span>
+                <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>  
+              </div>            
+            }
             <div id="followers-container">
               <div className="follow-icon-container">
               <Icon size="large" name="user circle" />
@@ -46,13 +80,15 @@ export class ProfileSidebar extends Component {
   }
 }
 
-const mapState = state => ({
+const mapState = state => {
+  return{
   user: state.user,
   content: state.content,
   host: state.host,
   follower: state.follower,
   following: state.following
-});
+  }
+};
 
 const mapDispatch = dispatch => ({
   getFollowing(id) {
@@ -60,6 +96,9 @@ const mapDispatch = dispatch => ({
   },
   getFollower(id) {
     dispatch(fetchFollower(id));
+  },
+  updateUserName(id, name){
+    dispatch(updateOneUserName(id, name))
   }
 });
 
