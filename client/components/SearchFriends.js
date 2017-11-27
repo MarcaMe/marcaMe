@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchResult } from '../components';
 import { fetchFriend } from '../store';
+import { Input, Button } from 'semantic-ui-react'
+
 
 
 class SearchFriends extends Component {
@@ -21,23 +23,26 @@ class SearchFriends extends Component {
       }
 
     render(){
+       if(this.state.renderSearchResult) 
+       {return    <SearchResult render={this.state.renderSearchResult} />}
+        else {
         return (
             <div>
             <form>
-            <input
+            <Input focus
             placeholder="search by email"
             name="search"
             type="text"
             onChange={evt => this.setState({ searchEmail: evt.target.value })}
             value={this.state.searchEmail}
              />
-             <button
+             <Button circular size="mini"
              type="button"
-             onClick={this.handleSubmit}> Go! </button>
+             onClick={this.handleSubmit}>Go!</Button>
             </form>
-            <SearchResult render={this.state.renderSearchResult} />
             </div>
         )
+    }
     }
 }
 

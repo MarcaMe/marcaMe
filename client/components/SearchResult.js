@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { followFriend } from '../store'
+import { Input, Button } from 'semantic-ui-react'
+
 
 class SearchResult extends Component{
     constructor(props){
@@ -21,11 +23,11 @@ class SearchResult extends Component{
             this.props.searchFriends.length > 0 ?
        ( <div>
          <span> { this.props.searchFriends[0].email } </span>
-         <button
-         type="button"
-         onClick={this.handleSubmit}> Follow </button>
+         <Button
+         type="button" size="mini"
+         onClick={this.handleSubmit}> Follow </Button>
          </div> )
-            : <div> friendNotFound  </div>
+            : <div> friend Not Found  </div>
         : <div />
     )
     }
