@@ -1,5 +1,5 @@
 {
-  "name": "Marca Marca Marca",
+  "name": "MarcaMe",
   "version": "1.2",
   "description": "my chrome extension",
   "permissions": [
@@ -13,14 +13,14 @@
     "default_icon": {
       "19": "icon.png"
     },
-    "default_title": "Sous",
+    "default_title": "MarcaMe",
     "default_popup": "./Popup/popup.html"
   },
   "web_accessible_resources": [
     "./Dependencies/semantic.min.css", "./Dependencies/semantic.min.js"
   ],
   "background": {
-    "scripts": ["./Dependencies/jquery.min.js", "./BackgroundScripts/background.js"],
+    "scripts": ["./Dependencies/jquery.min.js"],
     "persistent": true
   },
   "manifest_version": 2
