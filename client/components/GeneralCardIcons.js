@@ -11,7 +11,6 @@ class GeneralCardIcons extends React.Component {
       isArchived: this.props.story.isArchived,
       isPublic: this.props.story.isPublic
     };
-    this.toggleLike = this.toggleLike.bind(this);
     this._handleEditClick = this._handleEditClick.bind(this);
   }
 
@@ -24,10 +23,6 @@ class GeneralCardIcons extends React.Component {
         this.state[fieldName]
       )
     );
-  }
-  toggleLike(evt) {
-    evt.preventDefault();
-    this.setState({ isLike: !this.state.isLike });
   }
 
   render() {

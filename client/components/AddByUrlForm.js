@@ -62,10 +62,10 @@ class AddByUrlForm extends Component {
             })}
           </Label.Group>
         </Form.Field>
-        <Button onClick={(evt) => {this.setState({ saved: 'Saved!' }); this.props.handleSubmit(evt, this.props.user.id, tags, this.state.urlInput)}} color={this.state.urlInput.length > 0 ? 'teal' : ''} type="button">
+        <Button onClick={(evt) => {this.setState({ saved: 'Saved!' }); this.props.handleSubmit(evt, this.props.user.id, tags, this.state.urlInput)}} color={this.state.urlInput.length > 0 ? 'teal' : ''} type="button" >
           {this.state.saved}
         </Button>
-      </Form >
+      </Form>
     );
   }
 }

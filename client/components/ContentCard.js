@@ -19,18 +19,7 @@ class ContentCard extends React.Component {
       isLike: false,
       isPublic: this.props.story.isPublic
     };
-    this.toggleLike = this.toggleLike.bind(this);
-    this._handleShareClick = this._handleShareClick.bind(this);
-  }
 
-  _handleShareClick(evt){
-    evt.preventDefault()
-    this.setState({isPublic: !this.state.isPublic}, () => this.props.editContent(this.props.id, 'isPublic', this.state.isPublic))
-  }
-  toggleLike(evt) {
-    evt.preventDefault();
-    this.setState({ isLike: !this.state.isLike });
-    console.log(evt.target.className);
   }
 
   render() {

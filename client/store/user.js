@@ -47,6 +47,9 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+
+
+
 /**
  * REDUCER
  */
@@ -56,6 +59,7 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+
     default:
       return state
   }
