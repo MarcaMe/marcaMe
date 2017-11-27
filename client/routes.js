@@ -11,10 +11,15 @@ import {
   VideoViewer,
   OneArticle,
   MyProfile,
+<<<<<<< HEAD
+  Follower
+=======
   SingleCollection
+>>>>>>> master
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
+import Following from './components/Following'
 
 /**
  * COMPONENT
@@ -40,8 +45,9 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
-                <Route path="/profile/:id" component={MyProfile} />
-                <Route path="/collections/:collectionId" component={SingleCollection} />
+                <Route path="/profile/following/:id" component={Following} />
+                <Route path="/profile/follower/:id" component={Follower} />
+                <Route exact path="/profile/:id" component={MyProfile} />
                 <Route component={ContentHome} />
               </Switch>
             )}

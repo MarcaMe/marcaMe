@@ -26,14 +26,6 @@ const User = db.define('user', {
     defaultValue:
       'https://react.semantic-ui.com/assets/images/avatar/large/matthew.png'
   },
-  followers: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-    defaultValue: []
-  },
-  following: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-    defaultValue: []
-  },
   password: {
     type: Sequelize.STRING
   },
