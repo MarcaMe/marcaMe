@@ -17,7 +17,10 @@ class SearchFriends extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.findAFriend(this.state.searchEmail);
-    setTimeout(() => this.setState({ renderSearchResult: true }), 100);
+    setTimeout(() => {
+      if (this.props.searchFriends.length)
+        this.setState({ renderSearchResult: true });
+    }, 100);
   }
 
   render() {
@@ -26,29 +29,34 @@ class SearchFriends extends Component {
     } else {
       return (
         <div>
-
-            <Input
-              focus
-              placeholder="search by email"
-              name="search"
-              size="small"
-              onChange={evt => this.setState({ searchEmail: evt.target.value })}
-              value={this.state.searchEmail}
-            />
-            <Button
-              circular
-              size="mini"
-              type="button"
-              onClick={this.handleSubmit}
-            >
-              Go!
-            </Button>
-
+          <Input
+            focus
+            placeholder="search by email"
+            name="search"
+            size="small"
+            onChange={evt => this.setState({ searchEmail: evt.target.value })}
+            value={this.state.searchEmail}
+          />
+          <Button
+            circular
+            size="mini"
+            type="button"
+            onClick={this.handleSubmit}
+          >
+            Go!
+          </Button>
+          {this.props.searchFriends.length === 0 
+            ?( <p> Friend not Found </p> )
+           : null}
         </div>
       );
     }
   }
 }
+
+const mapState = state => ({
+  searchFriends: state.searchFriends
+});
 
 const mapDispatch = dispatch => {
   return {
@@ -58,4 +66,4 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(null, mapDispatch)(SearchFriends);
+export default connect(mapState, mapDispatch)(SearchFriends);

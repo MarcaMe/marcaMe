@@ -1,65 +1,61 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { followFriend } from '../store'
-import { List, Button, Image } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { followFriend } from "../store";
+import { List, Button, Image } from "semantic-ui-react";
 
+class SearchResult extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      follow: "Follow"
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-class SearchResult extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            follow: 'Follow'
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  handleSubmit(evt) {
+    evt.preventDefault();
+    const followingId = this.props.searchFriends[0].id;
+    const userId = this.props.user.id;
+    this.props.followAFriend(followingId, userId);
+    this.setState({ follow: "Followed!" });
+  }
 
-    handleSubmit(evt) {
-        evt.preventDefault();
-        const followingId = this.props.searchFriends[0].id
-        const userId = this.props.user.id;
-        this.props.followAFriend(followingId, userId )
-        this.setState({follow: 'Followed!'})
-    }
-
-    render(){
-    return (
-        this.props.render ?
-            this.props.searchFriends.length > 0 ?
-       ( <div>
+  render() {
+    return this.props.render ? (
+      <div>
         <List horizontal>
-        <List.Item>
-        <Image avatar src={this.props.searchFriends[0].profilePicture} />
-        <List.Content>
-        <List.Header>{ this.props.searchFriends[0].firstName }</List.Header>
-            { this.props.searchFriends[0].email }
-        </List.Content>
-        </List.Item>
-        <List.Item>
-         <Button
-         type="button" 
-         size="mini"
-         onClick={this.handleSubmit}> {this.state.follow} </Button>
-         </List.Item>
-         </List>
-         </div> )
-            : <div> friend Not Found  </div>
-        : <div />
-    )
-    }
-
+          <List.Item>
+            <Image avatar src={this.props.searchFriends[0].profilePicture} />
+            <List.Content>
+              <List.Header>{this.props.searchFriends[0].firstName}</List.Header>
+              {this.props.searchFriends[0].email}
+            </List.Content>
+          </List.Item>
+          <List.Item>
+            <Button type="button" size="mini" onClick={this.handleSubmit}>
+              {" "}
+              {this.state.follow}{" "}
+            </Button>
+          </List.Item>
+        </List>
+      </div>
+    ) : (
+      <div />
+    );
+  }
 }
 
 const mapState = state => ({
-    searchFriends: state.searchFriends,
-    user: state.user
-})
+  searchFriends: state.searchFriends,
+  user: state.user
+});
 
 const mapDispatch = dispatch => {
-    return {
-        followAFriend(followingId, userId){
-            dispatch(followFriend(followingId, userId))
-        }
+  return {
+    followAFriend(followingId, userId) {
+      dispatch(followFriend(followingId, userId));
     }
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(SearchResult);
