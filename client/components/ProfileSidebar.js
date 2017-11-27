@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image, Icon, Divider } from 'semantic-ui-react';
-import { fetchFollowing, fetchFollower, updateOneUserName } from '../store';
+import { fetchFollowing, fetchFollower, updateOneHostName } from '../store';
 import { withRouter, NavLink } from 'react-router-dom';
 import { setTimeout } from 'timers';
 
@@ -25,7 +25,7 @@ export class ProfileSidebar extends Component {
     e.preventDefault();
     const userId = this.props.match.params.id;
     const newName = this.state.changeName;
-    this.props.updateUserName(userId, newName)
+    this.props.updateHostName(userId, newName)
     setTimeout(this.setState({isEditName: false}), 100)
 
   }
@@ -97,8 +97,8 @@ const mapDispatch = dispatch => ({
   getFollower(id) {
     dispatch(fetchFollower(id));
   },
-  updateUserName(id, name){
-    dispatch(updateOneUserName(id, name))
+  updateHostName(id, name){
+    dispatch(updateOneHostName(id, name))
   }
 });
 
