@@ -1,9 +1,10 @@
 const { expect } = require('chai');
 const request = require('supertest');
+const session = require('supertest-session');
 const db = require('../db');
 const app = require('../index');
 const Collection = db.model('collection');
-const Content = db.model('content');
+const User = db.model('user');
 
 
 describe('Collection routes', () => {
@@ -12,23 +13,37 @@ describe('Collection routes', () => {
   });
 
   describe('/api/collections/', () => {
-
+    let collections;
+    const testSession = session(app)
+    const user = {email: 'cody@mail.com', password: '123'}
     beforeEach(() => {
-      return Collection.bulkCreate([
-        {name: 'An Amazing Collection'},
-        {name: 'An Even Better Collection'},
-        {name: 'The Best Collection'}
-        ]);
+      return User.create(user)
+      .then(_ => {
+        return testSession
+        .post('/auth/login')
+        .send({email: user.email, password: '123'})
+      })
+      .then(_ => {
+        return Collection.bulkCreate([
+          {name: 'An Amazing Collection', userId: 1},
+          {name: 'An Even Better Collection', userId: 1},
+          {name: 'The Best Collection', userId: 1}
+          ],
+          {returning: true})
+      })
+      .then(created => {
+        collections = created
+      })
     });
-
     it('GET /api/collections', () => {
-      return request(app)
+      return testSession
         .get('/api/collections')
+        .send()
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array');
           expect(res.body).to.have.lengthOf(3)
-          expect(res.body[0].name).to.be.equal('An Even Better Collection');
+          expect(res.body[0].name).to.be.equal('An Amazing Collection');
         });
     });
 
@@ -45,8 +60,8 @@ describe('Collection routes', () => {
     });
 
     it('GET /api/collections/:id', () => {
-      return request(app)
-      .get('/api/collections/1')
+      return testSession
+      .get(`/api/collections/${collections[0].id}`)
       .expect(200)
       .then(res => {
         expect(res.body.name).to.be.equal('An Amazing Collection')
@@ -55,24 +70,19 @@ describe('Collection routes', () => {
     });
 
     it('PUT /api/collections/:id', () => {
-      return request(app)
-      .get('/api/collections/1')
-      .then(collectionOneRes => {
-        const firstReqId = collectionOneRes.body.id;
-        return request(app)
-        .put(`/api/collections/${collectionOneRes.body.id}`)
+        return testSession
+        .put(`/api/collections/${collections[0].id}`)
         .send({name: 'Updated Name'})
         .expect(200)
         .then(res => {
           const secondReqId = res.body.id
           expect(res.body.name).to.be.equal('Updated Name')
-          expect(secondReqId).to.equal(firstReqId)
+          expect(secondReqId).to.equal(collections[0].id)
         })
-      })
     });
 
     it('DELETE /api/collections/:id', () => {
-      return request(app)
+      return testSession
       .delete('/api/collections/3')
       .expect(200)
       .then(res => {
@@ -83,39 +93,3 @@ describe('Collection routes', () => {
   });
 });
 
-
-describe('Eager Loading', () => {
-
-  beforeEach(() => {
-    return db.sync({ force: true });
-  });
-
-  describe('Getting a specific collection', () => {
-    let collection;
-    let results;
-    beforeEach(() => {
-      return Collection.create({name: 'Eager Loaded Collection'})
-        .then(createdCollection => {
-          collection = createdCollection;
-          return Content.bulkCreate([
-            {id: 1, title: 'A Lovely Article', url: 'www.iamaurl.com', author: 'An Amazing Author'},
-            {id: 2, title: 'A Great Read', url: 'www.readme.com', author: 'An Amazing Author'}
-          ])
-          .then(someResults => {
-            results = someResults
-            return collection.addContents(results)
-          })
-        })
-    })
-    it('is a test', () => {
-      return request(app)
-      .get('/api/collections/1')
-      .expect(200)
-      .then(res => {
-        expect(res.body.contents).to.be.an('array')
-        expect(res.body.contents.length).to.equal(2)
-      })
-    })
-
-  })
-})
