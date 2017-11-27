@@ -3,7 +3,7 @@ import axios from 'axios';
 const GET_COLLECTION_CONTENT = 'GET_COLLECTION_CONTENT';
 
 
-const defaultCollection = [];
+const defaultCollection = {}
 
 const getCollectionContent = content => ({ type: GET_COLLECTION_CONTENT, content });
 
@@ -25,7 +25,7 @@ const getCollectionContent = content => ({ type: GET_COLLECTION_CONTENT, content
 export const fetchCollectionContent = (collection) => dispatch => {
   return axios.get(`/api/collections/${collection.id}`)
     .then(res => res.data)
-    .then(collections => dispatch(getCollectionContent(collections)))
+    .then(collection => dispatch(getCollectionContent(collection)))
     .catch(err => console.error(err));
 }
 
@@ -36,9 +36,9 @@ export const fetchCollectionContent = (collection) => dispatch => {
 //     .catch(err => console.err(err))
 // }
 
-export const postToCollection = (collection, content) => {
-  return axios.post(`/api/collections/${collection.id}`, content)
-}
+// export const postToCollection = (collection, content) => {
+//   return axios.post(`/api/collections/${collection.id}`, content)
+// }
 
 export default function(state = defaultCollection, action) {
   switch (action.type) {

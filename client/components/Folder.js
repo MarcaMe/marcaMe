@@ -50,7 +50,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addToCollection: (collection, content) => {
-      dispatch(postToCollection(content, content))
+      dispatch(postToCollection(collection, content))
     }
   }
 }

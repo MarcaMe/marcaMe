@@ -6,8 +6,9 @@ import user from './user'
 import content from './content'
 import collections from './collections'
 import theme from './theme'
+import singlecollection from './singlecollection'
 
-const reducer = combineReducers({user, content, collections, theme})
+const reducer = combineReducers({user, content, collections, theme, singlecollection})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -20,3 +21,4 @@ export * from './user';
 export * from './content';
 export * from './collections';
 export * from './theme';
+export * from './singlecollection'

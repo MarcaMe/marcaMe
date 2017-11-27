@@ -55,3 +55,7 @@ router.post('/:id', (req, res, next) => {
     .then(() => res.sendStatus(200))
 })
 
+router.get('/:id', (req, res, next) => {
+    res.json(req.collection)
+})
+
