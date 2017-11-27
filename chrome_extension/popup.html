@@ -3,13 +3,14 @@
     <head>
         <style>
             body { 
-                min-width: 420px; 
+                min-width: 300px; 
                 overflow-x: hidden; 
                 font-family: Arial, sans-serif; 
                 font-size: 12px; 
             }
             input, textarea { 
-                width: 420px; 
+                width: 250px;
+                display: center; 
             }
             input#save { 
                 font-weight: bold; width: auto; 
@@ -18,13 +19,12 @@
         <script src="popup.js"></script>
     </head>
     <body>
+        <h1>MarcaMe</h1>
         <form id="addbookmark">
-            <p><label for="summary">Summary</label><br />
-            <textarea id="summary" name="summary" rows="6" cols="35"></textarea></p>
             <p><label for="tags">Tags</label><br />
-            <input type="text" id="tags" name="tags" size="50" value="" /></p>
+            <input type="text" id="tags" name="tags" size="50" value="" placeholder="tag1,tag2"/></p>
             <p><input id="save" type="submit" value="Save Bookmark" /></p>
-            <span id="status-display">heyyyyy</span>
+            <span id="status-display">status</span>
         </form>
     </body>
 </html>

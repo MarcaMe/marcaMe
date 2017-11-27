@@ -1,9 +1,6 @@
-import { create } from 'domain';
-
 const { expect } = require('chai');
 const db = require('../index');
 const Collection = db.model('collection');
-const User = db.model('user');
 
 describe('Collection model', () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import '../secrets';
 
-export const webScraping = (mercuryUrl, userId) => {
+export const webScraping = (mercuryUrl, userId, tags) => {
   const config = {
     headers: {
       'content-type': 'application/json',
@@ -17,7 +17,7 @@ export const webScraping = (mercuryUrl, userId) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = res.data.url;
-      return { title, author, description, content, imageUrl, userId, url };
+      return { title, author, description, content, imageUrl, userId, url, tags };
     })
     .catch(error => console.error(error));
 };

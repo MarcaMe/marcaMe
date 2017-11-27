@@ -17,6 +17,9 @@ export { default as ChangeTheme } from './ChangeTheme';
 export { default as OneArticle } from  './OneArticle';
 export { default as ReaderNav } from './ReaderNav';
 export { default as MyProfile } from './MyProfile';
+export { default as FullCard } from './FullCard'
+export { default as GeneralCardIcons } from './GeneralCardIcons'
+export { default as SingleCollection } from './SingleCollection'
 export {default as SearchFriends} from './SearchFriends';
 export {default as SearchResult} from './SearchResult';
 export { default as Follower } from './Follower';

@@ -8,11 +8,14 @@ import {
   Main,
   Login,
   Signup,
-  LeftSideBar,
   VideoViewer,
   OneArticle,
   MyProfile,
+<<<<<<< HEAD
   Follower
+=======
+  SingleCollection
+>>>>>>> master
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';

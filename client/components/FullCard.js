@@ -1,0 +1,75 @@
+import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react';
+import { GeneralCardIcons, ContentCard } from '../components';
+import { DragSource } from 'react-dnd';
+
+export const ItemTypes = {
+  CARD: 'CARD'
+};
+const cardSource = {
+  beginDrag(props) {
+    return props.story;
+  }
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+
+export class FullCard extends Component {
+  constructor(props) {
+    super(props);
+    this._getColor = this._getColor.bind(this);
+  }
+
+  _getColor(index) {
+    const colors = [
+      'green',
+      'teal',
+      'blue',
+      'green',
+      'olive',
+      'violet',
+      'purple'
+    ];
+    return colors[index % this.props.length];
+  }
+
+  render() {
+    const { connectDragSource, isDragging } = this.props;
+    return connectDragSource(
+      <div>
+      {isDragging ? <h1>Grabbed Story</h1> :
+        <Card
+          style={{
+            width: '300px',
+            height: '350px',
+            margin: '0.5vw'
+          }}
+          color={this._getColor(this.props.index % 7)}
+          className="card"
+          fluid
+        >
+          <ContentCard
+            story={this.props.story}
+            id={this.props.id}
+            deleteContent={this.props.deleteSingleContent}
+          />
+          <Card.Content extra>
+            <GeneralCardIcons
+              id={this.props.id}
+              story={this.props.story}
+            />
+          </Card.Content>
+        </Card>
+        }
+      </div>
+    );
+  }
+}
+
+
+export default DragSource(ItemTypes.CARD, cardSource, collect)(FullCard);

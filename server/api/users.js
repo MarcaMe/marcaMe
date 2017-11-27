@@ -13,15 +13,12 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   User.findById(id)
     .then(user => res.json(user))
     .catch(next)
 })
-
-
 
 // to test out the chrome extension
 router.post('/test', (req, res, next) => {
