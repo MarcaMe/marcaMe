@@ -4,8 +4,7 @@ import { Card, Divider } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
 import  ProfileSidebar  from './ProfileSidebar';
 import { fetchAllContent, deleteOneContent, fetchHost } from '../store';
-import { NavLink } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom';
 
 
 export class MyProfile extends Component {
@@ -20,8 +19,8 @@ export class MyProfile extends Component {
   }
 
   componentWillMount(){
-    const hostId = this.props.match.params.id;    
-    this.props.getTheHost(hostId)    
+    const hostId = this.props.match.params.id;
+    this.props.getTheHost(hostId)
   }
 
   componentDidMount() {

@@ -1,10 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Image, Icon, Divider } from "semantic-ui-react";
-import { fetchFollowing, fetchFollower } from "../store";
-import { withRouter } from "react-router-dom";
-import { NavLink } from 'react-router-dom';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Image, Icon, Divider } from 'semantic-ui-react';
+import { fetchFollowing, fetchFollower } from '../store';
+import { withRouter, NavLink } from 'react-router-dom';
 
 export class ProfileSidebar extends Component {
   componentWillMount() {
@@ -16,7 +14,7 @@ export class ProfileSidebar extends Component {
     const user = this.props.host;
     const follower = this.props.follower.length;
     const following = this.props.following.length;
-   if(this.props.follower){
+    if (this.props.follower){
     return (
         <div id="profile-sidebar">
           <div id="profile-info">
@@ -43,9 +41,9 @@ export class ProfileSidebar extends Component {
         </div>
     )
   } else {
-    return <div /> 
+    return <div />
   }
-  }  
+  }
 }
 
 const mapState = state => ({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { AddPopup,  SearchFriends } from './index'
-import { Button, Icon, Divider, Image } from 'semantic-ui-react'
+import { Button, Icon, Divider } from 'semantic-ui-react'
 import { logout, fetchAllContent } from '../store'
 import { ChangeTheme } from '../components'
 /**
@@ -38,7 +38,7 @@ class Main extends Component {
             isLoggedIn
               ? <div id="login-nav">
                 {/* The navbar will show these links after you log in */}
-                <SearchFriends />                                
+                <SearchFriends />
                 <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
                 <Link to="/home">

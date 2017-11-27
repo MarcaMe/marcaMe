@@ -5,7 +5,7 @@ module.exports = router
 router.get('/following/:id', (req, res, next) => {
     const userId = req.params.id;
     let arrPromise= [];
-     Relationship.findAll( {where : {userId: userId} })
+     Relationship.findAll( {where: {userId: userId} })
     .then(data => data.map(record => record.followed))
     .then(recordArr =>  recordArr.map(id => User.findById(id)))
     .then(arrPromise => Promise.all(arrPromise))
@@ -30,5 +30,5 @@ router.post('/:id', (req, res, next) => {
 
 router.get('/test', (req, res, next) => {
     User.findAll()
-    .then(result => console.log("????",User.prototype ))
+    .then(result => console.log('????', User.prototype ))
 })
