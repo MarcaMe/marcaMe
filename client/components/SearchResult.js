@@ -11,10 +11,8 @@ class SearchResult extends Component{
     handleSubmit(e) {
         e.preventDefault();
         const followingId = this.props.searchFriends[0].id
-        console.log("!!!!!", followingId)
         const userId = this.props.user.id;
         this.props.followAFriend(followingId ,userId )
-
     }
 
     render(){
@@ -27,7 +25,7 @@ class SearchResult extends Component{
          type="button"
          onClick={this.handleSubmit}> Follow </button>
          </div> )
-            : <div> {friendNotFound}  </div>
+            : <div> friendNotFound  </div>
         : <div />
     )
     }

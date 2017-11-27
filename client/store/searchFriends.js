@@ -7,6 +7,7 @@ const FOLLOW_A_FRIEND = 'FOLLOW_A_FRIEND';
 const searchFriend = friend => ({type: SEARCH_FRIEND, friend})
 const followAFriend = () => ({type: FOLLOW_A_FRIEND })
 
+
 export const fetchFriend = email => 
     dispatch => {
         axios.get('/api/users')
@@ -18,21 +19,24 @@ export const fetchFriend = email =>
 
 export const followFriend = (followedId, userId) => 
   dispatch => {
-    axios.post(`/api/users/${userId}`, {followedId: followedId} )
+    axios.post(`/api/relationship/${userId}`, {followedId: followedId} )
     .then(res => res.data)
-    .then(newRecord => {
-      console.log('succeed!', newRecord)
-      return dispatch(followAFriend())})
+    .then(newRecord =>  dispatch(followAFriend()))
     .catch(err => console.error(err))    
   }    
+
+
+
+
+
 
 export default function (state = {}, action) {
         switch (action.type) {
           case SEARCH_FRIEND:
-            return action.friend
-          
+            return action.friend         
           case FOLLOW_A_FRIEND:
           return state
+
           default:
             return state
         }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Divider } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
-import { ProfileSidebar } from './ProfileSidebar';
+import  ProfileSidebar  from './ProfileSidebar';
 import { fetchAllContent, deleteOneContent, fetchHost } from '../store';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
@@ -48,7 +48,7 @@ export class MyProfile extends Component {
     return (
       host && (
         <div id="profile-body">
-          <ProfileSidebar host={this.props.host} />
+          <ProfileSidebar />
           <Divider />
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
             {content.length &&

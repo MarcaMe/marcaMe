@@ -19,3 +19,6 @@ export { default as ReaderNav } from './ReaderNav';
 export { default as MyProfile } from './MyProfile';
 export {default as SearchFriends} from './SearchFriends';
 export {default as SearchResult} from './SearchResult';
+export { default as Follower } from './Follower';
+export { default as Following } from './Following';
+export { default as UserCard } from './UserCard';

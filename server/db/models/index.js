@@ -8,7 +8,8 @@ Collection.belongsTo(User);
 User.hasMany(Collection);
 Collection.hasMany(Content);
 User.hasMany(Relationship);
-
+Relationship.belongsTo(User);
+//User.belongsToMany(User, {as : 'followed', through: 'follower'})
 module.exports = {
   User,
   Content,

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Relationship} = require('../db/models')
+const {User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -21,14 +21,6 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
-
-router.post('/:id', (req, res, next) => {
-  const userId = req.params.id;
-  const followed = req.body.followedId;
-  Relationship.findOrCreate({userId, followed})
-  .then(newRecord => res.json(newRecord.dataValues))
-  .catch(next);
-})
 
 
 // to test out the chrome extension
