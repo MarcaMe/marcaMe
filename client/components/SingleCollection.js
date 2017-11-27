@@ -13,16 +13,21 @@ export class SingleCollection extends Component {
     this.props.fetchAllCollectionContent({id: +this.props.match.params.collectionId});
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.collectionId !== nextProps.match.params.collectionId) {
+      this.props.fetchAllCollectionContent({id: +nextProps.match.params.collectionId});
+    }
+  }
+
   render() {
     const { singlecollection, user } = this.props;
-    console.log(this.props)
     return (
       <div id="main-page">
       <LeftSideBar />
       <div id="content-home">
-      <Header size="huge">{''}</Header>
+      <Header size="huge">{singlecollection.name}</Header>
         <Card.Group >
-          {singlecollection.contents && singlecollection.contents.length &&
+          {singlecollection.contents ?
             singlecollection.contents
               .map((story, index) => {
                 return (
@@ -36,7 +41,7 @@ export class SingleCollection extends Component {
                   />
                   </NavLink>
                 );
-              })}
+              }) : ''}
         </Card.Group>
       </div>
     </div>
@@ -51,7 +56,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchAllCollectionContent(collection) {
-    console.log(collection)
     dispatch(fetchCollectionContent(collection))
   },
   deleteSingleContent(evt, contentId) {
@@ -60,7 +64,7 @@ const mapDispatch = dispatch => ({
   }
 });
 
-export default connect(mapState, mapDispatch)(SingleCollection);
+export default connect(mapState, mapDispatch)(SingleCollection)
 
 SingleCollection.propTypes = {
   fetchAllCollectionContent: PropTypes.func.isRequired,
