@@ -3,14 +3,13 @@ import { Icon, Label } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './FullCard'
-import { editOneContent } from '../store'
+import { postToCollection } from '../store'
 
 
 const folderTarget = {
   drop(props, monitor) {
     const story = monitor.getItem();
-    const updatedStory = {...story, collectionId: props.id}
-    props.addToCollection(updatedStory)
+    props.addToCollection(props, story)
   }
 };
 
@@ -50,8 +49,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    addToCollection: (content, update) => {
-      dispatch(editOneContent(content, update))
+    addToCollection: (collection, content) => {
+      dispatch(postToCollection(content, content))
     }
   }
 }

@@ -50,3 +50,8 @@ router.put('/:id', (req, res, next) => {
         .catch(next);
 })
 
+router.post('/:id', (req, res, next) => {
+    req.collection.addContent(req.body.id)
+    .then(() => res.sendStatus(200))
+})
+
