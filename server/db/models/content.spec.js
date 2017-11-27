@@ -25,5 +25,4 @@ describe('Content model', () => {
     });
     //it actually looks like this: { {"breakfast", "consulting"}, {"meeting", "lunch"} }
   });
-
 });

@@ -34,7 +34,6 @@ export default function (state = article, action) {
   switch (action.type) {
     case GET_ARTICLE:
       return action.article
-
     default:
       return state
   }

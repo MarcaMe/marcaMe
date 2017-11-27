@@ -16,7 +16,7 @@ router.get('/following/:id', (req, res, next) => {
 
 router.get('/follower/:id', (req, res, next) => {
     const userId = req.params.id;
-    Relationship.findAll( {where : {followed: userId}, include: [ User ] } )
+    Relationship.findAll( {where: {followed: userId}, include: [ User ] } )
     .then(data => res.json(data))
     .catch(next)
 })
@@ -24,7 +24,7 @@ router.get('/follower/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
     const userId = req.params.id;
     const followed = req.body.followedId;
-    Relationship.create({userId: userId ,followed: followed})
+    Relationship.create({userId: userId,followed: followed})
     .catch(next);
   })
 

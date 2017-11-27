@@ -57,10 +57,10 @@ describe('Collection routes', () => {
     it('PUT /api/collections/:id', () => {
       return request(app)
       .get('/api/collections/1')
-      .then(res => {
-        const firstReqId = res.body.id;
+      .then(collectionOneRes => {
+        const firstReqId = collectionOneRes.body.id;
         return request(app)
-        .put(`/api/collections/${res.body.id}`)
+        .put(`/api/collections/${collectionOneRes.body.id}`)
         .send({name: 'Updated Name'})
         .expect(200)
         .then(res => {
