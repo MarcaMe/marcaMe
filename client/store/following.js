@@ -1,10 +1,12 @@
 import axios from 'axios'
-import history from '../history'
 
 
 const GET_FOLLOWING = 'GET_FOLLOWING';
+const DELETE_FOLLOWING = 'DELETE_FOLLOWING';
 
 const getFollowing = followingArr => ({ type: GET_FOLLOWING, followingArr })
+const deleteFollowing = removedId => ({type: DELETE_FOLLOWING, removedId })
+
 
 export const fetchFollowing = (userId) =>
 dispatch => {
@@ -14,10 +16,25 @@ dispatch => {
   .catch(err => console.error(err))
 }
 
+export const removeFollowing = (userId, followingId) => 
+  dispatch => {
+    axios({
+      method: 'DELETE',
+      url: `/api/relationship/following/${userId}`,
+      data : { followingId }
+    })    
+    .then( (followingId) => dispatch(deleteFollowing(followingId)))
+    .catch(err => console.error(err))
+  }
+
 export default function (state = {}, action) {
     switch (action.type) {
       case GET_FOLLOWING:
       return action.followingArr
+      case DELETE_FOLLOWING:       
+      const newArr = state.filter(guy => guy.id !== action.removedId.data )
+      return newArr
+      
       default:
         return state
     }

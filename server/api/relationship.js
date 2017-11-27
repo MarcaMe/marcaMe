@@ -27,7 +27,14 @@ router.post('/:id', (req, res, next) => {
     .catch(next);
   })
 
-router.get('/test', (req, res, next) => {
-    User.findAll()
-    .then(result => console.log('????', User.prototype ))
-})
+
+  router.delete('/following/:id', (req, res, next) => {
+    const userId = req.params.id;
+    const followed = req.body.followingId;
+    console.log("router got params: ", 'userId(should be 3): ', userId, 'following Id(should be 4)', followed)
+    Relationship.findOne( {where: {userId: userId, followed: followed}})
+    .then(record => record.destroy())
+    .then(() => res.json(followed))
+    .catch(next);
+
+  })
