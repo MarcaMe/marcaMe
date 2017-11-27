@@ -1,14 +1,27 @@
 {
-  "name": "Fetch the Current URL",
-  "description": "fetch URL and add tags",
-  "version": "1.0",
+  "name": "Marca Marca Marca",
+  "version": "1.2",
+  "description": "my chrome extension",
   "permissions": [
-    "tabs", "http://*/*", "https://*/*"
+    "tabs",
+    "storage",
+    "http://*/*",
+    "https://*/*",
+    "cookies"
   ],
   "browser_action": {
-      "default_title": "Get this page's URL",
-      "default_icon": "icon.png",
-      "default_popup": "popup.html"
+    "default_icon": {
+      "19": "icon.png"
+    },
+    "default_title": "Sous",
+    "default_popup": "./Popup/popup.html"
+  },
+  "web_accessible_resources": [
+    "./Dependencies/semantic.min.css", "./Dependencies/semantic.min.js"
+  ],
+  "background": {
+    "scripts": ["./Dependencies/jquery.min.js", "./BackgroundScripts/background.js"],
+    "persistent": true
   },
   "manifest_version": 2
 }
