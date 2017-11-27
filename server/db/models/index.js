@@ -5,7 +5,7 @@ const Collection = require('./collection');
 User.hasMany(Content);
 Collection.belongsTo(User);
 User.hasMany(Collection);
-Collection.hasMany(Content);
+Collection.belongsToMany(Content, {through: 'userCollections'});
 
 module.exports = {
   User,
