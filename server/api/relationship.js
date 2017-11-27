@@ -4,7 +4,6 @@ module.exports = router
 
 router.get('/following/:id', (req, res, next) => {
     const userId = req.params.id;
-    let arrPromise= [];
      Relationship.findAll( {where: {userId: userId} })
     .then(data => data.map(record => record.followed))
     .then(recordArr =>  recordArr.map(id => User.findById(id)))
@@ -24,7 +23,7 @@ router.get('/follower/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
     const userId = req.params.id;
     const followed = req.body.followedId;
-    Relationship.create({userId: userId,followed: followed})
+    Relationship.create({userId: userId, followed: followed})
     .catch(next);
   })
 

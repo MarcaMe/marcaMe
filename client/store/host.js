@@ -5,10 +5,8 @@ const GET_HOST = 'GET_HOST'
 const UPDATE_HOST_NAME = 'UPDATE_HOST_NAME'
 
 
-
 const getHost = host => ({type: GET_HOST, host})
 const updateHostName = host => ({type: UPDATE_HOST_NAME, host})
-
 
 
 export const fetchHost = id =>
@@ -18,7 +16,7 @@ export const fetchHost = id =>
     .then(host => dispatch(getHost(host)))
     .catch(err => console.log(err))
 }
-export const updateOneHostName = (userId, newName) => 
+export const updateOneHostName = (userId, newName) =>
 dispatch => {
   return axios.put('/auth/me', {userId, newName })
   .then(res => res.data)

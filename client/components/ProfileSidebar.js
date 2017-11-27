@@ -10,7 +10,7 @@ export class ProfileSidebar extends Component {
     super(props);
     this.state = {
       isEditName: false,
-      changeName: "", 
+      changeName: '',
     }
     this._showChangeNameField = this._showChangeNameField.bind(this);
     this._handleChangeName = this._handleChangeName.bind(this);
@@ -18,7 +18,7 @@ export class ProfileSidebar extends Component {
 
   _showChangeNameField(e){
     e.preventDefault();
-    this.setState({isEditName : true})
+    this.setState({isEditName: true})
   }
 
   _handleChangeName(e) {
@@ -52,12 +52,12 @@ export class ProfileSidebar extends Component {
             {this.state.isEditName
               ? <div>
                 <input value={this.state.changeName} onChange={ (e) => this.setState({changeName: e.target.value})} />
-                <Icon name="check" onClick={this._handleChangeName} /> 
+                <Icon name="check" onClick={this._handleChangeName} />
               </div>
               : <div>
                 <span>{`${user.firstName}`}</span>
-                <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>  
-              </div>            
+                <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>
+              </div>
             }
             <div id="followers-container">
               <div className="follow-icon-container">
@@ -81,7 +81,7 @@ export class ProfileSidebar extends Component {
 }
 
 const mapState = state => {
-  return{
+  return {
   user: state.user,
   content: state.content,
   host: state.host,

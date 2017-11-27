@@ -19,9 +19,7 @@ export class Following extends Component {
             <Card.Header>{user.email}</Card.Header>
             <div
               style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
-            >
-
-            </div>
+             />
           </Card.Content>
             </div>
         )
