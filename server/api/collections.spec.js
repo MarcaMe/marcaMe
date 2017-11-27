@@ -3,6 +3,8 @@ const request = require('supertest');
 const db = require('../db');
 const app = require('../index');
 const Collection = db.model('collection');
+const Content = db.model('content');
+
 
 describe('Collection routes', () => {
   beforeEach(() => {
@@ -26,7 +28,7 @@ describe('Collection routes', () => {
         .then(res => {
           expect(res.body).to.be.an('array');
           expect(res.body).to.have.lengthOf(3)
-          expect(res.body[0].name).to.be.equal('An Amazing Collection');
+          expect(res.body[0].name).to.be.equal('An Even Better Collection');
         });
     });
 
@@ -55,10 +57,10 @@ describe('Collection routes', () => {
     it('PUT /api/collections/:id', () => {
       return request(app)
       .get('/api/collections/1')
-      .then(res => {
-        const firstReqId = res.body.id;
+      .then(collectionOneRes => {
+        const firstReqId = collectionOneRes.body.id;
         return request(app)
-        .put(`/api/collections/${res.body.id}`)
+        .put(`/api/collections/${collectionOneRes.body.id}`)
         .send({name: 'Updated Name'})
         .expect(200)
         .then(res => {
@@ -76,7 +78,44 @@ describe('Collection routes', () => {
       .then(res => {
         expect(res.text).to.be.a('string')
         expect(res.text).to.equal('Collection was Deleted')
-      })
-    })
+      });
+    });
   });
 });
+
+
+describe('Eager Loading', () => {
+
+  beforeEach(() => {
+    return db.sync({ force: true });
+  });
+
+  describe('Getting a specific collection', () => {
+    let collection;
+    let results;
+    beforeEach(() => {
+      return Collection.create({name: 'Eager Loaded Collection'})
+        .then(createdCollection => {
+          collection = createdCollection;
+          return Content.bulkCreate([
+            {id: 1, title: 'A Lovely Article', url: 'www.iamaurl.com', author: 'An Amazing Author'},
+            {id: 2, title: 'A Great Read', url: 'www.readme.com', author: 'An Amazing Author'}
+          ])
+          .then(someResults => {
+            results = someResults
+            return collection.addContents(results)
+          })
+        })
+    })
+    it('is a test', () => {
+      return request(app)
+      .get('/api/collections/1')
+      .expect(200)
+      .then(res => {
+        expect(res.body.contents).to.be.an('array')
+        expect(res.body.contents.length).to.equal(2)
+      })
+    })
+
+  })
+})

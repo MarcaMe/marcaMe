@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image } from 'semantic-ui-react';
 
-export class Following extends React.Component {
+export class Following extends Component {
     constructor(props){
         super(props);
     }
     render(){
         const user = this.props.singleUser;
-
         return (
             <div>
             <Card.Content style={{ overflow: 'hidden' }}>
@@ -21,14 +20,12 @@ export class Following extends React.Component {
             <div
               style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
             >
-              
+
             </div>
           </Card.Content>
             </div>
         )
     }
 }
-
-
 
 export default connect()(Following);

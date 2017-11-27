@@ -10,8 +10,9 @@ import host from './host'
 import searchFriends from './searchFriends'
 import following from './following'
 import follower from './follower'
+import singlecollection from './singlecollection'
 
-const reducer = combineReducers({user, content, collections, theme, host, searchFriends, following, follower})
+const reducer = combineReducers({user, content, collections, theme, host, searchFriends, following, follower, singlecollection})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -28,3 +29,4 @@ export * from './host';
 export * from './searchFriends';
 export * from './following';
 export * from './follower';
+export * from './singlecollection'

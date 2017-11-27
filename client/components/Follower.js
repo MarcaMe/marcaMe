@@ -1,11 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { Card, Image, Icon, Divider } from "semantic-ui-react";
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, NavLink } from 'react-router-dom';
+import { Card } from 'semantic-ui-react';
 import { UserCard } from '../components';
-
-
 
 export class Follower extends Component {
     constructor(){
@@ -27,10 +24,10 @@ export class Follower extends Component {
       ];
       return colors[index % this.props.follower.length];
     }
-  
+
     render() {
       const follower = this.props.follower
-      if(follower.length){
+      if (follower.length){
       return (
           <div>
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
@@ -47,7 +44,7 @@ export class Follower extends Component {
                       className="card"
                       fluid
                     >
-                    <UserCard singleUser={user.user}/>
+                    <UserCard singleUser={user.user} />
                     </Card>
                   </NavLink>
                 );
@@ -55,12 +52,12 @@ export class Follower extends Component {
         </Card.Group>
           </div>
       )}
-      else {return <div/>}
+      else {return <div />}
   }
 }
 
 const mapState = state => ({
-    follower : state.follower
+    follower: state.follower
 })
 
 export default withRouter(connect(mapState)(Follower));

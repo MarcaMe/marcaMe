@@ -41,6 +41,10 @@ export const deleteCollection = collection => dispatch => {
     .catch(err => console.err(err))
 }
 
+export const postToCollection = (collection, content) => {
+  return axios.post(`/api/collections/${collection.id}`, content)
+}
+
 export default function(state = defaultCollections, action) {
   switch (action.type) {
     case GET_COLLECTION:

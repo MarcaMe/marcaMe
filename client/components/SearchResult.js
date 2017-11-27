@@ -8,17 +8,17 @@ class SearchResult extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(evt) {
+        evt.preventDefault();
         const followingId = this.props.searchFriends[0].id
         const userId = this.props.user.id;
-        this.props.followAFriend(followingId ,userId )
+        this.props.followAFriend(followingId, userId )
     }
 
     render(){
     return (
-        this.props.render ? 
-            this.props.searchFriends.length > 0 ?         
+        this.props.render ?
+            this.props.searchFriends.length > 0 ?
        ( <div>
          <span> { this.props.searchFriends[0].email } </span>
          <button
@@ -44,7 +44,5 @@ const mapDispatch = dispatch => {
         }
     }
 }
-
-
 
 export default connect(mapState, mapDispatch)(SearchResult);

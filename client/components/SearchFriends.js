@@ -9,38 +9,40 @@ class SearchFriends extends Component {
         super(props);
         this.state = {
             searchEmail: '',
-            renderSearchResult : false
+            renderSearchResult: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleSubmit(evt) {
+        evt.preventDefault();
         this.props.findAFriend(this.state.searchEmail)
-        setTimeout( () => this.setState({ renderSearchResult : true }), 100)
+        setTimeout( () => this.setState({ renderSearchResult: true }), 100)
       }
 
-    render(){        
+    render(){
         return (
             <div>
             <form>
-            <input placeholder='search by email'
+            <input
+            placeholder="search by email"
             name="search"
             type="text"
-            onChange={e => this.setState({ searchEmail: e.target.value })}
+            onChange={evt => this.setState({ searchEmail: evt.target.value })}
             value={this.state.searchEmail}
              />
-             <button type="button"
+             <button
+             type="button"
              onClick={this.handleSubmit}> Go! </button>
             </form>
-            <SearchResult render={this.state.renderSearchResult}/>            
-            </div> 
+            <SearchResult render={this.state.renderSearchResult} />
+            </div>
         )
     }
 }
 
 const mapDispatch = dispatch => {
-    return{
+    return {
         findAFriend(email){
             dispatch(fetchFriend(email))
         }
