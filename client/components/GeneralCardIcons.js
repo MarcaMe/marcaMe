@@ -28,7 +28,6 @@ class GeneralCardIcons extends React.Component {
   toggleLike(evt) {
     evt.preventDefault();
     this.setState({ isLike: !this.state.isLike });
-    console.log(evt.target.className);
   }
 
   render() {
