@@ -11,11 +11,8 @@ import {
   VideoViewer,
   OneArticle,
   MyProfile,
-<<<<<<< HEAD
-  Follower
-=======
+  Follower,
   SingleCollection
->>>>>>> master
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -48,6 +45,7 @@ class Routes extends Component {
                 <Route path="/profile/following/:id" component={Following} />
                 <Route path="/profile/follower/:id" component={Follower} />
                 <Route exact path="/profile/:id" component={MyProfile} />
+                <Route path="/collections/:collectionId" component={SingleCollection} />
                 <Route component={ContentHome} />
               </Switch>
             )}
