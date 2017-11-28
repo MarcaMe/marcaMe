@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Card, Image, Button } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Card, Image, Button } from 'semantic-ui-react';
 import { removeFollowing } from '../store'
 
 export class Following extends Component {
@@ -19,18 +19,19 @@ export class Following extends Component {
     const host = this.props.host;
     return (
       <div>
-        <Card.Content style={{ overflow: "hidden" }}>
+        <Card.Content style={{ overflow: 'hidden' }}>
           <Image
-            style={{ width: "100%", display: "block" }}
+            style={{ width: '100%', display: 'block' }}
             fluid
             src={user.profilePicture}
           />
           <Card.Header>{user.firstName}</Card.Header>
           <Card.Content>
             <span>{user.email}</span>
-            {this.props.type === "following" ? (
-              <Button basic 
-              size="small" 
+            {this.props.type === 'following' ? (
+              <Button
+basic
+              size="small"
               color="red"
               onClick={ (evt) => this.handleUnfollow(evt, host.id, user.id)}>
                 Unfollow
@@ -38,7 +39,7 @@ export class Following extends Component {
             ) : null}
           </Card.Content>
           <div
-            style={{ margin: "10px auto", overflow: "hidden", height: "150px" }}
+            style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
           />
         </Card.Content>
       </div>

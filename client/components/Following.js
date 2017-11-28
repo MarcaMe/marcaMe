@@ -44,7 +44,7 @@ export class Following extends Component {
                     className="card"
                     fluid
                   >
-                  <UserCard singleUser={user} type={'following'}/>
+                  <UserCard singleUser={user} type={'following'} />
                   </Card>
                 </NavLink>
               );
@@ -59,7 +59,6 @@ export class Following extends Component {
 const mapState = state => ({
   following: state.following
 })
-
 
 
 export default withRouter(connect(mapState)(Following));
