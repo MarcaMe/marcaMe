@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User } = require('../db/models')
+const { User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -18,16 +18,4 @@ router.get('/:id', (req, res, next) => {
   User.findById(id)
     .then(user => res.json(user))
     .catch(next)
-})
-
-// to test out the chrome extension
-router.post('/test', (req, res, next) => {
-
-  console.log('BODY: ', req.body)
-  res.sendStatus(200)
-})
-
-router.post('/dog', (req, res, next) => {
-  console.log('dog: ', req.body)
-  res.sendStatus(200)
 })

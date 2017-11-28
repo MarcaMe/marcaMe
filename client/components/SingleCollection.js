@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Header } from 'semantic-ui-react';
+import { Card, Header, Icon } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
-import { fetchCollectionContent, deleteOneContent } from '../store';
+import { fetchCollectionContent, deleteOneContent, deleteCollection } from '../store';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
@@ -20,12 +20,15 @@ export class SingleCollection extends Component {
   }
 
   render() {
-    const { singlecollection, user } = this.props;
+    const { singlecollection, user, deleteSingleCollection } = this.props;
     return (
       <div id="main-page">
-      <LeftSideBar />
+      <LeftSideBar  />
       <div id="content-home">
+      <div style={{display: 'flex', justifyContent: 'flex-start'}}>
       <Header size="huge">{singlecollection.name}</Header>
+      <Icon id="delete-button" name="delete" size="big" onClick={() => deleteSingleCollection(singlecollection)} />
+      </div>
         <Card.Group >
           {singlecollection.contents ?
             singlecollection.contents
@@ -61,6 +64,9 @@ const mapDispatch = dispatch => ({
   deleteSingleContent(evt, contentId) {
     evt.preventDefault();
     dispatch(deleteOneContent(contentId));
+  },
+  deleteSingleCollection(collection) {
+     dispatch(deleteCollection(collection))
   }
 });
 

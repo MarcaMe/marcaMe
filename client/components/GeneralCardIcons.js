@@ -34,20 +34,20 @@ class GeneralCardIcons extends React.Component {
           size="large"
           name="external"
           onClick={evt => this._handleEditClick(evt, 'isPublic')}
-          color={this.state.isPublic && 'blue'}
+          color={this.state.isPublic ? 'blue' : ''}
         />
         <Icon
             id="archive-icon"
             name="archive"
             size="large"
-            color={this.state.isArchived && 'teal'}
+            color={this.state.isArchived ? 'teal' : ''}
             onClick={evt => this._handleEditClick(evt, 'isArchived')}
           />
         <Icon
           id="heart-icon"
           name="heart"
           size="large"
-          color={this.state.isFavorite && 'red'}
+          color={this.state.isFavorite ? 'red' : ''}
           onClick={evt => this._handleEditClick(evt, 'isFavorite')}
         />
         <Icon

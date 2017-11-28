@@ -35,8 +35,8 @@ class Folder extends Component {
     const { theme, connectDropTarget, isOver, name } = this.props;
     return connectDropTarget(
       <div>
-      <Icon color={theme} name={open || isOver ? 'folder open outline' : 'folder outline'} size="huge" onMouseOver={() => this.setState({open: true})} onMouseOut={() => this.setState({open: false})} />
-      <Label basic color={theme} size="small">{name}</Label>
+      <Icon color={theme} name={open || isOver ? 'folder open outline' : 'folder outline'} size="big" onMouseOver={() => this.setState({open: true})} onMouseOut={() => this.setState({open: false})} />
+      <Label basic color={theme} size="tiny">{name}</Label>
       </div>
     )
   }

@@ -100,13 +100,11 @@ body {
     justify-content: flex-end;
     padding-right: 2vw;
   }
-    .collection {
-    margin-bottom: 15px;
-  }
 
   .collection {
     margin-bottom: 15px;
   }
+
 
   #login-nav {
     display: flex;
@@ -226,8 +224,8 @@ body {
     }
     #one-article-viewer {
       display:flex;
-      padding: 0; 
-      margin-left:2em;     
+      padding: 0;
+      margin-left:2em;
       flex-direction: column;
       justify-content: space-between;
     }

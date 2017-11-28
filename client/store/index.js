@@ -11,8 +11,9 @@ import searchFriends from './searchFriends'
 import following from './following'
 import follower from './follower'
 import singlecollection from './singlecollection'
+import filter from './filter'
 
-const reducer = combineReducers({user, content, collections, theme, host, searchFriends, following, follower, singlecollection})
+const reducer = combineReducers({user, content, collections, theme, host, searchFriends, following, follower, singlecollection, filter})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -30,3 +31,4 @@ export * from './searchFriends';
 export * from './following';
 export * from './follower';
 export * from './singlecollection'
+export * from './filter'
