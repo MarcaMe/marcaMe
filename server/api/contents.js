@@ -95,8 +95,7 @@ router.post('/:id', (req, res, next) => {
     let newStory = Object.assign(story).dataValues;
     newStory.userId = friendId;
     newStory.sharedFrom = userId;
-    delete newStory.id
-    console.log(newStory)
+    delete newStory.id;
      Content.create(newStory)
      .then(data => res.json(data))
   })
