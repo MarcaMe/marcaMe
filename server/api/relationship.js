@@ -2,7 +2,11 @@ const router = require('express').Router()
 const { Relationship, User} = require('../db/models')
 module.exports = router
 
-
+router.get('/', (req, res, next) => {
+    Relationship.findAll()
+    .then(data => res.json(data))
+    .catch(next)
+})
 
 router.get('/follower/:id', (req, res, next) => {
     const userId = req.params.id;
