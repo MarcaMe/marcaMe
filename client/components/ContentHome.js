@@ -24,7 +24,7 @@ export class ContentHome extends Component {
                 .filter(content => content.userId === this.props.user.id)
                 .map((story, index) => {
                   return (
-                    <NavLink key={story.id} to={`content/${story.id}`}>
+                    <NavLink key={story.id} to={`/content/${story.id}`}>
                     <FullCard
                     story={story}
                     id={this.props.user.id}

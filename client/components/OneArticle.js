@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 
 class OneArticle extends React.Component {
   componentDidMount() {
-    this.props.getSingleContent();
+    this.props.getSingleContent()
   }
   render() {
     const article = this.props.article.length ? this.props.article[0] : null;
