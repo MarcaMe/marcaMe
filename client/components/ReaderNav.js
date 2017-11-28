@@ -7,9 +7,9 @@ import history from '../history';
 
 class ReaderNav extends React.Component {
 
-  componentDidMount() {
-    this.props.getSingleContent();
-  }
+  // componentDidMount() {
+  //   this.props.getSingleContent();
+  // }
   _handleClick(evt, field){
     evt.preventDefault()
     this.setState({[field]: !this.state[field]}, () => this.props.editContent(field, this.state[field]))
