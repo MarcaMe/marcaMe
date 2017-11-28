@@ -4,12 +4,11 @@ module.exports = router
 
 router.get('/following/:id', (req, res, next) => {
     const userId = req.params.id;
-    let arrPromise= [];
      Relationship.findAll( {where: {userId: userId} })
     .then(data => data.map(record => record.followed))
     .then(recordArr =>  recordArr.map(id => User.findById(id)))
     .then(arrPromise => Promise.all(arrPromise))
-    .then(data => res.send(data))
+    .then(data => res.json(data))
     .catch(next)
 
 })
@@ -21,14 +20,21 @@ router.get('/follower/:id', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/:id', (req, res, next) => {
+router.post('/following/:id', (req, res, next) => {
     const userId = req.params.id;
-    const followed = req.body.followedId;
-    Relationship.create({userId: userId,followed: followed})
+    const followed = req.body.followingId;
+    Relationship.create({userId: userId, followed: followed})
+    .then(newRecord =>  User.findById(newRecord.followed)
+    .then(data => res.json(data))
+    )
     .catch(next);
   })
 
-router.get('/test', (req, res, next) => {
-    User.findAll()
-    .then(result => console.log('????', User.prototype ))
-})
+  router.delete('/following/:id', (req, res, next) => {
+    const userId = req.params.id;
+    const followed = req.body.followingId;
+    Relationship.findOne( {where: {userId: userId, followed: followed}})
+    .then(record => record.destroy())
+    .then(() => res.json(followed))
+    .catch(next);
+  })
