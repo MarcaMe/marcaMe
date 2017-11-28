@@ -11,7 +11,7 @@
 export default function register() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      const swUrl = `https://localhost:8080/service-worker.js`;
+      const swUrl = `https://marcame.herokuapp.com/service-worker.js`;
       navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
