@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addOneFollowing } from "../store";
-import { List, Button, Image } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addOneFollowing } from '../store';
+import { List, Button, Image } from 'semantic-ui-react';
 
 class SearchResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      follow: "Follow"
+      follow: 'Follow'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkFollowing = this.checkFollowing.bind(this);
@@ -20,9 +20,9 @@ class SearchResult extends Component {
     const followingId = this.props.searchFriends[0].id;
     const userId = this.props.user.id;
     if (this.checkFollowing(followingId) ) { this.setState({follow: 'Already Followed!' }) }
-    else {this.props.followAFriend(followingId, userId)  
-      this.setState({ follow: "Followed!" })}
-    
+    else {this.props.followAFriend(followingId, userId)
+      this.setState({ follow: 'Followed!' })}
+
   }
 
   render() {

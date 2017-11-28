@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Label, Image } from 'semantic-ui-react';
-
+import { ShareAContentThunk } from '../store';
 
 
 class DisplayFriends extends Component {
@@ -22,30 +22,30 @@ class DisplayFriends extends Component {
 
      findFriendInfo(idArr, followArr){
         let rtnArr = [];
-        followArr.map(guy => idArr.includes(guy.id) 
+        followArr.map(guy => (idArr.includes(guy.id)
         ? rtnArr.push(guy)
-        : null
+        : null)
         )
-        console.log('everything from the function:', idArr, followArr, rtnArr)
         return rtnArr
     }
 
     handleShare(evt, friendId){
         evt.preventDefault();
-        
+        const storyId = this.props.storyId;
+        const userId = this.props.user.id;
+        this.props.shareThunk(storyId, userId, friendId)
     }
 
 
     render(){
-        const result = this.findFriendInfo(this.state.getFriendsIdArr, this.props.following)     
-        console.log('props received from parent com', this.props.friendsArr)   
-        console.log("result", result)
-        return(
+        const result = this.findFriendInfo(this.state.getFriendsIdArr, this.props.following)
+        console.log('all props', this.props)
+        return (
             <div>
         { result.map(friend => {
             return (
                 <Label key={friend.id} onClick={evt => this.handleShare(evt, friend.id)}>
-            <Image avatar spaced='right' src={friend.profilePicture} />
+            <Image avatar spaced="right" src={friend.profilePicture} />
             {friend.firstName}
           </Label>
         )
@@ -57,7 +57,16 @@ class DisplayFriends extends Component {
 }
 
 const mapState = state => ({
-    following: state.following
+    following: state.following,
+    user: state.user
 })
 
-export default connect(mapState)(DisplayFriends);
+const mapDispatch = dispatch => {
+    return {
+    shareThunk(storyId, userId, friendId){
+        dispatch(ShareAContentThunk(storyId, userId, friendId))
+    }
+}
+}
+
+export default connect(mapState, mapDispatch)(DisplayFriends);

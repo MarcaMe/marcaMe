@@ -17,18 +17,18 @@ dispatch => {
   .catch(err => console.error(err))
 }
 
-export const removeFollowing = (userId, followingId) => 
+export const removeFollowing = (userId, followingId) =>
   dispatch => {
     axios({
       method: 'DELETE',
       url: `/api/relationship/following/${userId}`,
-      data : { followingId }
-    })    
+      data: { followingId }
+    })
     .then( (followingId) => dispatch(deleteFollowing(followingId)))
     .catch(err => console.error(err))
   }
 
-export const addOneFollowing = (followingId, userId) => 
+export const addOneFollowing = (followingId, userId) =>
 dispatch => {
   axios.post(`/api/relationship/following/${userId}`, {followingId: followingId} )
   .then(res => res.data)
@@ -40,9 +40,9 @@ export default function (state = {}, action) {
     switch (action.type) {
       case GET_FOLLOWING:
       return action.followingArr
-      case DELETE_FOLLOWING:       
+      case DELETE_FOLLOWING:
       return state.filter(guy => guy.id !== action.removedId.data )
-      case ADD_FOLLOWING: 
+      case ADD_FOLLOWING:
       return [...state, action.newFollowing]
       default:
         return state

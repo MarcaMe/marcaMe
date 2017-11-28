@@ -43,7 +43,7 @@ const Content = db.define('content', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
-  sharedFrom:{
+  sharedFrom: {
     type: Sequelize.INTEGER,
     defaultValue: 0
   }

@@ -30,9 +30,9 @@ router.post('/following/:id', (req, res, next) => {
     const userId = req.params.id;
     const followed = req.body.followingId;
     Relationship.findOrCreate( {where: {userId: userId, followed: followed}} )
-    .spread( (newRecord, bool) =>  bool ? User.findById(newRecord.dataValues.followed) 
+    .spread( (newRecord, bool) =>  (bool ? User.findById(newRecord.dataValues.followed)
     .then(data => res.json(data))
-    : null )
+    : null) )
     .catch(next);
   })
 

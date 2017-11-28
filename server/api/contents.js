@@ -87,10 +87,11 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/:id', (req, res, next) => {
-  const storyId = req.params.id;
+router.post('/share', (req, res, next) => {
+  const storyId = req.body.contentId;
   const userId = req.body.userId;
   const friendId = req.body.friendId;
+  console.log('check all args: ', req.body)
   Content.findById(storyId)
   .then(story => {
     let newStory = Object.assign(story).dataValues;
@@ -102,8 +103,6 @@ router.post('/:id', (req, res, next) => {
   })
   .catch(err => console.error(err))
 })
-
-
 
 
 router.get('/:id', (req, res) => res.json(req.content));

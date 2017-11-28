@@ -38,9 +38,9 @@ class GeneralCardIcons extends React.Component {
 
    findFriends(arr, userId) {
     const rtnArr = [];
-    for(let i = 0; i < arr.length; i++){
-      for(let j = i + 1; j < arr.length; j++){
-        if(arr[i].followed === arr[j].userId && arr[j].followed === arr[i].userId){
+    for (let i = 0; i < arr.length; i++){
+      for (let j = i + 1; j < arr.length; j++){
+        if (arr[i].followed === arr[j].userId && arr[j].followed === arr[i].userId){
           rtnArr.push(arr[i]);
           rtnArr.push(arr[j])
         }
@@ -50,12 +50,11 @@ class GeneralCardIcons extends React.Component {
   }
 
 
-
     shareArticle(evt, userId) {
      evt.preventDefault()
       axios.get('/api/relationship')
       .then(res => res.data)
-      .then(followArr =>this.findFriends(followArr, userId))
+      .then(followArr => this.findFriends(followArr, userId))
       .then(data => this.setState({friendsArr: data, displayFriends: true}))
       .catch(err => console.error(err))
    }
@@ -98,7 +97,7 @@ class GeneralCardIcons extends React.Component {
         name="send"
         onClick={evt => this.shareArticle(evt, this.props.id)}
       />
-      {this.state.displayFriends ? <DisplayFriends friendsArr={this.state.friendsArr} storyId={this.props.story.id}/> : null}
+      {this.state.displayFriends ? <DisplayFriends friendsArr={this.state.friendsArr} storyId={this.props.story.id} /> : null}
       </div>
     );
   }
@@ -117,7 +116,7 @@ const mapDispatch = dispatch => {
     deleteContent(evt, contentId) {
       evt.preventDefault();
       dispatch(deleteOneContent(contentId));
-    },  
+    },
     getFollowing(id) {
       dispatch(fetchFollowing(id));
     }
