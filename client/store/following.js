@@ -32,7 +32,7 @@ export const addOneFollowing = (followingId, userId) =>
 dispatch => {
   axios.post(`/api/relationship/following/${userId}`, {followingId: followingId} )
   .then(res => res.data)
-  .then(newRecord =>  dispatch(addFollowing(newRecord)))
+  .then(newRecord => dispatch(addFollowing(newRecord)))
   .catch(err => console.error(err))
   }
 

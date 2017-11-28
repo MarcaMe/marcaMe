@@ -10,14 +10,20 @@ class SearchResult extends Component {
       follow: "Follow"
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkFollowing = this.checkFollowing.bind(this);
   }
-
+  checkFollowing(followingId){
+    return this.props.following.some(guy => guy.id === followingId)
+  }
   handleSubmit(evt) {
     evt.preventDefault();
     const followingId = this.props.searchFriends[0].id;
     const userId = this.props.user.id;
-    this.props.followAFriend(followingId, userId);
-    this.setState({ follow: "Followed!" });
+    this.checkFollowing(followingId) 
+    ? this.setState({follow: 'Already Followed!' })
+    :  this.props.followAFriend(followingId, userId) && 
+      this.setState({ follow: "Followed!" }) 
+    
   }
 
   render() {
@@ -47,7 +53,8 @@ class SearchResult extends Component {
 
 const mapState = state => ({
   searchFriends: state.searchFriends,
-  user: state.user
+  user: state.user,
+  following: state.following
 });
 
 const mapDispatch = dispatch => {

@@ -12,6 +12,7 @@ class GeneralCardIcons extends React.Component {
       isPublic: this.props.story.isPublic
     };
     this._handleEditClick = this._handleEditClick.bind(this);
+    this.shareArticle = this.shareArticle.bind(this);
   }
 
   _handleEditClick(evt, fieldName) {
@@ -24,6 +25,11 @@ class GeneralCardIcons extends React.Component {
       )
     );
   }
+
+   shareArticle(evt, userId, storyId) {
+
+   }
+
 
   render() {
     return (
@@ -60,6 +66,7 @@ class GeneralCardIcons extends React.Component {
         id="send-icon"
         size="large"
         name="send"
+        onClick={evt => this.shareArticle(evt, this.props.id, this.props.story.id)}
       />
       </div>
     );
