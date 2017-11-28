@@ -39,7 +39,7 @@ window.addEventListener('load', function () {
       }
     })
 
-    document.getElementById('addbookmark').addEventListener('submit', event => {
+    document.getElementById('save').addEventListener('click', event => {
       event.preventDefault();
       let allTags = document.getElementsByClassName('tags');
 
@@ -59,5 +59,7 @@ window.addEventListener('load', function () {
         })
         .fail(response => console.log('ERROR', response));
     });
+
+
   });
 });
