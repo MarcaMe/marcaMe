@@ -41,7 +41,7 @@ export class ContentHome extends Component {
                 })
                 .map((story, index) => {
                   return (
-                    <NavLink key={story.id} to={`content/${story.id}`}>
+                    <NavLink key={story.id} to={`/content/${story.id}`}>
                     <FullCard
                     story={story}
                     id={this.props.user.id}

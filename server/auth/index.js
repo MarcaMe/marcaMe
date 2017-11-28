@@ -36,7 +36,7 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  res.json(req.user)
+  res.send(req.user)
 })
 
 router.put('/me', (req, res, next) => {

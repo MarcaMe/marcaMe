@@ -7,9 +7,10 @@ module.exports = router;
 
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
-  console.log(chalk.bgBlue('Im in the request'));
+  console.log(chalk.bgBlue('inside post request'));
+  console.log(request.user.dataValues.id)
 
-  const userId = 1; // HARD CODED userID
+  const userId = request.user.dataValues.id;
   const mercuryUrl =
     'https://mercury.postlight.com/parser?url=' + request.body.url;
   const config = {
@@ -19,7 +20,7 @@ router.post('/chrome', (request, response, next) => {
     }
   };
 
-  return axios
+  axios
     .get(mercuryUrl, config)
     .then(res => {
       const title = res.data.title;
@@ -28,8 +29,8 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      const tags = request.body.tags.split(',');
-      Content.create({
+      const tags = request.body.tags ? request.body.tags.split(',') : null;
+      return Content.create({
         title,
         author,
         description,
@@ -39,8 +40,8 @@ router.post('/chrome', (request, response, next) => {
         url,
         tags
       })
-      .then(() => response.sendStatus(201));
     })
+    .then(data => response.send(data))
     .catch(next);
 });
 /* *************************************************** */
