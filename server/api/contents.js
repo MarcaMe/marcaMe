@@ -91,7 +91,6 @@ router.post('/share', (req, res, next) => {
   const storyId = req.body.contentId;
   const userId = req.body.userId;
   const friendId = req.body.friendId;
-  console.log('check all args: ', req.body)
   Content.findById(storyId)
   .then(story => {
     let newStory = Object.assign(story).dataValues;
