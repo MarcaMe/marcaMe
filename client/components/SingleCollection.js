@@ -27,7 +27,7 @@ export class SingleCollection extends Component {
       <div id="content-home">
       <div style={{display: 'flex', justifyContent: 'flex-start'}}>
       <Header size="huge">{singlecollection.name}</Header>
-      <Icon id="delete-button" name="delete" size="big" onClick={() => deleteSingleCollection(singlecollection)} />
+      <Icon className="hover-button" id="delete-button" name="delete" size="big" onClick={() => deleteSingleCollection(singlecollection)} />
       </div>
         <Card.Group >
           {singlecollection.contents ?
@@ -41,6 +41,7 @@ export class SingleCollection extends Component {
                   deleteContent={this.props.deleteSingleContent}
                   index={index}
                   length={singlecollection.contents.length}
+                  singleCollection={true}
                   />
                   </NavLink>
                 );

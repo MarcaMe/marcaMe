@@ -42,6 +42,8 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
+                <Route path="/favorites" component={ContentHome} />
+                <Route path="/archived" component={ContentHome} />
                 <Route path="/profile/following/:id" component={Following} />
                 <Route path="/profile/follower/:id" component={Follower} />
                 <Route exact path="/profile/:id" component={MyProfile} />

@@ -61,7 +61,8 @@ class GeneralCardIcons extends React.Component {
   }
 }
 const mapState = state => ({
-  article: state.content
+  article: state.content,
+  singlecollection: state.singlecollection
 });
 
 const mapDispatch = dispatch => {

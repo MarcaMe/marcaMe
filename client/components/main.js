@@ -33,7 +33,7 @@ class Main extends Component {
     return (
       <div>
         <nav>
-        <h1 id="logo">MarcaMe</h1>
+        <h1 id="logo">marca</h1>
           {
             isLoggedIn
               ? <div id="login-nav">

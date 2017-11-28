@@ -6,18 +6,17 @@ import PropTypes from 'prop-types'
 import { changeFilter } from '../store';
 
 export const Favorites = (props) => {
-  const { theme, addFilter, filter } = props
-  console.log(filter)
+  const { theme, addFilter } = props
   return (
     <div>
       <div className="folder collection">
-      <NavLink to="/home" onClick={() => addFilter('favorites')}>
+      <NavLink to="/favorites" onClick={() => addFilter('favorites')}>
         <Icon name="favorite" color={theme} size="big" />
         <Label basic size="small" onClick={() => addFilter('favorites')}>Favorites</Label>
       </NavLink>
       </div>
       <div className="folder collection" >
-        <NavLink to="/home" onClick={() => addFilter('archived')}>
+        <NavLink to="/archived" onClick={() => addFilter('archived')}>
           <Icon name="archive" color={theme} size="big" />
           <Label basic size="small">Archive</Label>
         </NavLink>

@@ -102,7 +102,7 @@ body {
   }
 
   .collection {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .folder {
@@ -111,6 +111,9 @@ body {
   }
 
   #add-collection:hover {
+    cursor: pointer;
+  }
+  .hover-button:hover {
     cursor: pointer;
   }
 
@@ -154,9 +157,11 @@ body {
   }
 
   #one-article-viewer {
+    padding-top: 3em;
     padding-right: 10em;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 5em;
   }
 
   #reader-nav {

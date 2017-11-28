@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { SearchResult } from "../components";
-import { fetchFriend } from "../store";
-import { Input, Button } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { SearchResult } from '../components';
+import { fetchFriend } from '../store';
+import { Input, Button } from 'semantic-ui-react';
 
 class SearchFriends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchEmail: "",
+      searchEmail: '',
       renderSearchResult: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,10 +28,10 @@ class SearchFriends extends Component {
       return <SearchResult render={this.state.renderSearchResult} />;
     } else {
       return (
-        <div>
+        <div id="change-theme" style={{width: '230px', display: 'flex', justifyContent: 'space-between'}}>
           <Input
             focus
-            placeholder="search by email"
+            placeholder="search for friends by email"
             name="search"
             size="small"
             onChange={evt => this.setState({ searchEmail: evt.target.value })}
@@ -45,7 +45,7 @@ class SearchFriends extends Component {
           >
             Go!
           </Button>
-          {this.props.searchFriends.length === 0 
+          {this.props.searchFriends.length === 0
             ?( <p> Friend not Found </p> )
            : null}
         </div>

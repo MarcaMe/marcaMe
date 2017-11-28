@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
+import { Card, Loader } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
@@ -10,6 +10,12 @@ export class ContentHome extends Component {
 
   componentDidMount() {
     this.props.fetchAllContentofUser();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props !== nextProps) {
+      console.log('hello')
+    }
   }
 
   render() {
@@ -24,13 +30,14 @@ export class ContentHome extends Component {
               content
                 .filter(content => content.userId === this.props.user.id)
                 .filter(filteredUserContent => {
-                  if (filter === 'favorites') {
-                    return filteredUserContent.isFavorite
+                  switch (filter) {
+                    case 'favorites':
+                    return filteredUserContent.isFavorite;
+                    case 'archived':
+                    return filteredUserContent.isArchived;
+                    default:
+                    return filteredUserContent;
                   }
-                  if (filter === 'archived') {
-                    return filteredUserContent.isArchived
-                  }
-                  return filteredUserContent
                 })
                 .map((story, index) => {
                   return (
@@ -44,7 +51,7 @@ export class ContentHome extends Component {
                     />
                     </NavLink>
                   );
-                }) : null}
+                }) : <Loader active inline="centered" />}
           </Card.Group>
         </div>
       </div>
