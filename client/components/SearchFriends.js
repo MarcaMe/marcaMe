@@ -18,8 +18,7 @@ class SearchFriends extends Component {
     evt.preventDefault();
     this.props.findAFriend(this.state.searchEmail);
     setTimeout(() => {
-      if (this.props.searchFriends.length)
-        this.setState({ renderSearchResult: true });
+      if (this.props.searchFriends.length) this.setState({ renderSearchResult: true });
     }, 100);
   }
 
@@ -46,7 +45,7 @@ class SearchFriends extends Component {
             Go!
           </Button>
           {this.props.searchFriends.length === 0
-            ?( <p> Friend not Found </p> )
+            ? ( <p> Friend not Found </p> )
            : null}
         </div>
       );

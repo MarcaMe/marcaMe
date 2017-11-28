@@ -26,3 +26,4 @@ export { default as Follower } from './Follower';
 export { default as Following } from './Following';
 export { default as UserCard } from './UserCard';
 export { default as Favorites} from './Favorites'
+export { default as DisplayFriends } from './DisplayFriends';

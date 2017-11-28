@@ -80,11 +80,28 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/', (req, res, next) => {
   Content.findAll({
-    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived'],
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom'],
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))
     .catch(next);
 });
+
+router.post('/share', (req, res, next) => {
+  const storyId = req.body.contentId;
+  const userId = req.body.userId;
+  const friendId = req.body.friendId;
+  Content.findById(storyId)
+  .then(story => {
+    let newStory = Object.assign(story).dataValues;
+    newStory.userId = friendId;
+    newStory.sharedFrom = userId;
+    delete newStory.id;
+     Content.create(newStory)
+     .then(data => res.json(data))
+  })
+  .catch(err => console.error(err))
+})
+
 
 router.get('/:id', (req, res) => res.json(req.content));

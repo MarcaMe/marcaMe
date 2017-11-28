@@ -7,12 +7,14 @@ const ADD_CONTENT2 = 'ADD_CONTENT2';
 const GET_SINGLE_CONTENT = 'GET_SINGLE_CONTENT';
 const DELETE_SINGLE_CONTENT = 'DELETE_SINGLE_CONTENT';
 const EDIT_SINGLE_CONTENT = 'EDIT_SINGLE_CONTENT';
+const SHARE_A_CONTENT = 'SHARE_A_CONTENT';
 
 const defaultContent = [];
 
 const addContent = content => ({ type: ADD_CONTENT, content });
 const getContent = content => ({ type: GET_SINGLE_CONTENT, content });
 const getAllContent = content => ({ type: GET_ALL_CONTENT, content });
+
 const deleteSingleContent = contentId => ({
   type: DELETE_SINGLE_CONTENT,
   contentId
@@ -50,11 +52,19 @@ export const deleteOneContent = contentId => dispatch => {
 };
 
 export const editOneContent = contentBody => dispatch => {
-  console.log(contentBody)
   return axios
     .put(`/api/contents/${contentBody.id}`, contentBody)
     .then(res => res.data)
     .then(content => dispatch(editSingleContent(content)))
+    .catch(err => console.error(err));
+};
+
+export const ShareAContentThunk = (contentId, userId, friendId) => dispatch => {
+  console.log('check props in thunk', contentId, userId, friendId )
+  return axios
+    .post('/api/contents/share', {contentId, userId, friendId})
+    .then(res => res.data)
+    .then(sharedContent => dispatch(addContent(sharedContent)))
     .catch(err => console.error(err));
 };
 
@@ -67,9 +77,12 @@ export default function(state = defaultContent, action) {
     case GET_SINGLE_CONTENT:
       return [action.content];
     case EDIT_SINGLE_CONTENT:
-      return state.map(content => (content.id === action.content.id ? action.content : content));
+      return state.map(
+        content => (content.id === action.content.id ? action.content : content)
+      );
     case DELETE_SINGLE_CONTENT:
       return state.filter(content => +content.id !== +action.contentId);
+
     default:
       return state;
   }

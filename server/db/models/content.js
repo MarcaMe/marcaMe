@@ -42,6 +42,10 @@ const Content = db.define('content', {
   isArchived: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  sharedFrom: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 

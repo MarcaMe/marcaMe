@@ -1,23 +1,28 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addOneFollowing } from "../store";
-import { List, Button, Image } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addOneFollowing } from '../store';
+import { List, Button, Image } from 'semantic-ui-react';
 
 class SearchResult extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      follow: "Follow"
+      follow: 'Follow'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkFollowing = this.checkFollowing.bind(this);
   }
-
+  checkFollowing(followingId){
+    return this.props.following.some(guy => guy.id === followingId)
+  }
   handleSubmit(evt) {
     evt.preventDefault();
     const followingId = this.props.searchFriends[0].id;
     const userId = this.props.user.id;
-    this.props.followAFriend(followingId, userId);
-    this.setState({ follow: "Followed!" });
+    if (this.checkFollowing(followingId) ) { this.setState({follow: 'Already Followed!' }) }
+    else {this.props.followAFriend(followingId, userId)
+      this.setState({ follow: 'Followed!' })}
+
   }
 
   render() {
@@ -33,8 +38,7 @@ class SearchResult extends Component {
           </List.Item>
           <List.Item>
             <Button type="button" size="mini" onClick={this.handleSubmit}>
-              {" "}
-              {this.state.follow}{" "}
+              {this.state.follow}
             </Button>
           </List.Item>
         </List>
@@ -47,7 +51,8 @@ class SearchResult extends Component {
 
 const mapState = state => ({
   searchFriends: state.searchFriends,
-  user: state.user
+  user: state.user,
+  following: state.following
 });
 
 const mapDispatch = dispatch => {

@@ -9,7 +9,6 @@ User.hasMany(Collection);
 Collection.belongsToMany(Content, {through: 'userCollections', onDelete: 'CASCADE'});
 User.hasMany(Relationship);
 Relationship.belongsTo(User);
-//User.belongsToMany(User, {as : 'followed', through: 'follower'})
 module.exports = {
   User,
   Content,
