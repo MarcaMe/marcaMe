@@ -29,7 +29,7 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      const tags = request.body.tags.split(',');
+      const tags = request.body.tags ? request.body.tags.split(',') : null;
       return Content.create({
         title,
         author,

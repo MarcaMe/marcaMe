@@ -15,16 +15,23 @@
 
 <body>
   <h1>MarcaMe</h1>
-  <h3 id="article-title">f</h3>
+  <h3 id="article-title">title</h3>
   <form id="addbookmark">
     <div class="ui right labeled left icon input">
-      <i class="tags icon"></i>
-      <input type="text" id="tags" name="tags" value="" placeholder="Enter tags">
-      <a class="ui tag label">Add Tag</a>
+      <input type="text" id="myInput" name="tags" value="" placeholder="Enter tags">
+      <a type="button" id="addBtn" class="ui tag label">Add Tag</a>
     </div>
 
+    <br /><br />
+
+    <div class="ui blue labels" id="myUL"></div>
+
+    <br /><br />
+
+    <p id="status"></p>
+
     <p><input id="save" type="submit" value="Save Bookmark" /></p>
-    <span id="status-display">status</span>
+    <!-- <a class="ui teal label" id="save">Save Bookmark</a> -->
   </form>
 </body>
 
