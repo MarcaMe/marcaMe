@@ -19,10 +19,9 @@ class SearchResult extends Component {
     evt.preventDefault();
     const followingId = this.props.searchFriends[0].id;
     const userId = this.props.user.id;
-    this.checkFollowing(followingId) 
-    ? this.setState({follow: 'Already Followed!' })
-    :  this.props.followAFriend(followingId, userId) && 
-      this.setState({ follow: "Followed!" }) 
+    if (this.checkFollowing(followingId) ) { this.setState({follow: 'Already Followed!' }) }
+    else {this.props.followAFriend(followingId, userId)  
+      this.setState({ follow: "Followed!" })}
     
   }
 
@@ -39,8 +38,7 @@ class SearchResult extends Component {
           </List.Item>
           <List.Item>
             <Button type="button" size="mini" onClick={this.handleSubmit}>
-              {" "}
-              {this.state.follow}{" "}
+              {this.state.follow}
             </Button>
           </List.Item>
         </List>
