@@ -51,7 +51,7 @@ export class ContentHome extends Component {
                     />
                     </NavLink>
                   );
-                }) : <Loader active inline="centered" />}
+                }) : null}
           </Card.Group>
         </div>
       </div>
