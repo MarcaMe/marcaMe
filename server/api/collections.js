@@ -9,16 +9,19 @@ router.param('id', (req, res, next, id) => {
         if (!collection) {
         console.log('Collection does not exist')
         res.sendStatus(404)
+        }
+        if (collection.userId === req.user.id) {
+            req.collection = collection;
+            next();
         } else {
-        req.collection = collection;
-        next();
+            res.send('Access Denied')
         }
     })
     .catch(next)
 })
 
 router.get('/', (req, res, next) => {
-    Collection.findAll()
+    Collection.findAll({where: {userId: req.user.id}})
     .then(userCollections => {
         res.json(userCollections)
     })
