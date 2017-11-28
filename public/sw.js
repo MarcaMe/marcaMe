@@ -11,7 +11,9 @@ self.addEventListener('install', event => {
           '/favicon.ico',
           'index.html',
           'manifest.json',
-          '/'
+          '/',
+          '/home',
+          '/content/:id'
         ])
       )
   );
