@@ -6,6 +6,7 @@ import store from './store'
 import Routes from './routes'
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContextProvider } from 'react-dnd';
+import registerServiceWorker from './serviceWorkerDev.js';
 
 // establishes socket connection
 import './socket'
@@ -18,3 +19,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+registerServiceWorker();
