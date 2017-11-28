@@ -30,9 +30,9 @@ class GeneralCardIcons extends React.Component {
       <div>
         <Icon size="large" name="tags" />
         <Icon
-          id="share-icon"
+          id="unlock-icon"
           size="large"
-          name="external"
+          name="unlock"
           onClick={evt => this._handleEditClick(evt, 'isPublic')}
           color={this.state.isPublic && 'blue'}
         />
@@ -56,6 +56,11 @@ class GeneralCardIcons extends React.Component {
           name="trash"
           onClick={evt => this.props.deleteContent(evt, this.props.story.id)}
         />
+        <Icon
+        id="send-icon"
+        size="large"
+        name="send"
+      />
       </div>
     );
   }
