@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleContent, deleteOneContent, editOneContent } from '../store/content';
 import { Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import history from '../history';
 
 
@@ -17,7 +16,6 @@ class ReaderNav extends React.Component {
   }
 
   render() {
-    console.log(history)
     const content = this.props.content;
     const editContent = this.props.editContent;
     return (
@@ -52,7 +50,7 @@ class ReaderNav extends React.Component {
           />
           <h5 className="reader-nav-text">{content.isPublic ? 'Shared!' : 'Share'}</h5>
         </div>
-        <div className="reader-icon-container" onClick={ evt => editContent(evt,'isArchived', !content.isArchived)}>
+        <div className="reader-icon-container" onClick={ evt => editContent(evt, 'isArchived', !content.isArchived)}>
           <Icon
             className="reader-nav-icon"
             id="archive-icon"

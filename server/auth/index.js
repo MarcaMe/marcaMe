@@ -39,5 +39,18 @@ router.get('/me', (req, res) => {
   res.send(req.user)
 })
 
+router.put('/me', (req, res, next) => {
+  const newName = req.body.newName;
+  const id = req.body.userId;
+  User.findById(id)
+  .then(user => {
+    user.firstName = newName;
+    user.save({fields: ['firstName']})
+    .then(() => User.findById(id))
+    .then(user => res.json(user))
+  })
+}
+)
+
 router.use('/google', require('./google'))
 router.use('/facebook', require('./facebook'))

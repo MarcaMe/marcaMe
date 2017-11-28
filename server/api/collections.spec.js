@@ -1,8 +1,11 @@
 const { expect } = require('chai');
 const request = require('supertest');
+const session = require('supertest-session');
 const db = require('../db');
 const app = require('../index');
 const Collection = db.model('collection');
+const User = db.model('user');
+
 
 describe('Collection routes', () => {
   beforeEach(() => {
@@ -10,18 +13,32 @@ describe('Collection routes', () => {
   });
 
   describe('/api/collections/', () => {
-
+    let collections;
+    const testSession = session(app)
+    const user = {email: 'cody@mail.com', password: '123'}
     beforeEach(() => {
-      return Collection.bulkCreate([
-        {name: 'An Amazing Collection'},
-        {name: 'An Even Better Collection'},
-        {name: 'The Best Collection'}
-        ]);
+      return User.create(user)
+      .then(_ => {
+        return testSession
+        .post('/auth/login')
+        .send({email: user.email, password: '123'})
+      })
+      .then(_ => {
+        return Collection.bulkCreate([
+          {name: 'An Amazing Collection', userId: 1},
+          {name: 'An Even Better Collection', userId: 1},
+          {name: 'The Best Collection', userId: 1}
+          ],
+          {returning: true})
+      })
+      .then(created => {
+        collections = created
+      })
     });
-
     it('GET /api/collections', () => {
-      return request(app)
+      return testSession
         .get('/api/collections')
+        .send()
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array');
@@ -43,8 +60,8 @@ describe('Collection routes', () => {
     });
 
     it('GET /api/collections/:id', () => {
-      return request(app)
-      .get('/api/collections/1')
+      return testSession
+      .get(`/api/collections/${collections[0].id}`)
       .expect(200)
       .then(res => {
         expect(res.body.name).to.be.equal('An Amazing Collection')
@@ -53,30 +70,26 @@ describe('Collection routes', () => {
     });
 
     it('PUT /api/collections/:id', () => {
-      return request(app)
-      .get('/api/collections/1')
-      .then(res => {
-        const firstReqId = res.body.id;
-        return request(app)
-        .put(`/api/collections/${res.body.id}`)
+        return testSession
+        .put(`/api/collections/${collections[0].id}`)
         .send({name: 'Updated Name'})
         .expect(200)
         .then(res => {
           const secondReqId = res.body.id
           expect(res.body.name).to.be.equal('Updated Name')
-          expect(secondReqId).to.equal(firstReqId)
+          expect(secondReqId).to.equal(collections[0].id)
         })
-      })
     });
 
     it('DELETE /api/collections/:id', () => {
-      return request(app)
+      return testSession
       .delete('/api/collections/3')
       .expect(200)
       .then(res => {
         expect(res.text).to.be.a('string')
         expect(res.text).to.equal('Collection was Deleted')
-      })
-    })
+      });
+    });
   });
 });
+

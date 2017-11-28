@@ -22,11 +22,11 @@ const removeUser = () => ({type: REMOVE_USER})
  * THUNK CREATORS
  */
 export const me = () =>
-  dispatch =>
-    axios.get('/auth/me')
-      .then(res =>
-        dispatch(getUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
+dispatch =>
+  axios.get('/auth/me')
+    .then(res =>
+      dispatch(getUser(res.data || defaultUser)))
+    .catch(err => console.log(err))
 
 export const auth = (email, password, method) =>
   dispatch =>
@@ -47,6 +47,9 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+
+
+
 /**
  * REDUCER
  */
@@ -56,6 +59,7 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+
     default:
       return state
   }

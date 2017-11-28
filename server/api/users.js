@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -13,3 +13,9 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  User.findById(id)
+    .then(user => res.json(user))
+    .catch(next)
+})
