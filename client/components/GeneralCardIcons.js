@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Popup } from 'semantic-ui-react';
 import axios from 'axios';
 import { editOneContent, deleteOneContent, fetchFollowing } from '../store';
-import { DisplayFriends } from '../components'
-
+import { DisplayFriends } from '../components';
 
 class GeneralCardIcons extends React.Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class GeneralCardIcons extends React.Component {
       isArchived: this.props.story.isArchived,
       isPublic: this.props.story.isPublic,
       displayFriends: false,
-      friendsArr: [],
+      friendsArr: []
     };
     this._handleEditClick = this._handleEditClick.bind(this);
     this.shareArticle = this.shareArticle.bind(this);
@@ -36,68 +35,122 @@ class GeneralCardIcons extends React.Component {
     );
   }
 
-   findFriends(arr, userId) {
+  findFriends(arr, userId) {
     const rtnArr = [];
-    for (let i = 0; i < arr.length; i++){
-      for (let j = i + 1; j < arr.length; j++){
-        if (arr[i].followed === arr[j].userId && arr[j].followed === arr[i].userId){
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        if (
+          arr[i].followed === arr[j].userId &&
+          arr[j].followed === arr[i].userId
+        ) {
           rtnArr.push(arr[i]);
-          rtnArr.push(arr[j])
+          rtnArr.push(arr[j]);
         }
       }
     }
-    return rtnArr.filter(ele => ele.userId !== userId )
+    return rtnArr.filter(ele => ele.userId !== userId);
   }
 
-
-    shareArticle(evt, userId) {
-     evt.preventDefault()
-      axios.get('/api/relationship')
+  shareArticle(evt, userId) {
+    evt.preventDefault();
+    axios
+      .get('/api/relationship')
       .then(res => res.data)
       .then(followArr => this.findFriends(followArr, userId))
-      .then(data => this.setState({friendsArr: data, displayFriends: true}))
-      .catch(err => console.error(err))
-   }
-
+      .then(data => this.setState({ friendsArr: data, displayFriends: true }))
+      .catch(err => console.error(err));
+  }
 
   render() {
     return (
       <div>
-        <Icon size="large" name="tags" />
-        <Icon
-          id="unlock-icon"
-          size="large"
-          name="unlock"
-          onClick={evt => this._handleEditClick(evt, 'isPublic')}
-          color={this.state.isPublic && 'blue'}
+        <Popup
+          trigger={<Icon size="large" name="tags" />}
+          size="mini"
+          on="hover"
+          content="Add tags"
+          position="bottom left"
         />
-        <Icon
-            id="archive-icon"
-            name="archive"
-            size="large"
-            color={this.state.isArchived && 'teal'}
-            onClick={evt => this._handleEditClick(evt, 'isArchived')}
+        <Popup
+          trigger={
+            <Icon
+              id="unlock-icon"
+              size="large"
+              name="unlock"
+              onClick={evt => this._handleEditClick(evt, 'isPublic')}
+              color={this.state.isPublic && 'blue'}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Share to your profile"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
+              id="archive-icon"
+              name="archive"
+              size="large"
+              color={this.state.isArchived && 'teal'}
+              onClick={evt => this._handleEditClick(evt, 'isArchived')}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Archive"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
+              id="heart-icon"
+              name="heart"
+              size="large"
+              color={this.state.isFavorite && 'red'}
+              onClick={evt => this._handleEditClick(evt, 'isFavorite')}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Favorite"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
+              id="trash-icon"
+              size="large"
+              name="trash"
+              onClick={evt =>
+                this.props.deleteContent(evt, this.props.story.id)}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Delete"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
+              id="send-icon"
+              size="large"
+              name="send"
+              onClick={evt => this.shareArticle(evt, this.props.id)}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Share to your friends!"
+          position="bottom left"
+        />
+        {this.state.displayFriends ? (
+          <DisplayFriends
+            friendsArr={this.state.friendsArr}
+            storyId={this.props.story.id}
           />
-        <Icon
-          id="heart-icon"
-          name="heart"
-          size="large"
-          color={this.state.isFavorite && 'red'}
-          onClick={evt => this._handleEditClick(evt, 'isFavorite')}
-        />
-        <Icon
-          id="trash-icon"
-          size="large"
-          name="trash"
-          onClick={evt => this.props.deleteContent(evt, this.props.story.id)}
-        />
-        <Icon
-        id="send-icon"
-        size="large"
-        name="send"
-        onClick={evt => this.shareArticle(evt, this.props.id)}
-      />
-      {this.state.displayFriends ? <DisplayFriends friendsArr={this.state.friendsArr} storyId={this.props.story.id} /> : null}
+        ) : null}
       </div>
     );
   }
@@ -120,7 +173,7 @@ const mapDispatch = dispatch => {
     getFollowing(id) {
       dispatch(fetchFollowing(id));
     }
-}
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(GeneralCardIcons);
