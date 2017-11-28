@@ -10,16 +10,16 @@ export const Favorites = (props) => {
   console.log(filter)
   return (
     <div>
-      <div onClick={() => addFilter('favorites')}>
-      <NavLink to="/home">
-        <Icon name="favorite" color={theme} size="big" className="collection" />
-        <Label basic color={theme} size="tiny">Favorites</Label>
+      <div className="folder collection">
+      <NavLink to="/home" onClick={() => addFilter('favorites')}>
+        <Icon name="favorite" color={theme} size="big" />
+        <Label basic size="small" onClick={() => addFilter('favorites')}>Favorites</Label>
       </NavLink>
       </div>
-      <div onClick={() => addFilter('archived')}>
-        <NavLink to="/home">
-          <Icon name="archive" color={theme} size="big" className="collection" />
-          <Label basic color={theme} size="tiny">Archive</Label>
+      <div className="folder collection" >
+        <NavLink to="/home" onClick={() => addFilter('archived')}>
+          <Icon name="archive" color={theme} size="big" />
+          <Label basic size="small">Archive</Label>
         </NavLink>
       </div>
     </div>

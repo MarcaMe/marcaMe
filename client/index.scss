@@ -102,9 +102,17 @@ body {
   }
 
   .collection {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
+  .folder {
+    display: flex;
+    align-items: center;
+  }
+
+  #add-collection:hover {
+    cursor: pointer;
+  }
 
   #login-nav {
     display: flex;
@@ -169,10 +177,10 @@ body {
   }
 
   #sidebar {
-    width: 250px;
+    width: 200px;
     position: sticky;
     padding-left: 20px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
 
   #content-home {
