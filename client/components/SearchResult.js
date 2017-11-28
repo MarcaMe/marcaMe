@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { followFriend } from "../store";
+import { addOneFollowing } from "../store";
 import { List, Button, Image } from "semantic-ui-react";
 
 class SearchResult extends Component {
@@ -53,7 +53,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     followAFriend(followingId, userId) {
-      dispatch(followFriend(followingId, userId));
+      dispatch(addOneFollowing(followingId, userId));
     }
   };
 };

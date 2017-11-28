@@ -8,7 +8,7 @@ router.get('/following/:id', (req, res, next) => {
     .then(data => data.map(record => record.followed))
     .then(recordArr =>  recordArr.map(id => User.findById(id)))
     .then(arrPromise => Promise.all(arrPromise))
-    .then(data => res.send(data))
+    .then(data => res.json(data))
     .catch(next)
 
 })
@@ -20,21 +20,21 @@ router.get('/follower/:id', (req, res, next) => {
     .catch(next)
 })
 
-router.post('/:id', (req, res, next) => {
+router.post('/following/:id', (req, res, next) => {
     const userId = req.params.id;
-    const followed = req.body.followedId;
+    const followed = req.body.followingId;
     Relationship.create({userId: userId, followed: followed})
+    .then(newRecord =>  User.findById(newRecord.followed)
+    .then(data => res.json(data))
+    )
     .catch(next);
   })
-
 
   router.delete('/following/:id', (req, res, next) => {
     const userId = req.params.id;
     const followed = req.body.followingId;
-    console.log("router got params: ", 'userId(should be 3): ', userId, 'following Id(should be 4)', followed)
     Relationship.findOne( {where: {userId: userId, followed: followed}})
     .then(record => record.destroy())
     .then(() => res.json(followed))
     .catch(next);
-
   })
