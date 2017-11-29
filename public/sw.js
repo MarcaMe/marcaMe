@@ -902,7 +902,6 @@ var __wpo = {
 
     /***/
   }
-<<<<<<< HEAD
 
   var body = 'body' in response ? Promise.resolve(response.body) : response.blob();
 
@@ -939,7 +938,6 @@ cacheMaps: [],
 
 /***/ })
 /******/ ]);
-=======
   /******/
 ]);
->>>>>>> master
+
