@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { AddPopup,  SearchFriends } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
-import { logout, fetchAllContent } from '../store'
+import { logout, fetchAllContent, changeFilter } from '../store'
 import { ChangeTheme } from '../components'
 /**
  * COMPONENT
@@ -29,11 +29,11 @@ class Main extends Component {
   }
 
   render(){
-  const { children, handleClick, isLoggedIn, theme, user } = this.props
+  const { children, handleClick, isLoggedIn, theme, user, removeFilter } = this.props
     return (
       <div>
         <nav>
-        <h1 id="logo">MarcaMe</h1>
+        <h1 id="logo">marca</h1>
           {
             isLoggedIn
               ? <div id="login-nav">
@@ -42,7 +42,7 @@ class Main extends Component {
                 <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
                 <Link to="/home">
-                  <Icon name="home" color={theme} size="big" />
+                  <Icon name="home" color={theme} size="big" onClick={() => removeFilter()} />
                 </Link>
                 <Link to={`/profile/${user.id}`}>
                   <Icon name="user" color="pink" size="big" />
@@ -76,7 +76,8 @@ const mapState = (state) => {
   return {
     user: state.user,
     isLoggedIn: !!state.user.id,
-    theme: state.theme
+    theme: state.theme,
+    filter: state.filter
   }
 }
 
@@ -87,6 +88,9 @@ const mapDispatch = (dispatch) => {
     },
     fetchAllContentofUser() {
       dispatch(fetchAllContent());
+    },
+    removeFilter() {
+      dispatch(changeFilter(''))
     }
   }
 }
