@@ -38,15 +38,15 @@ module.exports = {
           publicPath: '/',
           ServiceWorker: {
             navigateFallbackURL: '/',
-            events:true
+            events: true
           },
-          caches: 
+          caches:
             'all',
-          
+
           safeToUseOptionalCaches: true,
 
           AppCache: {
-            FALLBACK: {'/':'/index.html'}
+            FALLBACK: {'/': '/index.html'}
           }
         })
       ]
@@ -60,13 +60,13 @@ module.exports = {
             navigateFallbackURL: '/',
             events: true
           },
-          caches: 
+          caches:
             'all',
-          
+
           safeToUseOptionalCaches: true,
 
           AppCache: {
-            FALLBACK: {'/':'/index.html'}
+            FALLBACK: {'/': '/index.html'}
           }
         })
       ]
