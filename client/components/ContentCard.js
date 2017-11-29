@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card,  Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import { editOneContent } from '../store/content';
 import PropTypes from 'prop-types'
 
@@ -23,24 +23,24 @@ class ContentCard extends React.Component {
 
   render() {
     return (
-        <Card.Content style={{ overflow: 'hidden' }}>
-          <Card.Header>{this.props.story.title}</Card.Header>
-          <div
-            style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
-          >
-            <Image
-              style={{ width: '100%', display: 'block' }}
-              fluid
-              src={this.props.story.imageUrl}
-            />
-          </div>
-          <Card.Meta>
-            <span className="date">{this.props.story.date}</span>
-          </Card.Meta>
-          <Card.Description style={{ fontSize: '1em' }} className="description">
-            {truncateDescription(this.props.story)}
-          </Card.Description>
-        </Card.Content>
+      <Card.Content style={{ overflow: 'hidden' }}>
+        <Card.Header>{this.props.story.title}</Card.Header>
+        <div
+          style={{ margin: '10px auto', overflow: 'hidden', height: '150px', backgroundColor: 'blue' }}
+        >
+          <Image
+            style={{ width: '100%', display: 'block' }}
+            fluid
+            src={this.props.story.imageUrl}
+          />
+        </div>
+        <Card.Meta>
+          <span className="date">{this.props.story.date}</span>
+        </Card.Meta>
+        <Card.Description style={{ fontSize: '1em' }} className="description">
+          {truncateDescription(this.props.story)}
+        </Card.Description>
+      </Card.Content>
     );
   }
 }
@@ -51,7 +51,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     editContent(id, field, value) {
-      const contentBody = {id, [field]: value}
+      const contentBody = { id, [field]: value }
       dispatch(editOneContent(contentBody));
     }
   };

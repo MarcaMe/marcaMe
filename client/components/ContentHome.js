@@ -12,12 +12,6 @@ export class ContentHome extends Component {
     this.props.fetchAllContentofUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      console.log('hello')
-    }
-  }
-
   render() {
     const content = this.props.content;
     const filter = this.props.filter;
@@ -48,6 +42,7 @@ export class ContentHome extends Component {
                     deleteContent={this.props.deleteSingleContent}
                     index={index}
                     length={this.props.content.length}
+                    tags={this.props.content}
                     />
                     </NavLink>
                   );
