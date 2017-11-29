@@ -63,7 +63,7 @@ window.addEventListener('load', function () {
         data
       })
         .done(() => {
-          chrome.tabs.query({ title: 'marca' }, marca => {
+          chrome.tabs.query({ title: 'marca!' }, marca => {
             chrome.tabs.reload(marca[0].id);
             saveButton.innerHTML = 'Saved!'
             setTimeout(() => {

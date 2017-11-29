@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Header, Icon } from 'semantic-ui-react';
+import { Card, Header, Icon, Popup } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchCollectionContent, deleteOneContent, deleteCollection } from '../store';
 import { NavLink } from 'react-router-dom';
@@ -27,7 +27,20 @@ export class SingleCollection extends Component {
       <div id="content-home">
       <div style={{display: 'flex', justifyContent: 'flex-start'}}>
       <Header size="huge">{singlecollection.name}</Header>
-      <Icon className="hover-button" id="delete-button" name="delete" size="big" onClick={() => deleteSingleCollection(singlecollection)} />
+      <Popup
+        trigger={
+        <Icon
+        className="hover-button"
+        id="delete-button"
+        name="delete"
+        size="big"
+        onClick={() => deleteSingleCollection(singlecollection)}
+        />}
+        size="small"
+        on="hover"
+        content="Delete Collection"
+        position="right center"
+       />
       </div>
         <Card.Group >
           {singlecollection.contents ?
@@ -41,7 +54,7 @@ export class SingleCollection extends Component {
                   deleteContent={this.props.deleteSingleContent}
                   index={index}
                   length={singlecollection.contents.length}
-                  singleCollection={true}
+                  renderRemove={true}
                   />
                   </NavLink>
                 );

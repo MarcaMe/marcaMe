@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Loader } from 'semantic-ui-react';
 import { GeneralCardIcons, ContentCard } from '../components';
 import { DragSource } from 'react-dnd';
 
@@ -39,9 +39,28 @@ export class FullCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, singleCollection } = this.props;
+    const { connectDragSource, isDragging, renderRemove } = this.props;
     return connectDragSource(
       <div>
+      {!this.props.story.title ?
+        <Card
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '300px',
+          height: '350px',
+          margin: '0.5vw',
+          opacity: isDragging ? '.2' : '1'
+        }}
+        color={this._getColor(this.props.index % 7)}
+        className="card"
+        fluid
+        >
+        <Card.Content >
+        <Loader active inline="centered" />
+        </Card.Content>
+        </Card> :
         <Card
           style={{
             width: '300px',
@@ -62,10 +81,10 @@ export class FullCard extends Component {
             <GeneralCardIcons
               id={this.props.id}
               story={this.props.story}
-              singleCollection={singleCollection}
+              renderRemove={renderRemove}
             />
           </Card.Content>
-        </Card>
+        </Card>}
       </div>
     );
   }

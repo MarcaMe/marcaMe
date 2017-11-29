@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popup } from 'semantic-ui-react';
 import axios from 'axios';
-import { editOneContent, deleteOneContent, fetchFollowing } from '../store';
+import { editOneContent, deleteOneContent, fetchFollowing, postRemoveFromCollection } from '../store';
 import { DisplayFriends } from '../components';
 
 class GeneralCardIcons extends React.Component {
@@ -63,6 +63,7 @@ class GeneralCardIcons extends React.Component {
   }
 
   render() {
+    const { renderRemove, deleteFromCollection, singlecollection } = this.props
     return (
       <div>
         <Popup
@@ -146,6 +147,25 @@ class GeneralCardIcons extends React.Component {
           content="Delete"
           position="bottom left"
         />
+        {renderRemove ?
+        <Popup
+        trigger={
+          <Icon
+            id="remove-icon"
+            size="large"
+            name="remove circle outline"
+            onClick={(evt) => {
+              evt.preventDefault();
+              deleteFromCollection(singlecollection, this.props.story)}
+            }
+          />
+        }
+        size="mini"
+        on="hover"
+        content="Remove from collection"
+        position="bottom left"
+       />
+       : null}
         {this.state.displayFriends ? (
           <DisplayFriends
             friendsArr={this.state.friendsArr}
@@ -162,7 +182,7 @@ const mapState = state => ({
   user: state.user
 });
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     editContent(id, field, value) {
       const contentBody = { id, [field]: value };
@@ -174,6 +194,9 @@ const mapDispatch = dispatch => {
     },
     getFollowing(id) {
       dispatch(fetchFollowing(id));
+    },
+    deleteFromCollection(collection, content) {
+      dispatch(postRemoveFromCollection(collection, content))
     }
   };
 };
