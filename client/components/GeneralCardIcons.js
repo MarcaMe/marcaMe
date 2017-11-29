@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Icon, Popup, NavLink } from 'semantic-ui-react';
+import { Icon, Popup } from 'semantic-ui-react';
 import axios from 'axios';
 import { editOneContent, deleteOneContent, fetchFollowing, postRemoveFromCollection } from '../store';
 import { DisplayFriends } from '../components';
