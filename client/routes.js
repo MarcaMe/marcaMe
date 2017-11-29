@@ -12,7 +12,8 @@ import {
   OneArticle,
   MyProfile,
   Follower,
-  SingleCollection
+  SingleCollection,
+  Notification
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -44,8 +45,9 @@ class Routes extends Component {
                 <Route path="/home" component={ContentHome} />
                 <Route path="/profile/following/:id" component={Following} />
                 <Route path="/profile/follower/:id" component={Follower} />
-                <Route exact path="/profile/:id" component={MyProfile} />
+                <Route path="/profile/:id" component={MyProfile} />
                 <Route path="/collections/:collectionId" component={SingleCollection} />
+                <Route path="/notification" component={Notification} />
                 <Route component={ContentHome} />
               </Switch>
             )}

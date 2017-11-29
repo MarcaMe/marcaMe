@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { AddPopup,  SearchFriends } from './index'
+import { AddPopup,  SearchFriends, NotificationIcon } from './index'
 import { Button, Icon, Divider } from 'semantic-ui-react'
 import { logout, fetchAllContent } from '../store'
 import { ChangeTheme } from '../components'
@@ -41,6 +41,7 @@ class Main extends Component {
                 <SearchFriends />
                 <ChangeTheme />
                 <AddPopup handleAddUrl={this.handleUrlButtonClick} showForm={this.state.showUrlForm} />
+                <NotificationIcon />                
                 <Link to="/home">
                   <Icon name="home" color={theme} size="big" />
                 </Link>
