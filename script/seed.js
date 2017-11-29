@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Relationship} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -19,11 +19,40 @@ async function seed () {
   // executed until that promise resolves!
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({firstName: 'Cody', lastName: 'Coder', email: 'cody@email.com', password: '123'}),
+    User.create({firstName: 'Murphy', lastName: 'Dog', email: 'murphy@email.com', password: '123'}),
+    User.create({firstName: 'Sisi', lastName: 'Qin', email: 'sisi@email.com', password: '123'}),
+    User.create({firstName: 'Sol', lastName: 'Park', email: 'sol@email.com', password: '123'}),
+    User.create({firstName: 'Philip', lastName: 'Fahim', email: 'philip@email.com', password: '123'}),
+    User.create({firstName: 'Kenny', lastName: 'Diaz', email: 'kenny@email.com', password: '123'})    
+
   ])
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
+
+  const relationships = await Promise.all([
+    Relationship.create({followed: 1, userId: 2}),
+    Relationship.create({followed: 1, userId: 6}),    
+    Relationship.create({followed: 2, userId: 1}),
+    Relationship.create({followed: 2, userId: 3}),
+    Relationship.create({followed: 2, userId: 6}),    
+    Relationship.create({followed: 2, userId: 4}),
+    Relationship.create({followed: 2, userId: 5}),
+    Relationship.create({followed: 3, userId: 1}),
+    Relationship.create({followed: 3, userId: 2}),
+    Relationship.create({followed: 3, userId: 6}),
+    Relationship.create({followed: 3, userId: 5}),
+    Relationship.create({followed: 4, userId: 5}),
+    Relationship.create({followed: 4, userId: 3}),
+    Relationship.create({followed: 4, userId: 2}),
+    Relationship.create({followed: 4, userId: 1}),
+    Relationship.create({followed: 5, userId: 1}),
+    Relationship.create({followed: 5, userId: 2}),
+    Relationship.create({followed: 5, userId: 4}),
+    Relationship.create({followed: 6, userId: 1}),
+    Relationship.create({followed: 6, userId: 2}),
+    Relationship.create({followed: 6, userId: 3}),
+
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
