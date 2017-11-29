@@ -99,7 +99,7 @@ class Main extends Component {
                     </Modal>
                   </Dropdown.Item>
                   <Link to="/signup">
-                    <Dropdown.Item onClick={handleClick} icon="log out">
+                    <Dropdown.Item onClick={handleClick}>
                       Logout
                     </Dropdown.Item>
                   </Link>

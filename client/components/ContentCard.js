@@ -61,7 +61,7 @@ class ContentCard extends React.Component {
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>
           </Card.Meta>
-          <Card.Description style={{ fontSize: '1em', 'font-family': "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif" }} className="description">
+          <Card.Description style={{ fontSize: '1em', fontFamily: "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif" }} className="description">
             {truncateDescription(this.props.story)}
           </Card.Description>
         </Card.Content>

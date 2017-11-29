@@ -8,7 +8,6 @@ import {
   Main,
   Login,
   Signup,
-  VideoViewer,
   OneArticle,
   MyProfile,
   Follower,

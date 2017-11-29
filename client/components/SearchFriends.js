@@ -1,55 +1,68 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SearchResult } from '../components';
-import { fetchFriend } from '../store';
-import { Input, Button } from 'semantic-ui-react';
+import { Search } from 'semantic-ui-react';
+import _ from 'lodash';
+import history from '../history';
 
 class SearchFriends extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchEmail: '',
-      renderSearchResult: false
+      isLoading: false,
+      results: [],
+      value: ''
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault();
-    this.props.findAFriend(this.state.searchEmail);
-    setTimeout(() => {
-      if (this.props.searchFriends.length) this.setState({ renderSearchResult: true });
-    }, 100);
+  componentDidMount() {
+    this.resetComponent();
   }
+
+  resetComponent = () =>
+    this.setState({ isLoading: false, results: [], value: '' });
+
+  handleResultSelect = (evt, { result }) => {
+    this.setState({ value: result.firstName + ' ' + result.lastName });
+    history.push(`/profile/${result.id}`)
+  };
+
+  handleSearchChange = (evt, { value }) => {
+    const source = this.props.allUsers;
+    this.setState({ isLoading: true, value });
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.resetComponent();
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+      const isMatch = result =>
+        re.test(result.firstName + ' ' + result.lastName);
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(source, isMatch)
+      });
+    }, 500);
+  };
 
   render() {
-    if (this.state.renderSearchResult) {
-      return <SearchResult render={this.state.renderSearchResult} />;
-    } else {
-      return (
-        <div id="change-theme">
-          <Input
-            focus
-            placeholder="search friends by email ..."
-            name="search"
-            size="mini"
-            onChange={evt => this.setState({ searchEmail: evt.target.value })}
-            value={this.state.searchEmail}
-          />
-          <Button
-            circular
-            size="mini"
-            type="button"
-            onClick={this.handleSubmit}
-          >
-            Go!
-          </Button>
-          {this.props.searchFriends.length === 0
-            ? ( <p> Friend not Found </p> )
-           : null}
-        </div>
-      );
-    }
+    const { isLoading, value, results } = this.state;
+    return (
+      <Search
+        className="friends-search"
+        placeholder="Search for friends"
+        loading={isLoading}
+        onResultSelect={this.handleResultSelect}
+        onSearchChange={this.handleSearchChange}
+        results={results}
+        value={value}
+        resultRenderer={user => (
+          <div id="search-result">
+            {`${user.firstName} ${user.lastName}`}{' '}
+            <img id="search-result-img" src={user.profilePicture} />
+          </div>
+        )}
+      />
+    );
   }
 }
 
@@ -57,12 +70,4 @@ const mapState = state => ({
   searchFriends: state.searchFriends
 });
 
-const mapDispatch = dispatch => {
-  return {
-    findAFriend(email) {
-      dispatch(fetchFriend(email));
-    }
-  };
-};
-
-export default connect(mapState, mapDispatch)(SearchFriends);
+export default connect(mapState)(SearchFriends);

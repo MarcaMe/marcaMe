@@ -28,7 +28,13 @@ body {
     justify-content: space-between;
     margin-right: 2em;
   }
-
+  .friends-search {
+    margin-right: 1em;  
+  }
+  #search-result-img {
+    width: 2em;
+    border-radius: 50%;    
+  }
   #logo {
     width: 7em;
   }
