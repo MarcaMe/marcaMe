@@ -1,8 +1,9 @@
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { AddPopup, SearchFriends } from './index';
+import { AddPopup, SearchFriends, NotificationIcon } from './index';
 import {
   Header,
   Modal,
@@ -69,6 +70,7 @@ class Main extends Component {
                 handleAddUrl={this.handleUrlButtonClick}
                 showForm={this.state.showUrlForm}
               />
+              <NotificationIcon />                              
               <Link to="/home">
                 <Icon
                   name="home"
@@ -97,7 +99,7 @@ class Main extends Component {
                     </Modal>
                   </Dropdown.Item>
                   <Link to="/signup">
-                    <Dropdown.Item onClick={handleClick} icon="log out">
+                    <Dropdown.Item onClick={handleClick}>
                       Logout
                     </Dropdown.Item>
                   </Link>

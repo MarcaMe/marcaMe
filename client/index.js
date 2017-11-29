@@ -18,5 +18,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+// registerServiceWorker();
 
 // runtime.install()

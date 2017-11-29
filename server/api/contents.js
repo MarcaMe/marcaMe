@@ -81,8 +81,17 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/', (req, res, next) => {
   Content.findAll({
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
+    order: [['createdAt', 'DESC']]
+  })
+    .then(content => res.json(content))
+    .catch(next);
+});
+
+router.get('/main', (req, res, next) => {
+  Content.findAll({
     where: {userId: req.user.id},
-    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom'],
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))

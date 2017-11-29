@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Loader, Sticky } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
-import { fetchAllContent, deleteOneContent } from '../store/content';
+import { fetchAllContentForUser, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
@@ -60,7 +60,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchAllContentofUser() {
-    dispatch(fetchAllContent());
+    dispatch(fetchAllContentForUser());
   },
   deleteSingleContent(evt, contentId) {
     evt.preventDefault();

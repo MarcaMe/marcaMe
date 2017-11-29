@@ -48,6 +48,7 @@ class GeneralCardIcons extends React.Component {
         }
       }
     }
+
     return rtnArr.filter(ele => ele.userId !== userId);
   }
 

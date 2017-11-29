@@ -31,6 +31,14 @@ export const fetchAllContent = () => dispatch => {
     .catch(err => console.error(err));
 };
 
+export const fetchAllContentForUser = () => dispatch => {
+  return axios
+    .get('/api/contents/main')
+    .then(res => res.data)
+    .then(content => dispatch(getAllContent(content)))
+    .catch(err => console.error(err));
+};
+
 export const postContentThunk = contentBody => dispatch => {
   return axios
     .post(`/api/contents`, contentBody)
@@ -86,7 +94,6 @@ export default function(state = defaultContent, action) {
       );
     case DELETE_SINGLE_CONTENT:
       return state.filter(content => +content.id !== +action.contentId);
-
     default:
       return state;
   }
