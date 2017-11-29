@@ -5,6 +5,7 @@ import { editOneContent } from '../store/content';
 import PropTypes from 'prop-types'
 
 const truncateDescription = story => {
+  console.log(story)
   const titleArr = story.title.split(' ');
   const desArr = story.description.split(' ');
   if (titleArr.length > 8 && desArr.length > 16) return desArr.slice(0, 16).join(' ') + '...';

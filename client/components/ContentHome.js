@@ -22,7 +22,6 @@ export class ContentHome extends Component {
           <Card.Group >
             {content.length ?
               content
-                .filter(content => content.userId === this.props.user.id)
                 .filter(filteredUserContent => {
                   switch (filter) {
                     case 'favorites':

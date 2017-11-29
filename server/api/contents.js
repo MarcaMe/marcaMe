@@ -40,7 +40,10 @@ router.post('/chrome', (request, response, next) => {
       })
     })
     .then(data => response.send(data))
-    .catch(next);
+    .catch((err) => {
+      response.json('Error')
+      next(err)
+    });
 });
 /* *************************************************** */
 
@@ -78,6 +81,7 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/', (req, res, next) => {
   Content.findAll({
+    where: {userId: req.user.id},
     attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom'],
     order: [['createdAt', 'DESC']]
   })
