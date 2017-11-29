@@ -19,7 +19,6 @@ class ContentCard extends React.Component {
       isLike: false,
       isPublic: this.props.story.isPublic
     };
-
   }
 
   render() {

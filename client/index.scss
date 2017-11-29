@@ -106,12 +106,21 @@ body {
     justify-content: flex-end;
     padding-right: 2vw;
   }
-    .collection {
-    margin-bottom: 15px;
-  }
 
   .collection {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+  }
+
+  .folder {
+    display: flex;
+    align-items: center;
+  }
+
+  #add-collection:hover {
+    cursor: pointer;
+  }
+  .hover-button:hover {
+    cursor: pointer;
   }
 
   #login-nav {
@@ -154,9 +163,11 @@ body {
   }
 
   #one-article-viewer {
+    padding-top: 3em;
     padding-right: 10em;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 5em;
   }
 
   #reader-nav {
@@ -177,10 +188,10 @@ body {
   }
 
   #sidebar {
-    width: 250px;
+    width: 200px;
     position: sticky;
     padding-left: 20px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
 
   #content-home {
@@ -232,8 +243,8 @@ body {
     }
     #one-article-viewer {
       display:flex;
-      padding: 0; 
-      margin-left:2em;     
+      padding: 0;
+      margin-left:2em;
       flex-direction: column;
       justify-content: space-between;
     }

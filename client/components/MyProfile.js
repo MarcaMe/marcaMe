@@ -49,9 +49,9 @@ export class MyProfile extends Component {
         <div id="profile-body">
           <ProfileSidebar />
           <Divider />
+          {content.length ?
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
-            {content.length &&
-              content
+              {content
                 .filter(
                   content =>
                     content.userId === host.id && content.isPublic
@@ -79,6 +79,7 @@ export class MyProfile extends Component {
                   );
                 })}
           </Card.Group>
+          : <h1>Add Content to your Public Profile</h1>}
         </div>
       )
     );
