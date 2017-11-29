@@ -1,14 +1,12 @@
 const router = require('express').Router();
 const { Content } = require('../db/models');
-const chalk = require('chalk');
 require('../../secrets');
 const axios = require('axios');
 module.exports = router;
 
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
-  console.log(chalk.bgBlue('inside post request'));
-  console.log(request.user.dataValues.id)
+
 
   const userId = request.user.dataValues.id;
   const mercuryUrl =

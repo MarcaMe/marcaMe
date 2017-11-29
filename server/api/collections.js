@@ -41,7 +41,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    console.log(Collection.prototype)
     res.json(req.collection)
 })
 
