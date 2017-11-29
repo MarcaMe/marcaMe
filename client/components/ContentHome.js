@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Loader } from 'semantic-ui-react';
+import { Card, Loader, Sticky } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
@@ -12,18 +12,12 @@ export class ContentHome extends Component {
     this.props.fetchAllContentofUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      console.log('hello')
-    }
-  }
-
   render() {
     const content = this.props.content;
     const filter = this.props.filter;
     return  (
       <div id="main-page">
-        <LeftSideBar />
+          <LeftSideBar />
         <div id="content-home">
           <Card.Group >
             {content.length ?
