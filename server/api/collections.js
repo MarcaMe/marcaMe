@@ -41,6 +41,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
+    console.log(Collection.prototype)
     res.json(req.collection)
 })
 
@@ -60,5 +61,12 @@ router.post('/:id', (req, res, next) => {
     req.collection.addContent(req.body.id)
     .then(() => res.sendStatus(200))
     .catch(next)
+})
+
+router.put('/:id/:contentId', (req, res, next) => {
+    req.collection.removeContent(req.params.contentId)
+        .then(_ => {
+            res.sendStatus(200)
+        })
 })
 

@@ -39,7 +39,7 @@ export class FullCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, singleCollection } = this.props;
+    const { connectDragSource, isDragging, renderRemove } = this.props;
     return connectDragSource(
       <div>
         <Card
@@ -62,7 +62,7 @@ export class FullCard extends Component {
             <GeneralCardIcons
               id={this.props.id}
               story={this.props.story}
-              singleCollection={singleCollection}
+              renderRemove={renderRemove}
             />
           </Card.Content>
         </Card>

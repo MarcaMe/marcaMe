@@ -1,3 +1,4 @@
+ /* eslint-disable */
  /*
  * # Semantic UI - 2.2.12
  * https://github.com/Semantic-Org/Semantic-UI
