@@ -19,4 +19,4 @@ ReactDOM.render(
   document.getElementById('app')
 )
 
-runtime.install()
+// runtime.install()

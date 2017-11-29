@@ -24,14 +24,7 @@ class LeftSideBar extends Component {
             <div id="sidebar">
                 <Sticky>
                     <div className="collection">
-                        <div className="collection" style={{display: 'flex', justifyContent: 'space-around'}}>
-                            <NavLink to="/home">
-                                <Label icon="home" color="blue" size="large" onClick={() => removeFilter()}>
-                                <Icon name="home" />
-                                Home
-                                </Label>
-                            </NavLink>
-                        </div>
+
                     <div style={{display: 'flex', justifyContent: 'space-around'}} onClick={() => this.setState({showForm: true})}>
                         <Label id="add-collection" color="grey" size="medium">
                             <Icon name="add circle" />

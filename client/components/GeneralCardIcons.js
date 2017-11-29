@@ -119,6 +119,20 @@ class GeneralCardIcons extends React.Component {
         <Popup
           trigger={
             <Icon
+              id="send-icon"
+              size="large"
+              name="send"
+              onClick={evt => this.shareArticle(evt, this.props.id)}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Share to your friends!"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
               id="trash-icon"
               size="large"
               name="trash"
@@ -129,20 +143,6 @@ class GeneralCardIcons extends React.Component {
           size="mini"
           on="hover"
           content="Delete"
-          position="bottom left"
-        />
-        <Popup
-          trigger={
-            <Icon
-              id="send-icon"
-              size="large"
-              name="send"
-              onClick={evt => this.shareArticle(evt, this.props.id)}
-            />
-          }
-          size="mini"
-          on="hover"
-          content="Share to your friends!"
           position="bottom left"
         />
         {this.state.displayFriends ? (

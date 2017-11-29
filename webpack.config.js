@@ -31,43 +31,7 @@ module.exports = {
   plugins: isDev
     ? [
         new LiveReloadPlugin({ appendScriptTag: true }),
-        new OfflinePlugin({
-          relativePaths: false,
-          externals: ['/'],
-          additonal: [':externals:'],
-          publicPath: '/',
-          ServiceWorker: {
-            navigateFallbackURL: '/',
-            events:true
-          },
-          caches: 
-            'all',
-          
-          safeToUseOptionalCaches: true,
-
-          AppCache: {
-            FALLBACK: {'/':'/index.html'}
-          }
-        })
       ]
     : [
-        new OfflinePlugin({
-          relativePaths: false,
-          externals: ['/'],
-          additonal: [':externals:'],
-          publicPath: '/',
-          ServiceWorker: {
-            navigateFallbackURL: '/',
-            events: true
-          },
-          caches: 
-            'all',
-          
-          safeToUseOptionalCaches: true,
-
-          AppCache: {
-            FALLBACK: {'/':'/index.html'}
-          }
-        })
       ]
 };
