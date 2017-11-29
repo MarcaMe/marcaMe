@@ -12,7 +12,7 @@ import {
   Divider,
   Dropdown
 } from 'semantic-ui-react';
-import { logout, fetchAllContent, changeFilter } from '../store';
+import { logout, fetchAllContent, changeFilter, fetchAllUsers } from '../store';
 import { ChangeTheme } from '../components';
 /**
  * COMPONENT
@@ -34,6 +34,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchAllContentofUser();
+    this.props.getAllUsers()
   }
 
   render() {
@@ -43,6 +44,7 @@ class Main extends Component {
       isLoggedIn,
       theme,
       user,
+      users,
       removeFilter
     } = this.props;
     return (
@@ -62,7 +64,7 @@ class Main extends Component {
           {isLoggedIn ? (
             <div id="login-nav">
               {/* The navbar will show these links after you log in */}
-              <SearchFriends />
+              <SearchFriends allUsers={users} />
               <AddPopup
                 handleAddUrl={this.handleUrlButtonClick}
                 showForm={this.state.showUrlForm}
@@ -129,7 +131,8 @@ const mapState = state => {
     user: state.user,
     isLoggedIn: !!state.user.id,
     theme: state.theme,
-    filter: state.filter
+    filter: state.filter,
+    users: state.searchFriends
   };
 };
 
@@ -143,6 +146,9 @@ const mapDispatch = dispatch => {
     },
     removeFilter() {
       dispatch(changeFilter(''));
+    },
+    getAllUsers() {
+      dispatch(fetchAllUsers());
     }
   };
 };

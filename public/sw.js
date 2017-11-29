@@ -1,26 +1,26 @@
 var __wpo = {
-  "assets": {
-    "main": [
-      "/bundle.js",
-      "/"
+  assets: {
+    main: [
+      '/bundle.js',
+      '/'
     ],
-    "additional": [],
-    "optional": []
+    additional: [],
+    optional: []
   },
-  "externals": [
-    "/"
+  externals: [
+    '/'
   ],
-  "hashesMap": {
-    "c4e8a6c26b7e04667e2186de632af160338e00c3": "/bundle.js"
+  hashesMap: {
+    b7e95a75ed66c7b7a9aa52f575340d8b9da083ac: '/bundle.js'
   },
-  "navigateFallbackURL": "/",
-  "navigateFallbackForRedirects": true,
-  "strategy": "changed",
-  "responseStrategy": "cache-first",
-  "version": "2017-11-29 00:04:57",
-  "name": "webpack-offline",
-  "pluginVersion": "4.8.4",
-  "relativePaths": false
+  navigateFallbackURL: '/',
+  navigateFallbackForRedirects: true,
+  strategy: 'changed',
+  responseStrategy: 'cache-first',
+  version: '2017-11-29 00:17:31',
+  name: 'webpack-offline',
+  pluginVersion: '4.8.4',
+  relativePaths: false
 };
 
 /******/ (function(modules) { // webpackBootstrap
@@ -31,7 +31,7 @@ var __wpo = {
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
+/******/ 		if (installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
@@ -63,7 +63,7 @@ var __wpo = {
 /******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 		if (!__webpack_require__.o(exports, name)) {
 /******/ 			Object.defineProperty(exports, name, {
 /******/ 				configurable: false,
 /******/ 				enumerable: true,
@@ -75,7 +75,7 @@ var __wpo = {
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getDefault() { return module.default; } :
 /******/ 			function getModuleExports() { return module; };
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
@@ -85,23 +85,20 @@ var __wpo = {
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = '';
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
-/******/ })
-/************************************************************************/
-/******/ ([
+/******/ })([
 /* 0 */
 /***/ (function(module, exports) {
-
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+'use strict';
 
 
 (function () {
@@ -127,12 +124,12 @@ var __wpo = {
 
       // wait for all to settle
       return Promise.all(promises.map(function (p) {
-        return p["catch"](function () {});
+        return p.catch(function () {});
       })).then(function () {
         // have new items been added? If so, wait again
         if (promises.length != len) return processPromises();
         // we're done!
-        promisesMap["delete"](extendableEvent);
+        promisesMap.delete(extendableEvent);
         // reject if one of the promises rejected
         return Promise.all(promises);
       });
@@ -143,7 +140,7 @@ var __wpo = {
     this.waitUntil(promise);
     return respondWith.call(this, promise);
   };
-})();;
+})();
         'use strict';
 
 if (typeof DEBUG === 'undefined') {
@@ -230,7 +227,7 @@ function WebpackServiceWorker(params, helpers) {
     }
 
     // Ignore fail of `additional` cache section
-    return operation['catch'](function (e) {
+    return operation.catch(function (e) {
       console.error('[SW]:', 'Cache section `additional` failed to load');
     });
   }
@@ -245,7 +242,8 @@ function WebpackServiceWorker(params, helpers) {
       });
     }).then(function () {
       logGroup('Cached assets: ' + section, batch);
-    })['catch'](function (e) {
+    })
+.catch(function (e) {
       console.error(e);
       throw e;
     });
@@ -335,7 +333,7 @@ function WebpackServiceWorker(params, helpers) {
         if (key.indexOf(CACHE_PREFIX) !== 0 || key.indexOf(CACHE_NAME) === 0) return;
 
         console.log('[SW]:', 'Delete cache:', key);
-        return caches['delete'](key);
+        return caches.delete(key);
       });
 
       return Promise.all(all);
@@ -456,7 +454,7 @@ function WebpackServiceWorker(params, helpers) {
       case 'skipWaiting':
         {
           if (self.skipWaiting) self.skipWaiting();
-        }break;
+        } break;
     }
   });
 
@@ -519,7 +517,7 @@ function WebpackServiceWorker(params, helpers) {
     })
     // This needs to be in a catch() and not just in the then() above
     // cause if your network is down, the fetch() will throw
-    ['catch'](function () {
+    .catch(function () {
       if (DEBUG) {
         console.log('[SW]:', 'URL [' + urlString + '] from cache if possible');
       }
@@ -529,7 +527,7 @@ function WebpackServiceWorker(params, helpers) {
   }
 
   function handleNavigateFallback(fetching) {
-    return fetching['catch'](function () {}).then(function (response) {
+    return fetching.catch(function () {}).then(function (response) {
       var isOk = response && response.ok;
       var isRedirect = response && response.type === 'opaqueredirect';
 
@@ -717,7 +715,7 @@ function cachesMatch(request, cacheName) {
     });
   })
   // Return void if error happened (cache not found)
-  ['catch'](function () {});
+  .catch(function () {});
 }
 
 function applyCacheBust(asset, key) {
@@ -797,7 +795,7 @@ loaders: {},
 cacheMaps: [],
 });
         module.exports = __webpack_require__(0)
-      
+
 
 /***/ })
 /******/ ]);
