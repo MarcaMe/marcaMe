@@ -1,3 +1,4 @@
+/* eslint-disable */
 var __wpo = {
   assets: {
     main: ['/bundle.js', '/'],
@@ -901,5 +902,42 @@ var __wpo = {
 
     /***/
   }
+
+  var body = 'body' in response ? Promise.resolve(response.body) : response.blob();
+
+  return body.then(function (data) {
+    return new Response(data, {
+      headers: response.headers,
+      status: response.status
+    });
+  });
+}
+
+function copyObject(original) {
+  return Object.keys(original).reduce(function (result, key) {
+    result[key] = original[key];
+    return result;
+  }, {});
+}
+
+function logGroup(title, assets) {
+  console.groupCollapsed('[SW]:', title);
+
+  assets.forEach(function (asset) {
+    console.log('Asset:', asset);
+  });
+
+  console.groupEnd();
+}
+        WebpackServiceWorker(__wpo, {
+loaders: {},
+cacheMaps: [],
+});
+        module.exports = __webpack_require__(0)
+
+
+/***/ })
+/******/ ]);
   /******/
 ]);
+

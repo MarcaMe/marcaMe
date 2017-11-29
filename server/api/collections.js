@@ -62,3 +62,10 @@ router.post('/:id', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/:id/:contentId', (req, res, next) => {
+    req.collection.removeContent(req.params.contentId)
+        .then(_ => {
+            res.sendStatus(200)
+        })
+})
+

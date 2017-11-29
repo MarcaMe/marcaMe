@@ -8,12 +8,14 @@ const GET_SINGLE_CONTENT = 'GET_SINGLE_CONTENT';
 const DELETE_SINGLE_CONTENT = 'DELETE_SINGLE_CONTENT';
 const EDIT_SINGLE_CONTENT = 'EDIT_SINGLE_CONTENT';
 const SHARE_A_CONTENT = 'SHARE_A_CONTENT';
+const ADD_BLANK_CONTENT = 'ADD_BLANK_CONTENT'
 
 const defaultContent = [];
 
 const addContent = content => ({ type: ADD_CONTENT, content });
 const getContent = content => ({ type: GET_SINGLE_CONTENT, content });
 const getAllContent = content => ({ type: GET_ALL_CONTENT, content });
+export const addBlankContent = () => ({ type: ADD_BLANK_CONTENT })
 
 const deleteSingleContent = contentId => ({
   type: DELETE_SINGLE_CONTENT,
@@ -24,6 +26,14 @@ const editSingleContent = content => ({ type: EDIT_SINGLE_CONTENT, content });
 export const fetchAllContent = () => dispatch => {
   return axios
     .get('/api/contents')
+    .then(res => res.data)
+    .then(content => dispatch(getAllContent(content)))
+    .catch(err => console.error(err));
+};
+
+export const fetchAllContentForUser = () => dispatch => {
+  return axios
+    .get('/api/contents/main')
     .then(res => res.data)
     .then(content => dispatch(getAllContent(content)))
     .catch(err => console.error(err));
@@ -72,8 +82,10 @@ export default function(state = defaultContent, action) {
   switch (action.type) {
     case GET_ALL_CONTENT:
       return action.content;
+    case ADD_BLANK_CONTENT:
+      return [{}, ...state]
     case ADD_CONTENT:
-      return [action.content, ...state];
+      return state.map(content => (Object.keys(content).length === 0 ? action.content : content))
     case GET_SINGLE_CONTENT:
       return [action.content];
     case EDIT_SINGLE_CONTENT:
@@ -82,7 +94,6 @@ export default function(state = defaultContent, action) {
       );
     case DELETE_SINGLE_CONTENT:
       return state.filter(content => +content.id !== +action.contentId);
-
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Button, Input, Label, Icon } from 'semantic-ui-react';
-import { postContentThunk } from '../store/content';
+import { postContentThunk, addBlankContent } from '../store';
 import { webScraping } from '../utilsScraping';
 
 class AddByUrlForm extends Component {
@@ -76,6 +76,7 @@ const mapState = state => ({
 });
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId, tags, url) {
+    dispatch(addBlankContent({}))
     evt.preventDefault();
     let newTags = tags.join(',')
     const mercuryUrl = 'https://mercury.postlight.com/parser?url=' + url;

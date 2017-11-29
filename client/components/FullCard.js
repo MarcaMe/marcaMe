@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Loader } from 'semantic-ui-react';
 import { GeneralCardIcons, ContentCard, AllTags } from '../components';
 import { DragSource } from 'react-dnd';
 
@@ -47,22 +47,40 @@ export class FullCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, singleCollection } = this.props;
+    const { connectDragSource, isDragging, renderRemove } = this.props;
     return connectDragSource(
       <div>
-        <div>
-          <Card
-            style={{
-              width: '300px',
-              height: '350px',
-              margin: '0.5vw',
-              opacity: isDragging ? '.2' : '1'
-            }}
-            color={this._getColor(this.props.index % 7)}
-            className="card"
-            fluid
+      {!this.props.story.title ?
+        <Card
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '300px',
+          height: '350px',
+          margin: '0.5vw',
+          opacity: isDragging ? '.2' : '1'
+        }}
+        color={this._getColor(this.props.index % 7)}
+        className="card"
+        fluid
+        >
+        <Card.Content >
+        <Loader active inline="centered" />
+        </Card.Content>
+        </Card> :
+        <Card
+          style={{
+            width: '300px',
+            height: '350px',
+            margin: '0.5vw',
+            opacity: isDragging ? '.2' : '1'
+          }}
+          color={this._getColor(this.props.index % 7)}
+          className="card"
+          fluid
           >
-            {
+         {
               this.state.isTagsOpen ?
                 <ContentCard
                   story={this.props.story}
@@ -71,16 +89,14 @@ export class FullCard extends Component {
                 /> :
                 <AllTags tags={this.props.story.tags} />
             }
-            <Card.Content extra>
-              <GeneralCardIcons
-                id={this.props.id}
-                story={this.props.story}
-                singleCollection={singleCollection}
-                handleTags={this.handleTagsComponent}
-              />
-            </Card.Content>
-          </Card>
-        </div>
+          <Card.Content extra>
+            <GeneralCardIcons
+              id={this.props.id}
+              story={this.props.story}
+              renderRemove={renderRemove}
+            />
+          </Card.Content>
+        </Card>}
       </div>
     );
   }
