@@ -23,9 +23,10 @@ export class FullCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTagsOpen: false ///////////////////////////////////////////////////
+      isTagsOpen: true ///////////////////////////////////////////////////
     }
     this._getColor = this._getColor.bind(this);
+    this.handleTagsComponent = this.handleTagsComponent.bind(this);
   }
 
   _getColor(index) {
@@ -39,6 +40,12 @@ export class FullCard extends Component {
       'purple'
     ];
     return colors[index % this.props.length];
+  }
+
+  handleTagsComponent() {
+    console.log('first--inside fullcard', this.state.isTagsOpen)
+    this.setState({ isTagsOpen: !this.state.isTagsOpen })
+    console.log('second--inside fullcard', this.state.isTagsOpen)
   }
 
   render() {
@@ -71,6 +78,7 @@ export class FullCard extends Component {
                 id={this.props.id}
                 story={this.props.story}
                 singleCollection={singleCollection}
+                handleTags={this.handleTagsComponent}
               />
             </Card.Content>
           </Card>

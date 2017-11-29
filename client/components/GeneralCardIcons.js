@@ -78,7 +78,11 @@ class GeneralCardIcons extends React.Component {
               id="tags-icon"
               size="large"
               name="tags"
-              onClick={this.handleTags}
+              onClick={(evt) => {
+                evt.preventDefault();
+                this.props.handleTags();
+                this.handleTags();
+              }}
               color={this.state.isTagsOpen && 'blue'}
             />
           }
