@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Loader } from 'semantic-ui-react';
-import { GeneralCardIcons, ContentCard } from '../components';
+import { GeneralCardIcons, ContentCard, AllTags } from '../components';
 import { DragSource } from 'react-dnd';
 
 export const ItemTypes = {
@@ -22,7 +22,11 @@ function collect(connect, monitor) {
 export class FullCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isTagsOpen: true
+    }
     this._getColor = this._getColor.bind(this);
+    this.handleTagsComponent = this.handleTagsComponent.bind(this);
   }
 
   _getColor(index) {
@@ -36,6 +40,10 @@ export class FullCard extends Component {
       'purple'
     ];
     return colors[index % this.props.length];
+  }
+
+  handleTagsComponent() {
+    this.setState({ isTagsOpen: !this.state.isTagsOpen })
   }
 
   render() {
@@ -71,12 +79,16 @@ export class FullCard extends Component {
           color={this._getColor(this.props.index % 7)}
           className="card"
           fluid
-        >
-          <ContentCard
-            story={this.props.story}
-            id={this.props.id}
-            deleteContent={this.props.deleteSingleContent}
-          />
+          >
+         {
+              this.state.isTagsOpen ?
+                <ContentCard
+                  story={this.props.story}
+                  id={this.props.id}
+                  deleteContent={this.props.deleteSingleContent}
+                /> :
+                <AllTags tags={this.props.story.tags} />
+            }
           <Card.Content extra>
             <GeneralCardIcons
               id={this.props.id}

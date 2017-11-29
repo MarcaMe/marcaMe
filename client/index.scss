@@ -155,8 +155,14 @@ body {
   #heart-icon:hover {
     color: #ff9999;
   }
+
   #heart.reader-nav-icon:active {
     color: #ff9999;
+  }
+
+  #tags-icon:hover {
+    color: blue;
+    opacity: 0.6;
   }
 
   #archive-icon:hover {

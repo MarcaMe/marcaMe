@@ -76,7 +76,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     editContent(id, field, value) {
-      const contentBody = {id, [field]: value}
+      const contentBody = { id, [field]: value }
       dispatch(editOneContent(contentBody));
     }
   };

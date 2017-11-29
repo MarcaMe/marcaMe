@@ -12,18 +12,21 @@ class GeneralCardIcons extends React.Component {
       isFavorite: this.props.story.isFavorite,
       isArchived: this.props.story.isArchived,
       isPublic: this.props.story.isPublic,
+      isTagsOpen: false,
       displayFriends: false,
       friendsArr: []
     };
     this._handleEditClick = this._handleEditClick.bind(this);
-    this.shareArticle = this.shareArticle.bind(this);
     this.findFriends = this.findFriends.bind(this);
+    this.shareArticle = this.shareArticle.bind(this);
+    this.handleTags = this.handleTags.bind(this);
   }
 
   componentWillMount() {
     const userId = this.props.user.id;
     this.props.getFollowing(userId);
   }
+
   _handleEditClick(evt, fieldName) {
     evt.preventDefault();
     this.setState({ [fieldName]: !this.state[fieldName] }, () =>
@@ -62,12 +65,28 @@ class GeneralCardIcons extends React.Component {
       .catch(err => console.error(err));
   }
 
+  handleTags() {
+    this.setState({ isTagsOpen: !this.state.isTagsOpen })
+  }
+
   render() {
     const { renderRemove, deleteFromCollection, singlecollection } = this.props
     return (
       <div>
         <Popup
-          trigger={<Icon size="large" name="tags" />}
+          trigger={
+            <Icon
+              id="tags-icon"
+              size="large"
+              name="tags"
+              onClick={(evt) => {
+                evt.preventDefault();
+                this.props.handleTags();
+                this.handleTags();
+              }}
+              color={this.state.isTagsOpen && 'blue'}
+            />
+          }
           size="mini"
           on="hover"
           content="Add tags"

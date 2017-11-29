@@ -41,6 +41,7 @@ export class ContentHome extends Component {
                     deleteContent={this.props.deleteSingleContent}
                     index={index}
                     length={this.props.content.length}
+                    tags={this.props.content}
                     />
                     </NavLink>
                   );
