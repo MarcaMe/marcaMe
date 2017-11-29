@@ -66,7 +66,6 @@ class GeneralCardIcons extends React.Component {
 
   handleTags() {
     this.setState({ isTagsOpen: !this.state.isTagsOpen })
-    console.log('state: ', this.state.isTagsOpen)
   }
 
   render() {
