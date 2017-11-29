@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { Collection } = require('../db/models')
+const db = require('../db')
+const Collection = db.model('collection')
 module.exports = router
 
 
@@ -16,6 +17,7 @@ router.param('id', (req, res, next, id) => {
         } else {
             res.send('Access Denied')
         }
+        return null;
     })
     .catch(next)
 })
@@ -24,6 +26,7 @@ router.get('/', (req, res, next) => {
     Collection.findAll({where: {userId: req.user.id}})
     .then(userCollections => {
         res.json(userCollections)
+        return null;
     })
     .catch(next)
 })

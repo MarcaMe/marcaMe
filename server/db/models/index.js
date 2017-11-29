@@ -6,7 +6,7 @@ const Relationship = require('./relationship');
 User.hasMany(Content);
 Collection.belongsTo(User);
 User.hasMany(Collection);
-Collection.belongsToMany(Content, {through: 'userCollections'});
+Collection.belongsToMany(Content, {through: 'userCollections', onDelete: 'CASCADE'});
 User.hasMany(Relationship);
 Relationship.belongsTo(User);
 module.exports = {

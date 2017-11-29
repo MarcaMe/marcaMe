@@ -157,6 +157,7 @@ class GeneralCardIcons extends React.Component {
 }
 const mapState = state => ({
   article: state.content,
+  singlecollection: state.singlecollection,
   user: state.user
 });
 
