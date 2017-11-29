@@ -11,7 +11,7 @@ const AllTags = (props) => {
                 padding: '10px'
             }} >
                 <Label.Group color="teal">
-                    {props.tags.map(tag => {
+                    {props.tags && props.tags.map(tag => {
                         return (
                             <Label as="a" key={tag} size="big">
                                 {tag}
