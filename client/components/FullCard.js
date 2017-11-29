@@ -39,15 +39,15 @@ export class FullCard extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource, isDragging, singleCollection } = this.props;
     return connectDragSource(
       <div>
-      {isDragging ? <h1>Grabbed Story</h1> :
         <Card
           style={{
             width: '300px',
             height: '350px',
-            margin: '0.5vw'
+            margin: '0.5vw',
+            opacity: isDragging ? '.2' : '1'
           }}
           color={this._getColor(this.props.index % 7)}
           className="card"
@@ -62,10 +62,10 @@ export class FullCard extends Component {
             <GeneralCardIcons
               id={this.props.id}
               story={this.props.story}
+              singleCollection={singleCollection}
             />
           </Card.Content>
         </Card>
-        }
       </div>
     );
   }

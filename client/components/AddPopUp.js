@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 const AddPopup = (props) => (
   <Popup id="add-popup" hoverable={true} trigger={<Icon name="add" color={props.theme} size="big" onClick={props.handleAddUrl} />}>
-    <Popup.Header>Add Url</Popup.Header>
+    <Popup.Header>marca!</Popup.Header>
     {props.showForm ?
     <div>
       <br />

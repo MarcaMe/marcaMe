@@ -8,17 +8,25 @@ window.addEventListener('load', function () {
     var destroy = document.getElementsByClassName('destroy');
     let status = document.getElementById('status');
 
-    document.getElementById('addBtn').addEventListener('click', event => {
+    document.getElementById('myInput').addEventListener('keypress', event => {
+      console.log(event.keyCode)
+      if (event.keyCode === 13 || event.which === 13) {
       event.preventDefault();
       var li = document.createElement('a');
       var inputValue = document.getElementById('myInput').value;
       var text = document.createTextNode(inputValue);
       li.appendChild(text);
 
-      if (status.innerHTML === 'Tags must contain text!') status.innerHTML = '';
 
       if (inputValue === '') {
-        status.innerHTML = 'Tags must contain text!';
+        const messages = ['Don\'t forget to enter tags!', 'Press Add to Submit']
+        const getRandomMessage = () => {
+          return Math.floor(Math.random() * (2 - 0) + 0)
+        }
+        status.innerHTML = messages[getRandomMessage()];
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
       } else {
         document.getElementById('myUL').appendChild(li);
         li.className = 'ui label tags';
@@ -37,9 +45,11 @@ window.addEventListener('load', function () {
           div.style.display = 'none';
         }
       }
+      }
     })
 
-    document.getElementById('save').addEventListener('click', event => {
+      let saveButton = document.getElementById('save');
+      saveButton.addEventListener('click', event => {
       event.preventDefault();
       let allTags = document.getElementsByClassName('tags');
 
@@ -53,13 +63,21 @@ window.addEventListener('load', function () {
         data
       })
         .done(() => {
-          chrome.tabs.query({ title: 'MarcaMe' }, marca => {
+          chrome.tabs.query({ title: 'marca' }, marca => {
             chrome.tabs.reload(marca[0].id);
+            saveButton.innerHTML = 'Saved!'
+            setTimeout(() => {
+              saveButton.innerHTML = 'Add Bookmark'
+            }, 2000)
           });
         })
-        .fail(response => console.log('ERROR', response));
+        .fail(response => {
+          saveButton.innerHTML = 'Error Saving!'
+          console.log('ERROR', response)
+          setTimeout(() => {
+            saveButton.innerHTML = 'Add Bookmark'
+          }, 2000)
+        });
     });
-
-
   });
 });

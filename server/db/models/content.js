@@ -46,6 +46,10 @@ const Content = db.define('content', {
   sharedFrom: {
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  isNew:{
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
   }
 });
 

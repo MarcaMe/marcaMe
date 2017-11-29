@@ -19,6 +19,7 @@ class ContentCard extends React.Component {
       isLike: false,
       isPublic: this.props.story.isPublic
     };
+<<<<<<< HEAD
     this.showShare = this.showShare.bind(this);
   }
 
@@ -38,6 +39,8 @@ class ContentCard extends React.Component {
       on="hover"
       content={`shared from ${friend.firstName}`}
     /> )
+=======
+>>>>>>> master
   }
 
   render() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon, Input, Form, Label, Sticky } from 'semantic-ui-react';
-import { Folder } from '../components'
-import { fetchCollections, postCollection } from '../store'
+import { Input, Form, Label, Sticky, Icon } from 'semantic-ui-react';
+import { Folder, Favorites } from '../components'
+import { fetchCollections, postCollection, changeFilter } from '../store'
 import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
@@ -18,39 +18,55 @@ class LeftSideBar extends Component {
     }
 
     render() {
-        const { collections, addCollection, theme } = this.props
+        const { collections, addCollection, removeFilter } = this.props
         const { showForm } = this.state
         return (
             <div id="sidebar">
-            <Sticky>
-            <div className="collection">
-            <Icon name="add" color={theme} size="huge" onClick={() => this.setState({showForm: true})} />
-            <Label basic color={theme} size="small">Add a collection</Label>
-            {showForm ?
-            <Form onSubmit={(evt) => addCollection(evt)} >
-                <Input name="input" placeholder="add collection"  />
-            </Form> : ''}
+                <Sticky>
+                    <div className="collection">
+                        <div className="collection" style={{display: 'flex', justifyContent: 'space-around'}}>
+                            <NavLink to="/home">
+                                <Label color="blue" size="large" onClick={() => removeFilter()}>
+                                <Icon name="home" />
+                                Home
+                                </Label>
+                            </NavLink>
+                        </div>
+                    <div style={{display: 'flex', justifyContent: 'space-around'}} onClick={() => this.setState({showForm: true})}>
+                        <Label id="add-collection" color="grey" size="medium">
+                            <Icon name="add circle" />
+                            Add a collection
+                        </Label>
+                    </div>
+                    {showForm ?
+                    <Form onSubmit={(evt) => {
+                        addCollection(evt)
+                        this.setState({showForm: false})
+                        }}
+                        >
+                        <Input name="input" placeholder="add collection" />
+                    </Form> : null}
+                    </div>
+                    <Favorites />
+                    {collections ?
+                    collections.map(collection => {
+                    return (
+                    <div key={collection.id} className="collection">
+                        <NavLink to={`/collections/${collection.id}`} >
+                            <Folder id={collection.id} name={collection.name} />
+                        </NavLink>
+                    </div>
+                    )
+                    }) : 'No Collections'}
+                </Sticky>
             </div>
-            {collections ?
-            collections.map(collection => {
-            return (
-            <div key={collection.id} className="collection">
-                <NavLink to={`/collections/${collection.id}`}>
-                    <Folder id={collection.id} name={collection.name} />
-                </NavLink>
-            </div>
-            )
-            }) : 'No Collections'}
-            </Sticky>
-          </div>
         )
     }
 }
 
 const mapState = (state) => {
     return {
-        collections: state.collections,
-        theme: state.theme
+        collections: state.collections
     };
 };
 
@@ -65,6 +81,9 @@ const mapDispatch = dispatch => {
                 name: evt.target.input.value
             }
             dispatch(postCollection(newCollection))
+        },
+        removeFilter() {
+            dispatch(changeFilter(''))
         }
     }
 }
@@ -73,7 +92,6 @@ export default withRouter(connect(mapState, mapDispatch)(LeftSideBar));
 
 LeftSideBar.propTypes = {
     collections: PropTypes.array.isRequired,
-    theme: PropTypes.string.isRequired,
     getUserCollections: PropTypes.func.isRequired,
     addCollection: PropTypes.func.isRequired
 }

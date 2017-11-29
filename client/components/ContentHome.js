@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
+import { Card, Loader } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContent, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';
@@ -14,14 +14,25 @@ export class ContentHome extends Component {
 
   render() {
     const content = this.props.content;
-    return content.length ? (
+    const filter = this.props.filter;
+    return  (
       <div id="main-page">
         <LeftSideBar />
         <div id="content-home">
           <Card.Group >
-            {content.length &&
+            {content.length ?
               content
                 .filter(content => content.userId === this.props.user.id)
+                .filter(filteredUserContent => {
+                  switch (filter) {
+                    case 'favorites':
+                    return filteredUserContent.isFavorite;
+                    case 'archived':
+                    return filteredUserContent.isArchived;
+                    default:
+                    return filteredUserContent;
+                  }
+                })
                 .map((story, index) => {
                   return (
                     <NavLink key={story.id} to={`/content/${story.id}`}>
@@ -34,19 +45,18 @@ export class ContentHome extends Component {
                     />
                     </NavLink>
                   );
-                })}
+                }) : null}
           </Card.Group>
         </div>
       </div>
-    ) : (
-      <div />
-    );
+    )
   }
 }
 
 const mapState = state => ({
   user: state.user,
-  content: state.content
+  content: state.content,
+  filter: state.filter
 });
 
 const mapDispatch = dispatch => ({

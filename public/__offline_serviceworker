@@ -1,28 +1,3 @@
-var __wpo = {
-  "assets": {
-    "main": [
-      "/bundle.js",
-      "/"
-    ],
-    "additional": [],
-    "optional": []
-  },
-  "externals": [
-    "/"
-  ],
-  "hashesMap": {
-    "45ef3d592f4701dfbdff8e73cb16916f9cba743e": "/bundle.js"
-  },
-  "navigateFallbackURL": "/",
-  "navigateFallbackForRedirects": true,
-  "strategy": "changed",
-  "responseStrategy": "cache-first",
-  "version": "2017-11-28 20:16:24",
-  "name": "webpack-offline",
-  "pluginVersion": "4.8.4",
-  "relativePaths": false
-};
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

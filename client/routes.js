@@ -37,12 +37,13 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/videos" component={VideoViewer} />
             {isLoggedIn && (
               <Switch>
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
+                <Route path="/favorites" component={ContentHome} />
+                <Route path="/archived" component={ContentHome} />
                 <Route path="/profile/following/:id" component={Following} />
                 <Route path="/profile/follower/:id" component={Follower} />
                 <Route path="/profile/:id" component={MyProfile} />

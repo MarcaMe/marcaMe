@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history'
 
 const GET_COLLECTIONS = 'GET_COLLECTIONS';
 const GET_COLLECTION = 'GET_COLLECTION'
@@ -37,13 +38,18 @@ export const fetchCollections = () => dispatch => {
 export const deleteCollection = collection => dispatch => {
   return axios.delete(`/api/collections/${collection.id}`)
     .then(res => res.data)
-    .then(() => dispatch(removeCollection(collection)))
+    .then(() => {
+      dispatch(removeCollection(collection))
+      history.push('/home')
+    })
     .catch(err => console.err(err))
 }
 
-export const postToCollection = (collection, content) => {
-  return axios.post(`/api/collections/${collection.id}`, content)
-}
+export const postToCollection = (collection, content) => ({
+  type: 'POST_TO_COLLECTION',
+  payload: axios.post(`/api/collections/${collection.id}`, content)
+});
+
 
 export default function(state = defaultCollections, action) {
   switch (action.type) {
