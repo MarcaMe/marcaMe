@@ -227,6 +227,15 @@ body {
     width: 5vw;
   }
 
+  .content-card-share{
+    position: relative;
+    float:right;
+  }
+
+
+  @media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px) {
   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
     #login-container {
       width: 200px;
@@ -272,5 +281,6 @@ body {
     #reader-nav {
       margin-left: 2em;
     }
+  }
   }
 }

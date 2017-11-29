@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card,  Image } from 'semantic-ui-react';
+import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
 import { editOneContent } from '../store/content';
 import PropTypes from 'prop-types'
 
@@ -19,20 +19,44 @@ class ContentCard extends React.Component {
       isLike: false,
       isPublic: this.props.story.isPublic
     };
+    this.showShare = this.showShare.bind(this);
+  }
+
+  showShare()  {
+    const friendId = this.props.story.sharedFrom;
+    const friend = this.props.following.find(guy => guy.id === friendId);
+    return ( <Popup
+      trigger={
+        <Icon
+          className="content-card-share" 
+          size="large"
+          name="reply"          
+          color="yellow"
+        />
+      }
+      size="mini"
+      on="hover"
+      content={`Shared from ${friend.firstName}`}
+    /> )
   }
 
   render() {
     return (
         <Card.Content style={{ overflow: 'hidden' }}>
-          <Card.Header>{this.props.story.title}</Card.Header>
+        {
+          this.props.story.sharedFrom  > 0 && this.props.following.length
+          ? this.showShare()
+          : null              
+        }
+          <Card.Header textAlign="center">{this.props.story.title}</Card.Header>
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
           >
             <Image
-              style={{ width: '100%', display: 'block' }}
+            style={{ width: '100%', display: 'block' }}
               fluid
               src={this.props.story.imageUrl}
-            />
+            />            
           </div>
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>
@@ -45,7 +69,8 @@ class ContentCard extends React.Component {
   }
 }
 const mapState = state => ({
-  article: state.content
+  article: state.content,
+  following: state.following
 });
 
 const mapDispatch = dispatch => {
