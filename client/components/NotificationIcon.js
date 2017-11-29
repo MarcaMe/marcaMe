@@ -28,7 +28,7 @@ class Notification extends Component {
       <div>
         <NavLink to="/notification">
           <Icon.Group size="large">
-            <Icon name="mail" size="big" color={this.props.theme} />
+            <Icon name="mail" color={this.props.theme} />
             {this.newNotification() ? (
               <Icon corner name="circle" color="red" />
             ) : null}
