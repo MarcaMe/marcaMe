@@ -78,7 +78,7 @@ class GeneralCardIcons extends React.Component {
               size="large"
               name="unlock"
               onClick={evt => this._handleEditClick(evt, 'isPublic')}
-              color={this.state.isPublic && 'blue'}
+              color={this.state.isPublic ? 'blue' : ''}
             />
           }
           size="mini"
@@ -92,7 +92,7 @@ class GeneralCardIcons extends React.Component {
               id="archive-icon"
               name="archive"
               size="large"
-              color={this.state.isArchived && 'teal'}
+              color={this.state.isArchived ? 'teal' : ''}
               onClick={evt => this._handleEditClick(evt, 'isArchived')}
             />
           }
@@ -107,7 +107,7 @@ class GeneralCardIcons extends React.Component {
               id="heart-icon"
               name="heart"
               size="large"
-              color={this.state.isFavorite && 'red'}
+              color={this.state.isFavorite ? 'red' : ''}
               onClick={evt => this._handleEditClick(evt, 'isFavorite')}
             />
           }
