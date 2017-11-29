@@ -26,7 +26,7 @@ class LeftSideBar extends Component {
                     <div className="collection">
                         <div className="collection" style={{display: 'flex', justifyContent: 'space-around'}}>
                             <NavLink to="/home">
-                                <Label icon="home" color="blue" size="large" onClick={() => removeFilter()}>
+                                <Label color="blue" size="large" onClick={() => removeFilter()}>
                                 <Icon name="home" />
                                 Home
                                 </Label>

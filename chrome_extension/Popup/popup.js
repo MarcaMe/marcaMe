@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
 
     document.getElementById('myInput').addEventListener('keypress', event => {
       console.log(event.keyCode)
-      if (event.keyCode === 13) {
+      if (event.keyCode === 13 || event.which === 13) {
       event.preventDefault();
       var li = document.createElement('a');
       var inputValue = document.getElementById('myInput').value;
@@ -66,11 +66,17 @@ window.addEventListener('load', function () {
           chrome.tabs.query({ title: 'marca' }, marca => {
             chrome.tabs.reload(marca[0].id);
             saveButton.innerHTML = 'Saved!'
+            setTimeout(() => {
+              saveButton.innerHTML = 'Add Bookmark'
+            }, 2000)
           });
         })
         .fail(response => {
           saveButton.innerHTML = 'Error Saving!'
           console.log('ERROR', response)
+          setTimeout(() => {
+            saveButton.innerHTML = 'Add Bookmark'
+          }, 2000)
         });
     });
   });
