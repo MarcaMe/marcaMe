@@ -14,21 +14,23 @@
 </head>
 
 <body id="app">
-  <h1>marca!</h1>
+  <div id="logo">
+    <h1>
+    <div id="bookmark" class="ui image">
+            <img src="../bookmark.png">
+    </div>
+      marca!
+    </h1>
+  </div>
   <div>
     <h3 id="article-title">title</h3>
   </div>
   <form id="addbookmark">
-    <div class="ui right labeled left icon input">
+    <div id="input" class="ui right labeled left icon input">
       <input type="text" id="myInput" name="tags" value="" placeholder="Enter tags">
       <div class="ui grey tag label">Add Tag</div>
     </div>
-
-    <!-- <br /><br /> -->
-
     <div class="ui blue labels" id="myUL"></div>
-
-
     <p id="status"></p>
     <button class="ui primary button" id="save" type="button">Add Bookmark</button>
   </form>

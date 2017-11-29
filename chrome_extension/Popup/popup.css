@@ -3,9 +3,24 @@
   align-content: center;
   padding-top: 2px;
   margin-bottom: 1px;
-  background-color: rgb(244,244,246)
+  background-color: rgb(244,244,246);
+  height: 225px;
+  width: 225px;
+}
+
+#logo {
+  margin-bottom: 15px;
+}
+#bookmark {
+  width: 15px;
 }
 
 #addbookmark {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+#input {
+  margin-bottom: 20px;
+}
+
