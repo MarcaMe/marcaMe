@@ -17,7 +17,7 @@ var __wpo = {
   "navigateFallbackForRedirects": true,
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "2017-11-28 22:23:52",
+  "version": "2017-11-29 09:28:10",
   "name": "webpack-offline",
   "pluginVersion": "4.8.4",
   "relativePaths": false

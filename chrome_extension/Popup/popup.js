@@ -17,7 +17,6 @@ window.addEventListener('load', function () {
       var text = document.createTextNode(inputValue);
       li.appendChild(text);
 
-      if (status.innerHTML === 'Don\'t forget to enter tags!') status.innerHTML = '';
 
       if (inputValue === '') {
         const messages = ['Don\'t forget to enter tags!', 'Press Add to Submit']
@@ -25,6 +24,9 @@ window.addEventListener('load', function () {
           return Math.floor(Math.random() * (2 - 0) + 0)
         }
         status.innerHTML = messages[getRandomMessage()];
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
       } else {
         document.getElementById('myUL').appendChild(li);
         li.className = 'ui label tags';
