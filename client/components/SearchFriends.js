@@ -27,12 +27,12 @@ class SearchFriends extends Component {
       return <SearchResult render={this.state.renderSearchResult} />;
     } else {
       return (
-        <div id="change-theme" style={{width: '230px', display: 'flex', justifyContent: 'space-between'}}>
+        <div id="change-theme">
           <Input
             focus
-            placeholder="search for friends by email"
+            placeholder="search friends by email ..."
             name="search"
-            size="small"
+            size="mini"
             onChange={evt => this.setState({ searchEmail: evt.target.value })}
             value={this.state.searchEmail}
           />
