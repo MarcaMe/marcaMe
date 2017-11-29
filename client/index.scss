@@ -1,8 +1,14 @@
 body {
-  background-color: rgb(244, 244, 246);
+  background-color: rgb(255, 244, 244);
   position: relative;
   box-sizing: border-box;
   font-family: sans-serif;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(193, 66, 66, 0.07),
+      rgba(193, 66, 66, 0.07) 9px,
+      white 5px,
+      white 10px);  
   a {
     text-decoration: none;
   }
