@@ -18,13 +18,17 @@ export class MyProfile extends Component {
     this._getColor = this._getColor.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount() {
     const hostId = this.props.match.params.id;
     this.props.getTheHost(hostId)
+    this.props.fetchAllContentofUser();
   }
 
-  componentDidMount() {
-    this.props.fetchAllContentofUser();
+  componentWillReceiveProps(nextProps){
+    const hostId = this.props.match.params.id;
+    if (nextProps.match.params.id !== hostId) {
+      this.props.getTheHost(nextProps.match.params.id)
+    }
   }
 
   _getColor(index) {

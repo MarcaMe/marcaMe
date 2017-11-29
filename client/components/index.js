@@ -28,3 +28,5 @@ export { default as UserCard } from './UserCard';
 export { default as Favorites} from './Favorites'
 export { default as DisplayFriends } from './DisplayFriends';
 export { default as AllTags } from './AllTags';
+export { default as NotificationIcon } from './NotificationIcon';
+export { default as Notification } from './Notification';

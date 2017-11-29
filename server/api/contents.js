@@ -80,7 +80,11 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/', (req, res, next) => {
   Content.findAll({
+<<<<<<< HEAD
     attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'tags'],
+=======
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
+>>>>>>> master
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))

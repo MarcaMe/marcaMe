@@ -51,6 +51,7 @@ class GeneralCardIcons extends React.Component {
         }
       }
     }
+
     return rtnArr.filter(ele => ele.userId !== userId);
   }
 
@@ -97,7 +98,7 @@ class GeneralCardIcons extends React.Component {
               size="large"
               name="unlock"
               onClick={evt => this._handleEditClick(evt, 'isPublic')}
-              color={this.state.isPublic && 'blue'}
+              color={this.state.isPublic ? 'blue' : ''}
             />
           }
           size="mini"
@@ -111,7 +112,7 @@ class GeneralCardIcons extends React.Component {
               id="archive-icon"
               name="archive"
               size="large"
-              color={this.state.isArchived && 'teal'}
+              color={this.state.isArchived ? 'teal' : ''}
               onClick={evt => this._handleEditClick(evt, 'isArchived')}
             />
           }
@@ -126,13 +127,27 @@ class GeneralCardIcons extends React.Component {
               id="heart-icon"
               name="heart"
               size="large"
-              color={this.state.isFavorite && 'red'}
+              color={this.state.isFavorite ? 'red' : ''}
               onClick={evt => this._handleEditClick(evt, 'isFavorite')}
             />
           }
           size="mini"
           on="hover"
           content="Favorite"
+          position="bottom left"
+        />
+        <Popup
+          trigger={
+            <Icon
+              id="send-icon"
+              size="large"
+              name="send"
+              onClick={evt => this.shareArticle(evt, this.props.id)}
+            />
+          }
+          size="mini"
+          on="hover"
+          content="Share to your friends!"
           position="bottom left"
         />
         <Popup
@@ -148,20 +163,6 @@ class GeneralCardIcons extends React.Component {
           size="mini"
           on="hover"
           content="Delete"
-          position="bottom left"
-        />
-        <Popup
-          trigger={
-            <Icon
-              id="send-icon"
-              size="large"
-              name="send"
-              onClick={evt => this.shareArticle(evt, this.props.id)}
-            />
-          }
-          size="mini"
-          on="hover"
-          content="Share to your friends!"
           position="bottom left"
         />
         {this.state.displayFriends ? (

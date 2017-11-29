@@ -21,45 +21,37 @@ class LeftSideBar extends Component {
         const { collections, addCollection, removeFilter } = this.props
         const { showForm } = this.state
         return (
-            <div id="sidebar">
-                <Sticky>
-                    <div className="collection">
-                        <div className="collection" style={{display: 'flex', justifyContent: 'space-around'}}>
-                            <NavLink to="/home">
-                                <Label icon="home" color="blue" size="large" onClick={() => removeFilter()}>
-                                <Icon name="home" />
-                                Home
-                                </Label>
-                            </NavLink>
-                        </div>
-                    <div style={{display: 'flex', justifyContent: 'space-around'}} onClick={() => this.setState({showForm: true})}>
-                        <Label id="add-collection" color="grey" size="medium">
-                            <Icon name="add circle" />
-                            Add a collection
-                        </Label>
-                    </div>
-                    {showForm ?
-                    <Form onSubmit={(evt) => {
-                        addCollection(evt)
-                        this.setState({showForm: false})
-                        }}
-                        >
-                        <Input name="input" placeholder="add collection" />
-                    </Form> : null}
-                    </div>
-                    <Favorites />
-                    {collections ?
-                    collections.map(collection => {
-                    return (
-                    <div key={collection.id} className="collection">
-                        <NavLink to={`/collections/${collection.id}`} >
-                            <Folder id={collection.id} name={collection.name} />
-                        </NavLink>
-                    </div>
-                    )
-                    }) : 'No Collections'}
-                </Sticky>
-            </div>
+            <Sticky id="sidebar">
+              <div className="collection">
+
+              <div style={{display: 'flex', justifyContent: 'space-around'}} onClick={() => this.setState({showForm: true})}>
+                  <Label id="add-collection" color="grey" size="medium">
+                      <Icon name="add circle" />
+                      Add a collection
+                  </Label>
+              </div>
+              {showForm ?
+              <Form onSubmit={(evt) => {
+                  addCollection(evt)
+                  this.setState({showForm: false})
+                  }}
+                  >
+                  <Input name="input" placeholder="add collection" />
+              </Form> : null}
+              </div>
+              <Favorites />
+              {collections ?
+              collections.map(collection => {
+              return (
+              <div key={collection.id} className="collection">
+                  <NavLink to={`/collections/${collection.id}`} >
+                      <Folder id={collection.id} name={collection.name} />
+                  </NavLink>
+              </div>
+              )
+              }) : 'No Collections'}
+
+            </Sticky>
         )
     }
 }
