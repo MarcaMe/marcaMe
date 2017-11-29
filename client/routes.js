@@ -8,7 +8,6 @@ import {
   Main,
   Login,
   Signup,
-  VideoViewer,
   OneArticle,
   MyProfile,
   Follower,
@@ -45,7 +44,7 @@ class Routes extends Component {
                 <Route path="/archived" component={ContentHome} />
                 <Route path="/profile/following/:id" component={Following} />
                 <Route path="/profile/follower/:id" component={Follower} />
-                <Route exact path="/profile/:id" component={MyProfile} />
+                <Route path="/profile/:id" component={MyProfile} />
                 <Route path="/collections/:collectionId" component={SingleCollection} />
                 <Route component={ContentHome} />
               </Switch>
