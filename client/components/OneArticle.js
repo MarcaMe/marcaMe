@@ -23,7 +23,7 @@ class OneArticle extends React.Component {
             <Container text>
               <h1>{article.title}</h1>
               <Label.Group color={this.props.theme}>
-                {article.tags.map(tag => {
+                {article.tags && article.tags.map(tag => {
                   return (
                     <Label as="a" key={tag}>
                       {tag}
