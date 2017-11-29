@@ -42,9 +42,6 @@ export class FullCard extends Component {
   }
 
   render() {
-    console.log('philip - content: ', this.props.tags)
-    console.log('philip - id: ', this.props.id)
-    
     const { connectDragSource, isDragging, singleCollection } = this.props;
     return connectDragSource(
       <div>
@@ -67,7 +64,7 @@ export class FullCard extends Component {
                   id={this.props.id}
                   deleteContent={this.props.deleteSingleContent}
                 /> :
-                <AllTags tags={this.props.tags} />
+                <AllTags tags={this.props.story.tags} />
             }
             <Card.Content extra>
               <GeneralCardIcons
