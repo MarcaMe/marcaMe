@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
-import { AddPopup,  SearchFriends, NotificationIcon } from './index'
-import { Button, Icon, Divider } from 'semantic-ui-react'
-import { logout, fetchAllContent, changeFilter } from '../store'
-import { ChangeTheme } from '../components'
-=======
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { AddPopup, SearchFriends } from './index';
+import { AddPopup, SearchFriends, NotificationIcon } from './index';
 import {
   Header,
   Modal,
@@ -24,7 +15,6 @@ import {
 } from 'semantic-ui-react';
 import { logout, fetchAllContent, changeFilter, fetchAllUsers } from '../store';
 import { ChangeTheme } from '../components';
->>>>>>> master
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
