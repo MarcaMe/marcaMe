@@ -10,14 +10,13 @@ window.addEventListener('load', function () {
 
     document.getElementById('myInput').addEventListener('keypress', event => {
       console.log(event.keyCode)
-      if (event.keyCode === 13) {
+      if (event.keyCode === 13 || event.which === 13) {
       event.preventDefault();
       var li = document.createElement('a');
       var inputValue = document.getElementById('myInput').value;
       var text = document.createTextNode(inputValue);
       li.appendChild(text);
 
-      if (status.innerHTML === 'Don\'t forget to enter tags!') status.innerHTML = '';
 
       if (inputValue === '') {
         const messages = ['Don\'t forget to enter tags!', 'Press Add to Submit']
@@ -25,6 +24,9 @@ window.addEventListener('load', function () {
           return Math.floor(Math.random() * (2 - 0) + 0)
         }
         status.innerHTML = messages[getRandomMessage()];
+        setTimeout(() => {
+          status.innerHTML = ''
+        }, 2000)
       } else {
         document.getElementById('myUL').appendChild(li);
         li.className = 'ui label tags';
@@ -64,11 +66,17 @@ window.addEventListener('load', function () {
           chrome.tabs.query({ title: 'marca' }, marca => {
             chrome.tabs.reload(marca[0].id);
             saveButton.innerHTML = 'Saved!'
+            setTimeout(() => {
+              saveButton.innerHTML = 'Add Bookmark'
+            }, 2000)
           });
         })
         .fail(response => {
           saveButton.innerHTML = 'Error Saving!'
           console.log('ERROR', response)
+          setTimeout(() => {
+            saveButton.innerHTML = 'Add Bookmark'
+          }, 2000)
         });
     });
   });

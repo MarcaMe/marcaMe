@@ -21,7 +21,6 @@ class LeftSideBar extends Component {
         const { collections, addCollection, removeFilter } = this.props
         const { showForm } = this.state
         return (
-
             <Sticky id="sidebar">
               <div className="collection">
 
@@ -53,7 +52,6 @@ class LeftSideBar extends Component {
               }) : 'No Collections'}
 
             </Sticky>
-
         )
     }
 }

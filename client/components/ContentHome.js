@@ -12,12 +12,6 @@ export class ContentHome extends Component {
     this.props.fetchAllContentofUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props !== nextProps) {
-      console.log('hello')
-    }
-  }
-
   render() {
     const content = this.props.content;
     const filter = this.props.filter;
