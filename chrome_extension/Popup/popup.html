@@ -13,24 +13,24 @@
   <script src="popup.js"></script>
 </head>
 
-<body>
-  <h1>MarcaMe</h1>
-  <h3 id="article-title">title</h3>
+<body id="app">
+  <h1>marca!</h1>
+  <div>
+    <h3 id="article-title">title</h3>
+  </div>
   <form id="addbookmark">
     <div class="ui right labeled left icon input">
       <input type="text" id="myInput" name="tags" value="" placeholder="Enter tags">
-      <a type="button" id="addBtn" class="ui tag label">Add Tag</a>
+      <div class="ui grey tag label">Add Tag</div>
     </div>
 
-    <br /><br />
+    <!-- <br /><br /> -->
 
     <div class="ui blue labels" id="myUL"></div>
 
-    <br /><br />
 
     <p id="status"></p>
-
-    <button class="ui teal label" id="save" type="submit">Save Bookmark</button>
+    <button class="ui primary button" id="save" type="button">Add Bookmark</button>
   </form>
 </body>
 

@@ -1,0 +1,11 @@
+#app {
+  text-align: center;
+  align-content: center;
+  padding-top: 2px;
+  margin-bottom: 1px;
+  background-color: rgb(244,244,246)
+}
+
+#addbookmark {
+  margin-top: 20px;
+}
