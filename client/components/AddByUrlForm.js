@@ -6,7 +6,7 @@ import { webScraping } from '../utilsScraping';
 
 class AddByUrlForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       urlInput: '',
       saved: 'Save',
@@ -54,7 +54,7 @@ class AddByUrlForm extends Component {
           <Label.Group color={this.props.theme}>
             {tags.map((tag, index) => {
               return (
-                <Label as="a" key={index}>
+                <Label as="a" key={tag}>
                   {tag}
                   <Icon name="close" onClick={(evt) => this.deleteTag(evt, index)} />
                 </Label>

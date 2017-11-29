@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getSingleContent } from '../store/content';
 import ReactHtmlParser from 'react-html-parser';
-import { Container, Sticky, Label, Icon } from 'semantic-ui-react';
+import { Container, Sticky, Label } from 'semantic-ui-react';
 import ReaderNav from './ReaderNav';
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -27,7 +27,6 @@ class OneArticle extends React.Component {
                   return (
                     <Label as="a" key={tag}>
                       {tag}
-                      {/* <Icon name="close" onClick={(evt) => this.deleteTag(evt, index)} /> */}
                     </Label>
                   )
                 })}
