@@ -49,16 +49,7 @@ export class ProfileSidebar extends Component {
               size="medium"
               circular
             />
-            {this.state.isEditName
-              ? <div>
-                <input value={this.state.changeName} onChange={ evt => this.setState({changeName: evt.target.value})} />
-                <Icon name="check" onClick={this._handleChangeName} />
-              </div>
-              : <div>
-                <span>{`${user.firstName} ${user.lastName}`}</span>
-                <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>
-              </div>
-            }
+            <h2>{`${user.firstName} ${user.lastName}`}</h2>
             <div id="followers-container">
               <div className="follow-icon-container">
               <Icon size="large" name="user circle" />
