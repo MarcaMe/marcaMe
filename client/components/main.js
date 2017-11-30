@@ -52,7 +52,7 @@ class Main extends Component {
       <div>
         <nav>
           <Link to="/home">
-            <div className="homeLogo">
+            <div className="homeLogo" onClick={() => removeFilter()}>
               <Image
                 id="logo"
                 src={
@@ -70,7 +70,7 @@ class Main extends Component {
                 handleAddUrl={this.handleUrlButtonClick}
                 showForm={this.state.showUrlForm}
               />
-              <NotificationIcon />                              
+              <NotificationIcon />
               <Link to="/home">
                 <Icon
                   name="home"

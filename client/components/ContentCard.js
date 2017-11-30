@@ -28,9 +28,9 @@ class ContentCard extends React.Component {
     return ( <Popup
       trigger={
         <Icon
-          className="content-card-share" 
+          className="content-card-share"
           size="large"
-          name="reply"          
+          name="reply"
           color="yellow"
         />
       }
@@ -43,11 +43,6 @@ class ContentCard extends React.Component {
   render() {
     return (
         <Card.Content style={{ overflow: 'hidden' }}>
-        {
-          this.props.story.sharedFrom  > 0 && this.props.following.length
-          ? this.showShare()
-          : null              
-        }
           <Card.Header textAlign="center">{this.props.story.title}</Card.Header>
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
@@ -56,7 +51,7 @@ class ContentCard extends React.Component {
             style={{ width: '100%', display: 'block' }}
               fluid
               src={this.props.story.imageUrl}
-            />            
+            />
           </div>
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>

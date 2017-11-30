@@ -91,7 +91,7 @@ router.get('/', (req, res, next) => {
 router.get('/main', (req, res, next) => {
   Content.findAll({
     where: {userId: req.user.id},
-    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'tags', 'isNew'],
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))
