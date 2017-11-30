@@ -55,7 +55,7 @@ export class ProfileSidebar extends Component {
                 <Icon name="check" onClick={this._handleChangeName} />
               </div>
               : <div>
-                <span>{`${user.firstName}`}</span>
+                <span>{`${user.firstName} ${user.lastName}`}</span>
                 <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>
               </div>
             }
@@ -84,7 +84,6 @@ const mapState = state => {
   return {
   user: state.user,
   content: state.content,
-  host: state.host,
   follower: state.follower,
   following: state.following
   }

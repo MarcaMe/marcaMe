@@ -12,7 +12,8 @@ import {
   MyProfile,
   Follower,
   SingleCollection,
-  Notification
+  Notification,
+  EditUser
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -39,6 +40,7 @@ class Routes extends Component {
             {isLoggedIn && (
               <Switch>
                 {/* Routes placed here are only available after logging in */}
+                <Route path="/user/edit/:id" component={EditUser} />
                 <Route path="/content/:id" component={OneArticle} />
                 <Route path="/home" component={ContentHome} />
                 <Route path="/favorites" component={ContentHome} />

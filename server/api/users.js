@@ -24,11 +24,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  User.findOne()
-    .then(user => res.json(user))
-    .catch(next);
-});
+router.get('/:id', (req, res ) => res.json(req.requestedUser));
 
 router.put('/:id', (req, res, next) => {
   req.requestedUser.update(req.body)

@@ -46,12 +46,11 @@ export class MyProfile extends Component {
 
   render() {
     const content = this.props.content;
-    const user = this.props.user;
     const host = this.props.host;
     return (
       host && (
         <div id="profile-body">
-          <ProfileSidebar />
+          <ProfileSidebar host={host} />
           <Divider />
           {content.length ?
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
