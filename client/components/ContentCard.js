@@ -21,8 +21,6 @@ class ContentCard extends React.Component {
   }
 
   showShare()  {
-    const friendId = this.props.story.sharedFrom;
-    const friend = this.props.following.find(guy => guy.id === friendId);
     return ( <Popup
       trigger={
         <Icon
@@ -34,7 +32,7 @@ class ContentCard extends React.Component {
       }
       size="mini"
       on="hover"
-      content={`Shared from ${friend.firstName}`}
+      content={`Shared from friends`}
     /> )
   }
 
