@@ -7,7 +7,6 @@ module.exports = router;
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
 
-
   const userId = request.user.dataValues.id;
   const mercuryUrl =
     'https://mercury.postlight.com/parser?url=' + request.body.url;
