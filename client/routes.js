@@ -37,28 +37,24 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            {isLoggedIn &&
-              !hasNames && <Route path="/edit/user/:id" component={EditUser} />}
-            {isLoggedIn && (
-              <Switch>
-                {/* Routes placed here are only available after logging in */}
-                <Route path="/user/edit/:id" component={EditUser} />
-                <Route path="/content/:id" component={OneArticle} />
-                <Route path="/home" component={ContentHome} />
-                <Route path="/favorites" component={ContentHome} />
-                <Route path="/archived" component={ContentHome} />
-                <Route path="/profile/following/:id" component={Following} />
-                <Route path="/profile/follower/:id" component={Follower} />
-                <Route path="/profile/:id" component={MyProfile} />
-                <Route
-                  path="/collections/:collectionId"
-                  component={SingleCollection}
-                />
-                <Route path="/notification" component={Notification} />
-                <Route component={ContentHome} />
-              </Switch>
-            )}
-
+            { isLoggedIn && hasNames &&
+                <Switch>
+                  <Route path="/user/edit" component={EditUser} />     
+                  <Route path="/content/:id" component={OneArticle} />
+                  <Route path="/home" component={ContentHome} />
+                  <Route path="/favorites" component={ContentHome} />
+                  <Route path="/archived" component={ContentHome} />
+                  <Route path="/profile/following/:id" component={Following} />
+                  <Route path="/profile/follower/:id" component={Follower} />
+                  <Route path="/profile/:id" component={MyProfile} />
+                  <Route path="/collections/:collectionId" component={SingleCollection} />
+                  <Route path="/notification" component={Notification} />
+                  <Route component={ContentHome} />
+                </Switch>
+              }
+             { isLoggedIn && !hasNames &&
+               <Route component={EditUser} />
+             } 
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>

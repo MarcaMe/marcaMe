@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editUser } from '../store';
-import { Form, Button, Input, Label, Icon } from 'semantic-ui-react';
-
+import { Form, Input } from 'semantic-ui-react';
+import history from '../history';
 export class EditUser extends Component {
   constructor() {
     super();
@@ -11,7 +11,7 @@ export class EditUser extends Component {
       lastName: '',
       fnError: false,
       lnError: false,
-      success:false
+      success: false
     };
   }
   _handleChange(field, value) {
@@ -22,6 +22,7 @@ export class EditUser extends Component {
     if (this.state.firstName && this.state.lastName) {
       this.props.editUserInfo(userId, this.state.firstName, this.state.lastName)
       this.setState({fnError:false, lnError:false, success:true});
+      history.push('/home')
     }
     if (!this.state.firstName) this.setState({ fnError: true });
     if (!this.state.lastName) this.setState({ lnError: true });

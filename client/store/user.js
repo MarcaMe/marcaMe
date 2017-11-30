@@ -31,7 +31,7 @@ export const auth = (email, password, method) => dispatch =>
     .post(`/auth/${method}`, { email, password })
     .then(res => {
       dispatch(getUser(res.data));
-      history.push('/home');
+      method === 'login' ? history.push('/home') : history.push('/user/edit')
     })
     .catch(error => dispatch(getUser({ error })));
 
