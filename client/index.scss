@@ -101,7 +101,10 @@ body {
   #profile-info {
     margin-top: 3em;
   }
-
+  #edit-user {
+    display: flex;
+    flex-direction: column;
+  }
   iframe {
     width: 50vw;
     height: 28vw;

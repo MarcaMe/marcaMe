@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Loader, Sticky } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { LeftSideBar, FullCard } from '../components';
 import { fetchAllContentForUser, deleteOneContent } from '../store/content';
 import { NavLink } from 'react-router-dom';

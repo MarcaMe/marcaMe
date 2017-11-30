@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
-import { editOneContent } from '../store/content';
-import PropTypes from 'prop-types'
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -43,6 +41,11 @@ class ContentCard extends React.Component {
   render() {
     return (
         <Card.Content style={{ overflow: 'hidden' }}>
+        {
+          this.props.story.sharedFrom  > 0 && this.props.following.length
+          ? this.showShare()
+          : null
+        }
           <Card.Header textAlign="center">{this.props.story.title}</Card.Header>
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
@@ -68,17 +71,4 @@ const mapState = state => ({
   following: state.following
 });
 
-const mapDispatch = dispatch => {
-  return {
-    editContent(id, field, value) {
-      const contentBody = { id, [field]: value }
-      dispatch(editOneContent(contentBody));
-    }
-  };
-};
-
-export default connect(mapState, mapDispatch)(ContentCard);
-
-ContentCard.propTypes = {
-  editContent: PropTypes.func.isRequired
-}
+export default connect(mapState)(ContentCard);

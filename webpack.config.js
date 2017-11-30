@@ -1,6 +1,7 @@
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const isDev = process.env.NODE_ENV === 'development';
-const OfflinePlugin = require('offline-plugin');
+// const OfflinePlugin = require('offline-plugin');
+
 module.exports = {
   entry: './client/index.js',
   output: {

@@ -20,7 +20,7 @@ class DisplayFriends extends Component {
         this.props.friendsArr.map(guy => this.state.getFriendsIdArr.push(guy.userId))
     }
 
-     findFriendInfo(idArr, followArr){
+    findFriendInfo(idArr, followArr){
         let rtnArr = [];
         followArr.map(guy => (idArr.includes(guy.id)
         ? rtnArr.push(guy)

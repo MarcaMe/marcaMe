@@ -1,7 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Icon, Button } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { FullCard } from '../components';
 import { editOneContent } from '../store';
 
@@ -21,12 +19,12 @@ class Notification extends Component {
     })
     updatedContent.map(oneContent => this.props.markAsOld(oneContent))
   }
-  
+
   render() {
     const newContent = this.props.content.filter( article => article.isNew === true && article.sharedFrom > 0 );
     return (
       <div id="main-page">
-      {newContent.map(oneContent => <FullCard story={oneContent} />)}
+      {newContent.map(oneContent => <FullCard key={oneContent.id} story={oneContent} />)}
       </div>);
   }
 }

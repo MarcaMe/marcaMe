@@ -14,13 +14,9 @@ import {
   Dropdown
 } from 'semantic-ui-react';
 import { logout, fetchAllContent, changeFilter, fetchAllUsers } from '../store';
+import history from '../history';
 import { ChangeTheme } from '../components';
-/**
- * COMPONENT
- *  The Main component is our 'picture frame' - it displays the navbar and anything
- *  else common to our entire app. The 'picture' inside the frame is the space
- *  rendered out by the component's `children`.
- */
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +32,10 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchAllContentofUser();
     this.props.getAllUsers()
+  }
+
+  handleEdit() {
+    history.push('/user/edit');
   }
 
   render() {
@@ -84,7 +84,11 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
+<<<<<<< HEAD
                   <Dropdown.Item><Icon name="user" />Edit Account</Dropdown.Item>
+=======
+                  <Dropdown.Item onClick={this.handleEdit}>Edit Account</Dropdown.Item>
+>>>>>>> master
                   <Dropdown.Item>
                     <Modal
                       trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}
@@ -98,10 +102,16 @@ class Main extends Component {
                       </Modal.Actions>
                     </Modal>
                   </Dropdown.Item>
+<<<<<<< HEAD
                     <Dropdown.Item onClick={handleClick}>
                     <Icon name="log out" />
                     Logout
                     </Dropdown.Item>
+=======
+                  <Dropdown.Item onClick={handleClick}>
+                    Logout
+                  </Dropdown.Item>
+>>>>>>> master
                 </Dropdown.Menu>
               </Dropdown>
             </div>

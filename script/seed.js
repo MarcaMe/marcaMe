@@ -24,16 +24,16 @@ async function seed () {
     User.create({firstName: 'Sisi', lastName: 'Qin', email: 'sisi@email.com', password: '123'}),
     User.create({firstName: 'Sol', lastName: 'Park', email: 'sol@email.com', password: '123'}),
     User.create({firstName: 'Philip', lastName: 'Fahim', email: 'philip@email.com', password: '123'}),
-    User.create({firstName: 'Kenny', lastName: 'Diaz', email: 'kenny@email.com', password: '123'})    
+    User.create({firstName: 'Kenny', lastName: 'Diaz', email: 'kenny@email.com', password: '123'})
 
   ])
 
   const relationships = await Promise.all([
     Relationship.create({followed: 1, userId: 2}),
-    Relationship.create({followed: 1, userId: 6}),    
+    Relationship.create({followed: 1, userId: 6}),
     Relationship.create({followed: 2, userId: 1}),
     Relationship.create({followed: 2, userId: 3}),
-    Relationship.create({followed: 2, userId: 6}),    
+    Relationship.create({followed: 2, userId: 6}),
     Relationship.create({followed: 2, userId: 4}),
     Relationship.create({followed: 2, userId: 5}),
     Relationship.create({followed: 3, userId: 1}),

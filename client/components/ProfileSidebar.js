@@ -16,13 +16,13 @@ export class ProfileSidebar extends Component {
     this._handleChangeName = this._handleChangeName.bind(this);
   }
 
-  _showChangeNameField(e){
-    e.preventDefault();
+  _showChangeNameField(evt){
+    evt.preventDefault();
     this.setState({isEditName: true})
   }
 
-  _handleChangeName(e) {
-    e.preventDefault();
+  _handleChangeName(evt) {
+    evt.preventDefault();
     const userId = this.props.match.params.id;
     const newName = this.state.changeName;
     this.props.updateHostName(userId, newName)
@@ -49,16 +49,7 @@ export class ProfileSidebar extends Component {
               size="medium"
               circular
             />
-            {this.state.isEditName
-              ? <div>
-                <input value={this.state.changeName} onChange={ (e) => this.setState({changeName: e.target.value})} />
-                <Icon name="check" onClick={this._handleChangeName} />
-              </div>
-              : <div>
-                <span>{`${user.firstName}`}</span>
-                <span> <Icon name="edit"  onClick={this._showChangeNameField} /> </span>
-              </div>
-            }
+            <h2>{`${user.firstName} ${user.lastName}`}</h2>
             <div id="followers-container">
               <div className="follow-icon-container">
               <Icon size="large" name="user circle" />
@@ -84,7 +75,6 @@ const mapState = state => {
   return {
   user: state.user,
   content: state.content,
-  host: state.host,
   follower: state.follower,
   following: state.following
   }

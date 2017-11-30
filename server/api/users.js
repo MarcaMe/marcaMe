@@ -1,6 +1,17 @@
-const router = require('express').Router()
-const { User } = require('../db/models')
-module.exports = router
+const router = require('express').Router();
+const { User } = require('../db/models');
+module.exports = router;
+
+router.param('id', (req, res, next, id) => {
+  User.findById(id)
+    .then(user => {
+      if (!user) res.sendStatus(404);
+      req.requestedUser = user;
+      next();
+      return null;
+    })
+    .catch(next);
+});
 
 router.get('/', (req, res, next) => {
   User.findAll({
@@ -10,12 +21,13 @@ router.get('/', (req, res, next) => {
     attributes: ['id', 'email', 'profilePicture', 'firstName', 'lastName']
   })
     .then(users => res.json(users))
-    .catch(next)
-})
+    .catch(next);
+});
 
-router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
-  User.findById(id)
-    .then(user => res.json(user))
-    .catch(next)
+router.get('/:id', (req, res ) => res.json(req.requestedUser));
+
+router.put('/:id', (req, res, next) => {
+  req.requestedUser.update(req.body)
+  .then(user => res.json(user))
+  .catch(next);
 })

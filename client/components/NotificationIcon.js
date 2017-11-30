@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Icon } from "semantic-ui-react";
-import { NavLink } from "react-router-dom";
-import { setTimeout } from "core-js/library/web/timers";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 class Notification extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ class Notification extends Component {
         this.props.content[i].sharedFrom > 0
       ) {
         return true;
-        break;
       }
     }
     return false;
