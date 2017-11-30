@@ -84,11 +84,7 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-<<<<<<< HEAD
-                  <Dropdown.Item><Icon name="user" />Edit Account</Dropdown.Item>
-=======
-                  <Dropdown.Item onClick={this.handleEdit}>Edit Account</Dropdown.Item>
->>>>>>> master
+                  <Dropdown.Item onClick={this.handleEdit}><Icon name="user" />Edit Account</Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
                       trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}
@@ -102,16 +98,10 @@ class Main extends Component {
                       </Modal.Actions>
                     </Modal>
                   </Dropdown.Item>
-<<<<<<< HEAD
-                    <Dropdown.Item onClick={handleClick}>
-                    <Icon name="log out" />
-                    Logout
-                    </Dropdown.Item>
-=======
                   <Dropdown.Item onClick={handleClick}>
+                  <Icon name="log out" />
                     Logout
                   </Dropdown.Item>
->>>>>>> master
                 </Dropdown.Menu>
               </Dropdown>
             </div>
