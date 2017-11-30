@@ -16,13 +16,13 @@ export class ProfileSidebar extends Component {
     this._handleChangeName = this._handleChangeName.bind(this);
   }
 
-  _showChangeNameField(e){
-    e.preventDefault();
+  _showChangeNameField(evt){
+    evt.preventDefault();
     this.setState({isEditName: true})
   }
 
-  _handleChangeName(e) {
-    e.preventDefault();
+  _handleChangeName(evt) {
+    evt.preventDefault();
     const userId = this.props.match.params.id;
     const newName = this.state.changeName;
     this.props.updateHostName(userId, newName)
@@ -51,7 +51,7 @@ export class ProfileSidebar extends Component {
             />
             {this.state.isEditName
               ? <div>
-                <input value={this.state.changeName} onChange={ (e) => this.setState({changeName: e.target.value})} />
+                <input value={this.state.changeName} onChange={ evt => this.setState({changeName: evt.target.value})} />
                 <Icon name="check" onClick={this._handleChangeName} />
               </div>
               : <div>

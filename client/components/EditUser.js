@@ -21,7 +21,7 @@ export class EditUser extends Component {
     evt.preventDefault();
     if (this.state.firstName && this.state.lastName) {
       this.props.editUserInfo(userId, this.state.firstName, this.state.lastName)
-      this.setState({fnError:false, lnError:false, success:true});
+      this.setState({fnError: false, lnError: false, success: true});
       history.push('/home')
     }
     if (!this.state.firstName) this.setState({ fnError: true });
@@ -47,7 +47,7 @@ export class EditUser extends Component {
                   this._handleChange('firstName', evt.target.value)}
               />
             </Form.Field>
-            {fnError && <p style={{color:'red'}}>* First name cannot be empty</p>}
+            {fnError && <p style={{color: 'red'}}>* First name cannot be empty</p>}
             <Form.Field required>
               <label>Last Name</label>
               <Input
@@ -57,9 +57,9 @@ export class EditUser extends Component {
                   this._handleChange('lastName', evt.target.value)}
               />
             </Form.Field>
-            {lnError && <p style={{color:'red'}}>* Last name cannot be empty</p>}
+            {lnError && <p style={{color: 'red'}}>* Last name cannot be empty</p>}
           </Form.Group>
-          <Form.Button>{success ? 'Saved!': 'Submit'}</Form.Button>
+          <Form.Button>{success ? 'Saved!' : 'Submit'}</Form.Button>
         </Form>
       </div>
     );

@@ -13,7 +13,7 @@ import {
   Follower,
   SingleCollection,
   Notification,
-  EditUser
+  EditUser,
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';
@@ -39,7 +39,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             { isLoggedIn && hasNames &&
                 <Switch>
-                  <Route path="/user/edit" component={EditUser} />     
+                  <Route path="/user/edit" component={EditUser} />
                   <Route path="/content/:id" component={OneArticle} />
                   <Route path="/home" component={ContentHome} />
                   <Route path="/favorites" component={ContentHome} />
@@ -54,8 +54,8 @@ class Routes extends Component {
               }
              { isLoggedIn && !hasNames &&
                <Route component={EditUser} />
-             } 
-            {/* Displays our Login component as a fallback */}
+             }
+             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>
         </Main>

@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 var __wpo = {
   assets: {
     main: ['/bundle.js', '/'],

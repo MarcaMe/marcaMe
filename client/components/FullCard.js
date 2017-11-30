@@ -102,5 +102,4 @@ export class FullCard extends Component {
   }
 }
 
-
 export default DragSource(ItemTypes.CARD, cardSource, collect)(FullCard);

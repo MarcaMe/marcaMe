@@ -13,9 +13,9 @@ class SearchResult extends Component {
     this.checkFollowing = this.checkFollowing.bind(this);
   }
   checkFollowing(followingId){
-    if(this.props.following.length > 0){
+    if (this.props.following.length > 0){
       return this.props.following.some(guy => guy.id === followingId)
-    } else{
+    } else {
       return false;
     }
   }

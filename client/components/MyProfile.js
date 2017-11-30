@@ -56,8 +56,8 @@ export class MyProfile extends Component {
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
               {content
                 .filter(
-                  content =>
-                    content.userId === host.id && content.isPublic
+                  selectedContent =>
+                    selectedContent.userId === host.id && selectedContent.isPublic
                 )
                 .map((story, index) => {
                   return (

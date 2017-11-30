@@ -14,13 +14,9 @@ import {
   Dropdown
 } from 'semantic-ui-react';
 import { logout, fetchAllContent, changeFilter, fetchAllUsers } from '../store';
+import history from '../history';
 import { ChangeTheme } from '../components';
-/**
- * COMPONENT
- *  The Main component is our 'picture frame' - it displays the navbar and anything
- *  else common to our entire app. The 'picture' inside the frame is the space
- *  rendered out by the component's `children`.
- */
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +32,10 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchAllContentofUser();
     this.props.getAllUsers()
+  }
+
+  handleEdit() {
+    history.push('/user/edit');
   }
 
   render() {
@@ -70,7 +70,7 @@ class Main extends Component {
                 handleAddUrl={this.handleUrlButtonClick}
                 showForm={this.state.showUrlForm}
               />
-              <NotificationIcon />                              
+              <NotificationIcon />
               <Link to="/home">
                 <Icon
                   name="home"
@@ -84,7 +84,7 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-                  <Dropdown.Item>Edit Account</Dropdown.Item>
+                  <Dropdown.Item onClick={this.handleEdit}>Edit Account</Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
                       trigger={<Dropdown.Item>Edit Settings</Dropdown.Item>}
@@ -98,11 +98,9 @@ class Main extends Component {
                       </Modal.Actions>
                     </Modal>
                   </Dropdown.Item>
-                  <Link to="/signup">
-                    <Dropdown.Item onClick={handleClick}>
-                      Logout
-                    </Dropdown.Item>
-                  </Link>
+                  <Dropdown.Item onClick={handleClick}>
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>

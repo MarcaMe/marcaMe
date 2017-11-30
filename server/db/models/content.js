@@ -47,7 +47,7 @@ const Content = db.define('content', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
-  isNew:{
+  isNew: {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   }
