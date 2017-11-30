@@ -46,19 +46,18 @@ export class MyProfile extends Component {
 
   render() {
     const content = this.props.content;
-    const user = this.props.user;
     const host = this.props.host;
     return (
       host && (
         <div id="profile-body">
-          <ProfileSidebar />
+          <ProfileSidebar host={host} />
           <Divider />
           {content.length ?
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
               {content
                 .filter(
-                  content =>
-                    content.userId === host.id && content.isPublic
+                  selectedContent =>
+                    selectedContent.userId === host.id && selectedContent.isPublic
                 )
                 .map((story, index) => {
                   return (

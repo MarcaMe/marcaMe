@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
-import { editOneContent } from '../store/content';
-import PropTypes from 'prop-types'
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -28,9 +26,9 @@ class ContentCard extends React.Component {
     return ( <Popup
       trigger={
         <Icon
-          className="content-card-share" 
+          className="content-card-share"
           size="large"
-          name="reply"          
+          name="reply"
           color="yellow"
         />
       }
@@ -46,7 +44,7 @@ class ContentCard extends React.Component {
         {
           this.props.story.sharedFrom  > 0 && this.props.following.length
           ? this.showShare()
-          : null              
+          : null
         }
           <Card.Header textAlign="center">{this.props.story.title}</Card.Header>
           <div
@@ -56,7 +54,7 @@ class ContentCard extends React.Component {
             style={{ width: '100%', display: 'block' }}
               fluid
               src={this.props.story.imageUrl}
-            />            
+            />
           </div>
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>
@@ -73,17 +71,4 @@ const mapState = state => ({
   following: state.following
 });
 
-const mapDispatch = dispatch => {
-  return {
-    editContent(id, field, value) {
-      const contentBody = { id, [field]: value }
-      dispatch(editOneContent(contentBody));
-    }
-  };
-};
-
-export default connect(mapState, mapDispatch)(ContentCard);
-
-ContentCard.propTypes = {
-  editContent: PropTypes.func.isRequired
-}
+export default connect(mapState)(ContentCard);

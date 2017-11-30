@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Label } from 'semantic-ui-react';
 import { withRouter, NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types'
 import { changeFilter } from '../store';
 
 export const Favorites = (props) => {

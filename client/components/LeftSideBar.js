@@ -18,7 +18,7 @@ class LeftSideBar extends Component {
     }
 
     render() {
-        const { collections, addCollection, removeFilter } = this.props
+        const { collections, addCollection } = this.props
         const { showForm } = this.state
         return (
             <Sticky id="sidebar">
