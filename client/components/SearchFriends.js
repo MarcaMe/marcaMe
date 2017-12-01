@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Search } from 'semantic-ui-react';
 import _ from 'lodash';
 import history from '../history';
+import { ShareAContentThunk } from '../store';
+
 
 class SearchFriends extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class SearchFriends extends Component {
       results: [],
       value: ''
     };
+    this.handleShare = this.handleShare.bind(this);
   }
 
   componentDidMount() {
@@ -44,15 +47,28 @@ class SearchFriends extends Component {
     }, 500);
   };
 
+  handleShare(evt, { result }){
+    evt.preventDefault();
+    const friendId = result.id
+    const storyId = this.props.storyId;
+    const userId = this.props.user.id;
+    this.props.shareThunk(storyId, userId, friendId)
+}
+
+
+
   render() {
     const { isLoading, value, results } = this.state;
-    return (
+    const isShareArticle = this.props.isShareArticle;
+    if(isShareArticle){
+   return (
       <Search
         className="friends-search"
         placeholder="Search for friends"
         loading={isLoading}
-        onResultSelect={this.handleResultSelect}
+        onResultSelect={this.handleShare}        
         onSearchChange={this.handleSearchChange}
+        onClick={evt => evt.preventDefault() }
         results={results}
         value={value}
         resultRenderer={user => (
@@ -61,13 +77,42 @@ class SearchFriends extends Component {
             <img id="search-result-img" src={user.profilePicture} />
           </div>
         )}
-      />
-    );
+        />
+    )
+  } else{
+    return (
+    <Search
+    className="friends-search"
+    placeholder="Search for friends"
+    loading={isLoading}
+    onResultSelect={this.handleResultSelect}
+    onSearchChange={this.handleSearchChange}
+    onClick={evt => evt.preventDefault() }
+    results={results}
+    value={value}
+    resultRenderer={user => (
+      <div id="search-result">
+        {`${user.firstName} ${user.lastName}`}{' '}
+        <img id="search-result-img" src={user.profilePicture} />
+      </div>
+    )}
+    />
+  )
+  }
   }
 }
 
 const mapState = state => ({
-  searchFriends: state.searchFriends
+  searchFriends: state.searchFriends,
+  user: state.user
 });
 
-export default connect(mapState)(SearchFriends);
+const mapDispatch = dispatch => {
+  return {
+  shareThunk(storyId, userId, friendId){
+      dispatch(ShareAContentThunk(storyId, userId, friendId))
+  }
+}
+}
+
+export default connect(mapState, mapDispatch)(SearchFriends);

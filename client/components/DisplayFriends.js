@@ -34,12 +34,12 @@ class DisplayFriends extends Component {
         const storyId = this.props.storyId;
         const userId = this.props.user.id;
         this.props.shareThunk(storyId, userId, friendId)
+        setTimeout( () => this.setState({displayFriends: false}), 500)
     }
 
 
     render(){
         const result = this.findFriendInfo(this.state.getFriendsIdArr, this.props.following)
-        console.log('all props', this.props)
         return (
             <div>
         { result.map(friend => {
