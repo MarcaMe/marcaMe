@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import { AddPopup, SearchFriends, NotificationIcon } from './index';
 import {
   Header,
@@ -52,7 +52,7 @@ class Main extends Component {
       <div>
         <nav>
           <Link to="/home">
-            <div className="homeLogo">
+            <div className="homeLogo" onClick={() => removeFilter()}>
               <Image
                 id="logo"
                 src={
@@ -84,10 +84,10 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.handleEdit}>Edit Account</Dropdown.Item>
+                  <Dropdown.Item onClick={this.handleEdit}><Icon name="user" />Edit Account</Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
-                      trigger={<Dropdown.Item>Edit Settings</Dropdown.Item>}
+                      trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}
                     >
                       <Header
                         icon="settings"
@@ -99,6 +99,7 @@ class Main extends Component {
                     </Modal>
                   </Dropdown.Item>
                   <Dropdown.Item onClick={handleClick}>
+                  <Icon name="log out" />
                     Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>

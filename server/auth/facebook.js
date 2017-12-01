@@ -2,6 +2,7 @@ const passport = require('passport');
 const router = require('express').Router();
 const FacebookStrategy = require('passport-facebook').Strategy;
 const { User } = require('../db/models');
+const postToMercury = require('../api/utils')
 module.exports = router;
 
 if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
@@ -30,7 +31,10 @@ if (!process.env.FACEBOOK_CLIENT_ID || !process.env.FACEBOOK_CLIENT_SECRET) {
                 firstName,
                 lastName,
                 facebookId
-              }).then(createdUser => done(null, createdUser));
+              }).then(createdUser => {
+                return postToMercury(createdUser.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-6c5566065204'}})
+                .then(_ => done(null, createdUser))
+              });
         })
         .catch(done);
     }

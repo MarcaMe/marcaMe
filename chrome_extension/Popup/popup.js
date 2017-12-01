@@ -52,7 +52,6 @@ window.addEventListener('load', function () {
       saveButton.addEventListener('click', event => {
       event.preventDefault();
       let allTags = document.getElementsByClassName('tags');
-
       let data = {
         url: tab.url,
         tags: Array.from(allTags).map(tag => tag.innerText).join(',')

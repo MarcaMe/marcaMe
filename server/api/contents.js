@@ -7,6 +7,8 @@ module.exports = router;
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
 
+const tags = request.body.tags.split(',').map(tag => tag.slice(0, tag.length - 2)) || null
+
   const userId = request.user.dataValues.id;
   const mercuryUrl =
     'https://mercury.postlight.com/parser?url=' + request.body.url;
@@ -17,7 +19,7 @@ router.post('/chrome', (request, response, next) => {
     }
   };
 
-  axios
+  return axios
     .get(mercuryUrl, config)
     .then(res => {
       const title = res.data.title;
@@ -26,7 +28,6 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      const tags = request.body.tags ? request.body.tags.split(',') : null;
       return Content.create({
         title,
         author,
@@ -40,7 +41,6 @@ router.post('/chrome', (request, response, next) => {
     })
     .then(data => response.send(data))
     .catch((err) => {
-      response.json('Error')
       next(err)
     });
 });
@@ -90,7 +90,7 @@ router.get('/', (req, res, next) => {
 router.get('/main', (req, res, next) => {
   Content.findAll({
     where: {userId: req.user.id},
-    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'tags', 'isNew'],
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))

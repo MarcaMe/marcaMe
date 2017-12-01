@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
+import { editOneContent } from '../store/content';
+import PropTypes from 'prop-types'
 
 const truncateDescription = story => {
   const titleArr = story.title.split(' ');
@@ -24,9 +26,9 @@ class ContentCard extends React.Component {
     return ( <Popup
       trigger={
         <Icon
-          className="content-card-share"
+          className="content-card-share" 
           size="large"
-          name="reply"
+          name="reply"          
           color="yellow"
         />
       }
@@ -39,20 +41,21 @@ class ContentCard extends React.Component {
   render() {
     return (
         <Card.Content style={{ overflow: 'hidden' }}>
-        {
-          this.props.story.sharedFrom  > 0 && this.props.following.length
-          ? this.showShare()
-          : null
-        }
           <Card.Header textAlign="center">{this.props.story.title}</Card.Header>
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
           >
+          {this.props.isNew ? <span style={ { color:'red', fontSize: '1.5em'} }> NEW! </span> : null }
+           {
+               this.props.story.sharedFrom  > 0 && this.props.following.length
+               ? this.showShare()
+               : null              
+             }
             <Image
             style={{ width: '100%', display: 'block' }}
               fluid
               src={this.props.story.imageUrl}
-            />
+            />            
           </div>
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>
@@ -69,4 +72,19 @@ const mapState = state => ({
   following: state.following
 });
 
-export default connect(mapState)(ContentCard);
+const mapDispatch = dispatch => {
+  return {
+    editContent(id, field, value) {
+      const contentBody = {id, [field]: value}
+      dispatch(editOneContent(contentBody));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(ContentCard);
+
+ContentCard.propTypes = {
+  editContent: PropTypes.func.isRequired
+}
+
+
