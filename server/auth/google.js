@@ -31,7 +31,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
                 email,
                 googleId
               }).then(createdUser => {
-                return postToMercury(createdUser.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-6c5566065204'}})
+                return postToMercury(createdUser.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-354762fc02f5'}})
                 .then(_ => done(null, createdUser))
               });
         })

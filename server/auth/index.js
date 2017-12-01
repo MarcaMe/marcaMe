@@ -20,7 +20,7 @@ router.post('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {
-      return postToMercury(user.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-6c5566065204'}})
+      return postToMercury(user.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-354762fc02f5'}})
       .then(_ => {
         req.login(user, err => (err ? next(err) : res.json(user)))
       })
