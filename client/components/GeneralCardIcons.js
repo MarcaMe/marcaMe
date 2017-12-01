@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popup } from 'semantic-ui-react';
 import axios from 'axios';
-import { editOneContent, deleteOneContent, fetchFollowing, postRemoveFromCollection } from '../store';
-import { DisplayFriends } from '../components';
+import { editOneContent, deleteOneContent, postRemoveFromCollection } from '../store';
+import { DisplayFriends, SearchFriends } from '../components';
+import { setTimeout } from 'timers';
 
 class GeneralCardIcons extends React.Component {
   constructor(props) {
@@ -14,17 +15,16 @@ class GeneralCardIcons extends React.Component {
       isPublic: this.props.story.isPublic,
       isTagsOpen: false,
       displayFriends: false,
-      friendsArr: []
-    };
+      friendsArr: [],
+      displaySearchFriends: false
+        };
     this._handleEditClick = this._handleEditClick.bind(this);
-    this.findFriends = this.findFriends.bind(this);
-    this.shareArticle = this.shareArticle.bind(this);
     this.handleTags = this.handleTags.bind(this);
+    this.shareArticle = this.shareArticle.bind(this);
   }
 
   componentWillMount() {
     const userId = this.props.user.id;
-    this.props.getFollowing(userId);
   }
 
   _handleEditClick(evt, fieldName) {
@@ -38,31 +38,10 @@ class GeneralCardIcons extends React.Component {
     );
   }
 
-  findFriends(arr, userId) {
-    const rtnArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = i + 1; j < arr.length; j++) {
-        if (
-          arr[i].followed === arr[j].userId &&
-          arr[j].followed === arr[i].userId
-        ) {
-          rtnArr.push(arr[i]);
-          rtnArr.push(arr[j]);
-        }
-      }
-    }
-
-    return rtnArr.filter(ele => ele.userId !== userId);
-  }
 
   shareArticle(evt, userId) {
     evt.preventDefault();
-    axios
-      .get('/api/relationship')
-      .then(res => res.data)
-      .then(followArr => this.findFriends(followArr, userId))
-      .then(data => this.setState({ friendsArr: data, displayFriends: true }))
-      .catch(err => console.error(err));
+     this.setState({ displaySearchFriends: true })
   }
 
   handleTags() {
@@ -185,11 +164,8 @@ class GeneralCardIcons extends React.Component {
         position="bottom left"
        />
        : null}
-        {this.state.displayFriends ? (
-          <DisplayFriends
-            friendsArr={this.state.friendsArr}
-            storyId={this.props.story.id}
-          />
+        {this.state.displaySearchFriends ? (
+          <SearchFriends allUsers={this.props.users} isShareArticle={true} storyId={this.props.story.id} friend = {this.props.host} />
         ) : null}
       </div>
     );
@@ -198,7 +174,9 @@ class GeneralCardIcons extends React.Component {
 const mapState = state => ({
   article: state.content,
   singlecollection: state.singlecollection,
-  user: state.user
+  user: state.user,
+  users: state.searchFriends,
+  host: state.host
 });
 
 const mapDispatch = (dispatch) => {
@@ -210,9 +188,6 @@ const mapDispatch = (dispatch) => {
     deleteContent(evt, contentId) {
       evt.preventDefault();
       dispatch(deleteOneContent(contentId));
-    },
-    getFollowing(id) {
-      dispatch(fetchFollowing(id));
     },
     deleteFromCollection(collection, content) {
       dispatch(postRemoveFromCollection(collection, content))

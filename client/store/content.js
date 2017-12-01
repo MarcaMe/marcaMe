@@ -70,7 +70,6 @@ export const editOneContent = contentBody => dispatch => {
 };
 
 export const ShareAContentThunk = (contentId, userId, friendId) => dispatch => {
-  console.log('check props in thunk', contentId, userId, friendId )
   return axios
     .post('/api/contents/share', {contentId, userId, friendId})
     .then(res => res.data)
