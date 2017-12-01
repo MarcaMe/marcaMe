@@ -22,16 +22,16 @@ class OneArticle extends React.Component {
           <div id="one-article-text">
             <Container text>
               <h1>{article.title}</h1>
-              <Label.Group color={this.props.theme}>
-                {article.tags && article.tags.map(tag => {
+              {article.tags ?
+                <Label.Group color={this.props.theme}>
+                 {article.tags.map(tag => {
                   return (
                     <Label as="a" key={tag}>
                       {tag}
                     </Label>
-                  )
-                })}
-              </Label.Group>
-              <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
+                  )})}
+                </Label.Group> : null }
+                <h5>{`Saved on ${Date(article.createdAt)}`}</h5>
               <div className="header-container">
                 <h3>{article.author && `By ${article.author}`}</h3>
                 <NavLink to={article.url || ''} target="_blank">
