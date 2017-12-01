@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popup } from 'semantic-ui-react';
 import axios from 'axios';
-import { editOneContent, deleteOneContent, fetchFollowing, postRemoveFromCollection } from '../store';
+import { editOneContent, deleteOneContent, postRemoveFromCollection } from '../store';
 import { DisplayFriends, SearchFriends } from '../components';
 import { setTimeout } from 'timers';
 
@@ -25,7 +25,6 @@ class GeneralCardIcons extends React.Component {
 
   componentWillMount() {
     const userId = this.props.user.id;
-    this.props.getFollowing(userId);
   }
 
   _handleEditClick(evt, fieldName) {
@@ -189,9 +188,6 @@ const mapDispatch = (dispatch) => {
     deleteContent(evt, contentId) {
       evt.preventDefault();
       dispatch(deleteOneContent(contentId));
-    },
-    getFollowing(id) {
-      dispatch(fetchFollowing(id));
     },
     deleteFromCollection(collection, content) {
       dispatch(postRemoveFromCollection(collection, content))
