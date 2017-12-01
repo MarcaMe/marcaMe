@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Divider } from 'semantic-ui-react';
+import { Card, Divider, Button } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
 import  ProfileSidebar  from './ProfileSidebar';
-import { fetchAllContent, deleteOneContent, fetchHost } from '../store';
+import { fetchAllContent, deleteOneContent, fetchHost, fetchFollowing,
+  fetchFollower } from '../store';
 import { NavLink, withRouter } from 'react-router-dom';
 
 
@@ -22,6 +23,7 @@ export class MyProfile extends Component {
     const hostId = this.props.match.params.id;
     this.props.getTheHost(hostId)
     this.props.fetchAllContentofUser();
+
   }
 
   componentWillReceiveProps(nextProps){
@@ -47,10 +49,13 @@ export class MyProfile extends Component {
   render() {
     const content = this.props.content;
     const host = this.props.host;
+    const following = this.props.following;
+    const follower = this.props.follower
+    const alreadyFollowed = this.props.alreadyFollowed;
     return (
       host && (
         <div id="profile-body">
-          <ProfileSidebar host={host} />
+          <ProfileSidebar host={host} following={following} follower={follower} alreadyFollowed={alreadyFollowed} />
           <Divider />
           {content.length ?
           <Card.Group itemsPerRow={this.state.itemsPerRow}>
@@ -82,7 +87,7 @@ export class MyProfile extends Component {
                   );
                 })}
           </Card.Group>
-          : <h1>Add Content to your Public Profile</h1>}
+          : <h1>Empty</h1>}
         </div>
       )
     );
@@ -92,10 +97,16 @@ export class MyProfile extends Component {
 const mapState = state => ({
   user: state.user,
   content: state.content,
-  host: state.host
+  host: state.host,
 });
 
 const mapDispatch = dispatch => ({
+  getFollowing(id) {
+    dispatch(fetchFollowing(id));
+  },
+  getFollower(id) {
+    dispatch(fetchFollower(id));
+  },  
   fetchAllContentofUser() {
     dispatch(fetchAllContent());
   },

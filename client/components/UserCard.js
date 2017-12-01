@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Image, Button } from 'semantic-ui-react';
-import { removeFollowing } from '../store'
+import { Card, Image,Label, Button } from 'semantic-ui-react';
+import { removeFollowing } from '../store';
 
 export class Following extends Component {
   constructor(props) {
@@ -9,9 +9,9 @@ export class Following extends Component {
     this.handleUnfollow = this.handleUnfollow.bind(this);
   }
 
-  handleUnfollow(evt, userId, followingId){
-      evt.preventDefault();
-    this.props.unfollow(userId, followingId)
+  handleUnfollow(evt, userId, followingId) {
+    evt.preventDefault();
+    this.props.unfollow(userId, followingId);
   }
 
   render() {
@@ -19,41 +19,32 @@ export class Following extends Component {
     const host = this.props.host;
     return (
       <div>
-        <Card.Content style={{ overflow: 'hidden' }}>
-          <Image
-            style={{ width: '100%', display: 'block' }}
-            fluid
-            src={user.profilePicture}
-          />
-          <Card.Header>{user.firstName}</Card.Header>
-          <Card.Content>
-            <span>{user.email}</span>
-            {this.props.type === 'following' ? (
-              <Button
-basic
-              size="small"
-              color="red"
-              onClick={ (evt) => this.handleUnfollow(evt, host.id, user.id)}>
-                Unfollow
-              </Button>
-            ) : null}
-          </Card.Content>
-          <div
-            style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
-          />
-        </Card.Content>
+        <Label id="friends-label">
+          <img id="search-result-img" src={user.profilePicture} />
+          {`   ${user.firstName} ${user.lastName}`} <br/>
+          {`${user.email}`}
+        </Label>
+
+        <Button
+          basic
+          size="small"
+          color="red"
+          onClick={evt => this.handleUnfollow(evt, host.id, user.id)}
+        >
+          Unfollow
+        </Button>
       </div>
     );
   }
 }
 const mapState = state => ({
-    host: state.host
-})
+  host: state.host
+});
 
 const mapDispatch = dispatch => ({
-    unfollow(evt, followingId){
-      dispatch(removeFollowing(evt, followingId))
-    }
-  })
+  unfollow(evt, followingId) {
+    dispatch(removeFollowing(evt, followingId));
+  }
+});
 
 export default connect(mapState, mapDispatch)(Following);
