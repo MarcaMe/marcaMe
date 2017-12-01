@@ -18,7 +18,7 @@ router.post('/chrome', (request, response, next) => {
     }
   };
 
-  axios
+  return axios
     .get(mercuryUrl, config)
     .then(res => {
       const title = res.data.title;
@@ -41,7 +41,6 @@ router.post('/chrome', (request, response, next) => {
     })
     .then(data => response.send(data))
     .catch((err) => {
-      response.json('Error')
       next(err)
     });
 });
