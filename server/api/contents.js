@@ -6,6 +6,7 @@ module.exports = router;
 
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
+const tags = request.body.tags.split(',').map(tag => tag.slice(0, tag.length - 2)) || null
 
 
   const userId = request.user.dataValues.id;
@@ -27,7 +28,6 @@ router.post('/chrome', (request, response, next) => {
       const content = res.data.content;
       const imageUrl = res.data.lead_image_url;
       const url = request.body.url;
-      const tags = request.body.tags ? request.body.tags.split(',') : null;
       return Content.create({
         title,
         author,
