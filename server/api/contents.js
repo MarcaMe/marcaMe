@@ -7,7 +7,6 @@ module.exports = router;
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
 
-
   const userId = request.user.dataValues.id;
   const mercuryUrl =
     'https://mercury.postlight.com/parser?url=' + request.body.url;
@@ -91,7 +90,7 @@ router.get('/', (req, res, next) => {
 router.get('/main', (req, res, next) => {
   Content.findAll({
     where: {userId: req.user.id},
-    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'isNew'],
+    attributes: ['id', 'title', 'description', 'imageUrl', 'userId', 'createdAt', 'isFavorite', 'isPublic', 'isArchived', 'sharedFrom', 'tags', 'isNew'],
     order: [['createdAt', 'DESC']]
   })
     .then(content => res.json(content))

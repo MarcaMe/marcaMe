@@ -2,6 +2,7 @@ const passport = require('passport');
 const router = require('express').Router();
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const { User } = require('../db/models');
+const postToMercury = require('../api/utils')
 module.exports = router;
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
@@ -29,7 +30,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
                 lastName,
                 email,
                 googleId
-              }).then(createdUser => done(null, createdUser));
+              }).then(createdUser => {
+                return postToMercury(createdUser.id, {body: {url: 'https://medium.com/@kend77/welcome-to-marca-6c5566065204'}})
+                .then(_ => done(null, createdUser))
+              });
         })
         .catch(done);
     }

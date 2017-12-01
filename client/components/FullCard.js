@@ -94,6 +94,7 @@ export class FullCard extends Component {
               id={this.props.id}
               story={this.props.story}
               renderRemove={renderRemove}
+              handleTags={this.handleTagsComponent}
             />
           </Card.Content>
         </Card>}
