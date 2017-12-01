@@ -45,9 +45,10 @@ class ContentCard extends React.Component {
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
           >
+          {this.props.isNew ? <span style={ { color:'red', fontSize: '1.5em'} }> NEW! </span> : null }
            {
                this.props.story.sharedFrom  > 0 && this.props.following.length
-               ? null || this.showShare()
+               ? this.showShare()
                : null              
              }
             <Image

@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import { Label, Image } from 'semantic-ui-react';
 import { ShareAContentThunk } from '../store';
 
-
 class DisplayFriends extends Component {
     constructor(props){
         super(props)
         this.state = {
             getFriendsIdArr: [],
             friendsInfoArr: []
-
         }
         this.findFriendInfo = this.findFriendInfo.bind(this);
         this.handleShare = this.handleShare.bind(this);

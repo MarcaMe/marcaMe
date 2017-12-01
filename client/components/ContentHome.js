@@ -13,7 +13,7 @@ export class ContentHome extends Component {
   }
 
   render() {
-    const content = this.props.content;
+    const content = this.props.content.filter(oneContent => oneContent.sharedFrom === 0 );
     const filter = this.props.filter;
     return  (
       <div id="main-page">

@@ -22,9 +22,10 @@ class Notification extends Component {
 
   render() {
     const newContent = this.props.content.filter( article => article.isNew === true && article.sharedFrom > 0 );
+    const sharedContent = this.props.content.filter( article => article.sharedFrom > 0 );
     return (
       <div id="main-page">
-      {newContent.map(oneContent => <FullCard key={oneContent.id} story={oneContent} />)}
+      {sharedContent.map(oneContent => <FullCard key={oneContent.id} story={oneContent} isNew={oneContent.isNew}/>)}
       </div>);
   }
 }

@@ -86,6 +86,7 @@ export class FullCard extends Component {
                   story={this.props.story}
                   id={this.props.id}
                   deleteContent={this.props.deleteSingleContent}
+                  isNew={this.props.isNew}
                 /> :
                 <AllTags tags={this.props.story.tags} />
             }
