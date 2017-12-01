@@ -17,9 +17,23 @@ body {
     align-items: center;
     height: 10%;
   }
+  #friends-list{
+    margin: 4em;
+    margin-left: 7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
   nav a {
     display: flex;
     margin: 0.4em;
+  }
+  #name_follow {
+    display: flex;
+    justify-content: space-between;
+  }
+  #friends-label{
+    margin:1em;
   }
   #change-theme {
     padding-top: 0.5em;

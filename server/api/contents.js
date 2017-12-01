@@ -6,6 +6,7 @@ module.exports = router;
 
 /* *************************************************** */
 router.post('/chrome', (request, response, next) => {
+
 const tags = request.body.tags.split(',').map(tag => tag.slice(0, tag.length - 2)) || null
 
   const userId = request.user.dataValues.id;

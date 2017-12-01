@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
 import { UserCard } from '../components';
+import { fetchFollowing } from '../store';
 
 export class Following extends Component {
   constructor(){
@@ -11,6 +12,9 @@ export class Following extends Component {
         itemsPerRow: '4',
       };
       this._getColor = this._getColor.bind(this);
+  }
+  componentDidMount(){
+    this.props.getFollowing()
   }
   _getColor(index) {
     const colors = [
@@ -29,27 +33,15 @@ export class Following extends Component {
     const following = this.props.following
     if (following.length){
     return (
-        <div>
-        <Card.Group itemsPerRow={this.state.itemsPerRow}>
-        {following.map((user, index) => {
+        <div id="friends-list" >
+        <h2>Following</h2>
+        {following.length && following.map(user => {
               return (
                 <NavLink key={user.id} to={`/profile/${user.id}`}>
-                  <Card
-                    style={{
-                      width: '300px',
-                      height: '350px',
-                      margin: '0.5vw'
-                    }}
-                    color={this._getColor(index)}
-                    className="card"
-                    fluid
-                  >
-                  <UserCard singleUser={user} type={'following'} />
-                  </Card>
+                  <UserCard singleUser={user}/>
                 </NavLink>
               );
             })}
-      </Card.Group>
         </div>
     )}
     else {return <div />}
@@ -60,5 +52,12 @@ const mapState = state => ({
   following: state.following
 })
 
+const mapDispatch = (dispatch, ownProps) => ({
+  getFollowing(){
+    const id = ownProps.match.params.id;
+    dispatch(fetchFollowing(id))
+  }
+})
 
-export default withRouter(connect(mapState)(Following));
+
+export default withRouter(connect(mapState, mapDispatch)(Following));
