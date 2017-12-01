@@ -4,6 +4,7 @@ import { Search, Icon } from 'semantic-ui-react';
 import _ from 'lodash';
 import history from '../history';
 import { ShareAContentThunk } from '../store';
+import { setTimeout } from 'core-js/library/web/timers';
 
 
 class SearchFriends extends Component {
@@ -50,11 +51,11 @@ class SearchFriends extends Component {
 
   handleShare(evt, { result }){
     evt.preventDefault();
+    this.setState({showCheck: true})    
     const friendId = result.id
     const storyId = this.props.storyId;
     const userId = this.props.user.id;
     this.props.shareThunk(storyId, userId, friendId)
-    this.setState({showCheck: true})
 }
 
 

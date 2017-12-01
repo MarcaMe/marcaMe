@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FullCard } from '../components';
+import { FullCard, LeftSideBar } from '../components';
 import { editOneContent } from '../store';
 
 class Notification extends Component {
@@ -22,9 +22,10 @@ class Notification extends Component {
 
   render() {
     const newContent = this.props.content.filter( article => article.isNew === true && article.sharedFrom > 0 );
-    const sharedContent = this.props.content.filter( article => article.sharedFrom > 0 );
+    const sharedContent = this.props.content.filter( article => article.sharedFrom > 0 && article.userId === this.props.user.id );
     return (
       <div id="main-page">
+      <LeftSideBar />
       {sharedContent.map(oneContent => <FullCard key={oneContent.id} story={oneContent} isNew={oneContent.isNew}/>)}
       </div>);
   }
@@ -32,7 +33,8 @@ class Notification extends Component {
 
 const mapState = state => ({
   content: state.content,
-  following: state.following
+  following: state.following,
+  user: state.user
 })
 
 const mapDispatch = dispatch => {
