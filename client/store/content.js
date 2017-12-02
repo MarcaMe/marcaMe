@@ -1,13 +1,11 @@
 import axios from 'axios';
-import history from '../history';
+import socket from '../socket';
 
 const GET_ALL_CONTENT = 'GET_ALL_CONTENT';
 const ADD_CONTENT = 'ADD_CONTENT';
-const ADD_CONTENT2 = 'ADD_CONTENT2';
 const GET_SINGLE_CONTENT = 'GET_SINGLE_CONTENT';
 const DELETE_SINGLE_CONTENT = 'DELETE_SINGLE_CONTENT';
 const EDIT_SINGLE_CONTENT = 'EDIT_SINGLE_CONTENT';
-const SHARE_A_CONTENT = 'SHARE_A_CONTENT';
 const ADD_BLANK_CONTENT = 'ADD_BLANK_CONTENT'
 
 const defaultContent = [];
@@ -73,7 +71,10 @@ export const ShareAContentThunk = (contentId, userId, friendId) => dispatch => {
   return axios
     .post('/api/contents/share', {contentId, userId, friendId})
     .then(res => res.data)
-    .then(sharedContent => dispatch(addContent(sharedContent)))
+    .then(sharedContent => {
+      dispatch(addContent(sharedContent));
+      socket.emit('new-message', sharedContent);
+    })
     .catch(err => console.error(err));
 };
 

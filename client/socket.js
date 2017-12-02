@@ -1,9 +1,15 @@
-import io from 'socket.io-client'
+import io from 'socket.io-client';
+import store, { fetchAllContentForUser } from './store';
+let socket;
+if (global.window) {
+  socket = io(global.window.location.origin);
 
-const socket = io(window.location.origin)
+  socket.on('connect', () => {
+    console.log('Connected!');
+    socket.on('new-message', message =>
+      store.dispatch(fetchAllContentForUser(message))
+    );
+  });
+}
 
-socket.on('connect', () => {
-  console.log('Connected!')
-})
-
-export default socket
+export default socket;
