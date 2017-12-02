@@ -23,10 +23,6 @@ class GeneralCardIcons extends React.Component {
     this.shareArticle = this.shareArticle.bind(this);
   }
 
-  componentWillMount() {
-    const userId = this.props.user.id;
-  }
-
   _handleEditClick(evt, fieldName) {
     evt.preventDefault();
     this.setState({ [fieldName]: !this.state[fieldName] }, () =>
@@ -39,7 +35,7 @@ class GeneralCardIcons extends React.Component {
   }
 
 
-  shareArticle(evt, userId) {
+  shareArticle(evt) {
     evt.preventDefault();
      this.setState({ displaySearchFriends: true })
   }
