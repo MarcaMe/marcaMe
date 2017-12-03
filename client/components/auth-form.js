@@ -27,14 +27,19 @@ const AuthForm = (props) => {
         {error && error.response && <div> {error.response.data} </div>}
       </Form>
       <div id="auth-form">
-        <a href="/auth/google">
+        <a href="/auth/google" className="login-buttons">
           <Button color="google plus">
             <Icon name="google" />{displayName} with Google
           </Button>
         </a>
-        <a href="/auth/facebook">
+        <a href="/auth/facebook" className="login-buttons">
           <Button color="facebook">
             <Icon name="facebook" />{displayName} with Facebook
+          </Button>
+        </a>
+        <a href="https://chrome.google.com/webstore/detail/marca/ibimdbdkbidafjcohlpifkfogdpcagmn?hl=en" className="login-buttons">
+          <Button color="green">
+            <Icon name="chrome" />Download Chrome Extension
           </Button>
         </a>
       </div>

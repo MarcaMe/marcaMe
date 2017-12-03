@@ -248,6 +248,12 @@ body {
   #auth-form {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+
+  .login-buttons {
+    margin-bottom: 10px;
   }
 
   #hamburger {
