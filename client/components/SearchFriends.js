@@ -51,7 +51,7 @@ class SearchFriends extends Component {
 
   handleShare(evt, { result }){
     evt.preventDefault();
-    this.setState({showCheck: true})    
+    this.setState({showCheck: true})
     const friendId = result.id
     const storyId = this.props.storyId;
     const userId = this.props.user.id;
@@ -59,17 +59,16 @@ class SearchFriends extends Component {
 }
 
 
-
   render() {
     const { isLoading, value, results } = this.state;
     const isShareArticle = this.props.isShareArticle;
-    if(isShareArticle){
+    if (isShareArticle){
    return (
       <Search
         className="friends-search"
         placeholder="Search for friends"
         loading={isLoading}
-        onResultSelect={this.handleShare}        
+        onResultSelect={this.handleShare}
         onSearchChange={this.handleSearchChange}
         onClick={evt => evt.preventDefault() }
         results={results}
@@ -78,12 +77,12 @@ class SearchFriends extends Component {
           <div id="search-result">
             {`${user.firstName} ${user.lastName}`}{' '}
             <img id="search-result-img" src={user.profilePicture} />
-            { this.state.showCheck?  <Icon name="check" color="red" /> : null }
+            { this.state.showCheck ?  <Icon name="check" color="red" /> : null }
           </div>
         )}
         />
     )
-  } else{
+  } else {
     return (
     <Search
     className="friends-search"

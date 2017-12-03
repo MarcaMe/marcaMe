@@ -40,7 +40,7 @@ export class Follower extends Component {
               <NavLink key={user.id} to={`/profile/${user.userId}`}>
                 <Label id="friends-label">
                   <img id="search-result-img" src={user.user.profilePicture} />
-                  {`   ${user.user.firstName} ${user.user.lastName}`} <br/>
+                  {`   ${user.user.firstName} ${user.user.lastName}`} <br />
                   {`${user.user.email}`}
                 </Label>
               </NavLink>

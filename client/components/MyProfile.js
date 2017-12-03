@@ -106,7 +106,7 @@ const mapDispatch = dispatch => ({
   },
   getFollower(id) {
     dispatch(fetchFollower(id));
-  },  
+  },
   fetchAllContentofUser() {
     dispatch(fetchAllContent());
   },

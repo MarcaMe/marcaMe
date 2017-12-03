@@ -37,7 +37,7 @@ class GeneralCardIcons extends React.Component {
 
   shareArticle(evt) {
     evt.preventDefault();
-     this.setState({ displaySearchFriends: true })
+     this.setState({ displaySearchFriends: !this.state.displaySearchFriends })
   }
 
   handleTags() {
@@ -70,9 +70,9 @@ class GeneralCardIcons extends React.Component {
         <Popup
           trigger={
             <Icon
-              id="unlock-icon"
+              id="share-icon"
               size="large"
-              name="unlock"
+              name="external"
               onClick={evt => this._handleEditClick(evt, 'isPublic')}
               color={this.state.isPublic ? 'blue' : ''}
             />
@@ -161,7 +161,7 @@ class GeneralCardIcons extends React.Component {
        />
        : null}
         {this.state.displaySearchFriends ? (
-          <SearchFriends allUsers={this.props.users} isShareArticle={true} storyId={this.props.story.id} friend = {this.props.host} />
+          <SearchFriends allUsers={this.props.users} isShareArticle={true} storyId={this.props.story.id} friend={this.props.host} />
         ) : null}
       </div>
     );
