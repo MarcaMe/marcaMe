@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popup } from 'semantic-ui-react';
-import axios from 'axios';
 import { editOneContent, deleteOneContent, postRemoveFromCollection } from '../store';
-import { DisplayFriends, SearchFriends } from '../components';
-import { setTimeout } from 'timers';
+import { SearchFriends } from '../components';
 
 class GeneralCardIcons extends React.Component {
   constructor(props) {
