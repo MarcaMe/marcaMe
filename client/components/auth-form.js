@@ -37,6 +37,11 @@ const AuthForm = (props) => {
             <Icon name="facebook" />{displayName} with Facebook
           </Button>
         </a>
+        <a href="https://chrome.google.com/webstore/detail/marca/ibimdbdkbidafjcohlpifkfogdpcagmn?hl=en">
+          <Button color="green">
+            <Icon name="chrome" />Download Chrome Extension
+          </Button>
+        </a>
       </div>
     </div>
   )
