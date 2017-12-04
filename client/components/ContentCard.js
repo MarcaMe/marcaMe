@@ -21,20 +21,21 @@ class ContentCard extends React.Component {
     };
     this.showShare = this.showShare.bind(this);
   }
-
-  showShare()  {
+  showShare(sharedFromId)  {
+    const fromWho = this.props.users.length && this.props.users.find(user => +user.id === +sharedFromId);
+    const name = `${fromWho.firstName} ${fromWho.lastName}`
     return ( <Popup
       trigger={
         <Icon
-          className="content-card-share" 
+          className="content-card-share"
           size="large"
-          name="reply"          
+          name="reply"
           color="yellow"
         />
       }
       size="mini"
       on="hover"
-      content={`Shared from friends`}
+      content={`Shared from ${name}`}
     /> )
   }
 
@@ -45,17 +46,17 @@ class ContentCard extends React.Component {
           <div
             style={{ margin: '10px auto', overflow: 'hidden', height: '150px' }}
           >
-          {this.props.isNew ? <span style={ { color:'red', fontSize: '1.5em'} }> NEW! </span> : null }
+          {this.props.isNew ? <span style={ { color: 'red', fontSize: '1.5em'} }> NEW! </span> : null }
            {
-               this.props.story.sharedFrom  > 0 && this.props.following.length
-               ? this.showShare()
-               : null              
+               this.props.story.sharedFrom  > 0
+               ? this.showShare(this.props.story.sharedFrom)
+               : null
              }
             <Image
             style={{ width: '100%', display: 'block' }}
               fluid
               src={this.props.story.imageUrl}
-            />            
+            />
           </div>
           <Card.Meta>
             <span className="date">{this.props.story.date}</span>
@@ -86,5 +87,4 @@ export default connect(mapState, mapDispatch)(ContentCard);
 ContentCard.propTypes = {
   editContent: PropTypes.func.isRequired
 }
-
 

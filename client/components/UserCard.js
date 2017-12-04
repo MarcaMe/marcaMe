@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Image,Label, Button } from 'semantic-ui-react';
+import { Card, Image, Label, Button } from 'semantic-ui-react';
 import { removeFollowing } from '../store';
 
 export class Following extends Component {
@@ -21,7 +21,7 @@ export class Following extends Component {
       <div>
         <Label id="friends-label">
           <img id="search-result-img" src={user.profilePicture} />
-          {`   ${user.firstName} ${user.lastName}`} <br/>
+          {`   ${user.firstName} ${user.lastName}`} <br />
           {`${user.email}`}
         </Label>
 

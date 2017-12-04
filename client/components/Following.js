@@ -38,7 +38,7 @@ export class Following extends Component {
         {following.length && following.map(user => {
               return (
                 <NavLink key={user.id} to={`/profile/${user.id}`}>
-                  <UserCard singleUser={user}/>
+                  <UserCard singleUser={user} />
                 </NavLink>
               );
             })}
