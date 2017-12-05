@@ -57,7 +57,7 @@ window.addEventListener('load', function () {
         tags: Array.from(allTags).map(tag => tag.innerText).join(',')
       };
 
-      $.ajax('http://localhost:8080/api/contents/chrome', {
+      $.ajax('http://localhost:8080/api/contents/', {
         type: 'POST',
         data
       })

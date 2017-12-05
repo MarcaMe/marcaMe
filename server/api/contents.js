@@ -1,57 +1,17 @@
 const router = require('express').Router();
 const { Content } = require('../db/models');
-require('../../secrets');
-const axios = require('axios');
+const postToMercury = require('./utils')
 module.exports = router;
 
-/* *************************************************** */
-router.post('/chrome', (request, response, next) => {
-
-const tags = request.body.tags.split(',').map(tag => tag.slice(0, tag.length - 2)) || null
-
-  const userId = request.user.dataValues.id;
-  const mercuryUrl =
-    'https://mercury.postlight.com/parser?url=' + request.body.url;
-  const config = {
-    headers: {
-      'content-type': 'application/json',
-      'x-api-key': process.env.MERCURY_API_KEY
-    }
-  };
-
-  return axios
-    .get(mercuryUrl, config)
-    .then(res => {
-      const title = res.data.title;
-      const author = res.data.author;
-      const description = res.data.excerpt;
-      const content = res.data.content;
-      const imageUrl = res.data.lead_image_url;
-      const url = request.body.url;
-      return Content.create({
-        title,
-        author,
-        description,
-        content,
-        imageUrl,
-        userId,
-        url,
-        tags
-      })
-    })
-    .then(data => response.send(data))
-    .catch((err) => {
-      next(err)
+router.post('/', (req, res, next) => {
+  const userId = req.user.dataValues.id;
+  return postToMercury(userId, req)
+    .then(data => res.send(data))
+    .catch(err => {
+      next(err);
     });
 });
-/* *************************************************** */
 
-router.post('/', (req, res, next) => {
-  req.body.tags = req.body.tags.split(',')
-  Content.create(req.body)
-    .then(content => res.json(content))
-    .catch(next);
-});
 
 router.delete('/:id', (req, res, next) => {
   req.content
