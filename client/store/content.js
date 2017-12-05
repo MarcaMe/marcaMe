@@ -39,7 +39,7 @@ export const fetchAllContentForUser = () => dispatch => {
 
 export const postContentThunk = contentBody => dispatch => {
   return axios
-    .post(`/api/contents`, contentBody)
+    .post(`/api/contents/`, contentBody)
     .then(res => res.data)
     .then(content => dispatch(addContent(content)))
     .catch(err => console.error(err));
