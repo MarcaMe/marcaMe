@@ -64,6 +64,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(mapStateToProps, mapDispatchToProps)(OneArticle);
 
 OneArticle.propTypes = {
-  article: PropTypes.object.isRequired,
+  article: PropTypes.array.isRequired,
   getSingleContent: PropTypes.func.isRequired
 }
