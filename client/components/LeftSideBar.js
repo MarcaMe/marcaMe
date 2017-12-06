@@ -6,7 +6,7 @@ import { fetchCollections, postCollection, changeFilter } from '../store'
 import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types'
 
-class LeftSideBar extends Component {
+export class LeftSideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
