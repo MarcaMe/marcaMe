@@ -58,7 +58,7 @@ export class FullCard extends Component {
           alignItems: 'center',
           width: '300px',
           height: '350px',
-          margin: '0.5vw',
+          margin: '0.5em',
           opacity: isDragging ? '.2' : '1'
         }}
         color={this._getColor(this.props.index % 7)}
@@ -73,7 +73,7 @@ export class FullCard extends Component {
           style={{
             width: '300px',
             height: '350px',
-            margin: '0.5vw',
+            margin: '0.5em',
             opacity: isDragging ? '.2' : '1'
           }}
           color={this._getColor(this.props.index % 7)}

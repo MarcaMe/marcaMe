@@ -22,8 +22,9 @@ class ContentCard extends Component {
     this.showShare = this.showShare.bind(this);
   }
   showShare(sharedFromId)  {
-    const fromWho = this.props.users.length && this.props.users.find(user => +user.id === +sharedFromId);
-    const name = `${fromWho.firstName} ${fromWho.lastName}`
+
+    const fromWho = this.props.users && this.props.users.find(user => +user.id === +sharedFromId);
+    const name = fromWho && `${fromWho.firstName} ${fromWho.lastName}`
     return ( <Popup
       trigger={
         <Icon
