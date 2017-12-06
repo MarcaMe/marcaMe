@@ -47,7 +47,7 @@ describe('Single Collection reducer', () => {
   const initialState = {}
   const collection = {id: 1, name: 'An amazing collection', contents: [{id: 1, title: 'Some Article' }]}
   const action = {type: 'GET_COLLECTION_CONTENT', collection}
-  it('should return the initial state when ', () => {
+  it('should return the initial state when an empty action is passed ', () => {
     expect(singlecollection(initialState, {})).to.equal(initialState)
   })
   it('should return a new object with a passed in collection\'s props', () => {
