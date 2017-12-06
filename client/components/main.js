@@ -13,7 +13,7 @@ import {
   Divider,
   Dropdown
 } from 'semantic-ui-react';
-import { logout, fetchAllContent, changeFilter, fetchAllUsers } from '../store';
+import { logout, fetchAllContentForUser, changeFilter, fetchAllUsers } from '../store';
 import history from '../history';
 import { ChangeTheme } from '../components';
 
@@ -143,7 +143,7 @@ const mapDispatch = dispatch => {
       dispatch(logout());
     },
     fetchAllContentofUser() {
-      dispatch(fetchAllContent());
+      dispatch(fetchAllContentForUser());
     },
     removeFilter() {
       dispatch(changeFilter(''));
