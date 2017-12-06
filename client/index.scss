@@ -24,6 +24,28 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
   }
+  .edit-user-info{
+    display: flex;
+    justify-content: space-between;
+    width: 14em;  
+    margin-bottom: 1em;
+  }
+  #pic-upload-button{
+    margin-bottom: 2em;
+  }
+  #edit-user-img{
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+  }
+  #edit-user-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+  }
+  .edit-user-content {
+    margin: 0;
+  }
   nav a {
     display: flex;
     margin: 0.4em;
