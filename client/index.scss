@@ -27,7 +27,11 @@ body {
   .edit-user-info{
     display: flex;
     justify-content: space-between;
-    width: 12em;  
+    width: 14em;  
+    margin-bottom: 1em;
+  }
+  #pic-upload-button{
+    margin-bottom: 2em;
   }
   #edit-user-img{
     width: 6em;

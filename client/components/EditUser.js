@@ -4,14 +4,14 @@ import { editUser } from '../store';
 import { Form, Input, Button } from 'semantic-ui-react';
 import history from '../history';
 import filestack from 'filestack-js';
-import '../../secrets'; 
+import '../../secrets';
 
 export class EditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
+      firstName: props.user.firstName,
+      lastName: props.user.lastName,
       fnError: false,
       lnError: false,
       success: false,
@@ -36,15 +36,16 @@ export class EditUser extends Component {
     if (!this.state.firstName) this.setState({ fnError: true });
     if (!this.state.lastName) this.setState({ lnError: true });
   }
-  _showForm(){
+  _showForm() {
     const FSclient = filestack.init(process.env.FILESTACK_API_KEY);
-    FSclient.pick({})
-    .then(data => {
-      console.log(data)
-      this.setState({profilePicture: data.filesUploaded[0].url})
-      console.log(this.state)
+    FSclient.pick({
+      maxFiles: 1,
+      transformations: { crop: { force: true }, circle: true }
     })
-    .catch(error => console.error(error))
+      .then(data => {
+        this.setState({ profilePicture: data.filesUploaded[0].url });
+      })
+      .catch(error => console.error(error));
   }
   render() {
     const { firstName, lastName, fnError, lnError, success } = this.state;
@@ -55,13 +56,11 @@ export class EditUser extends Component {
         <div className="edit-user-info">
           <img id="edit-user-img" src={this.state.profilePicture} />
           <div id="edit-user-text">
-            <h5 className="edit-user-content">{`${user.firstName} ${user.lastName}`}</h5>
+            <h5 className="edit-user-content">{user.firstName && `${user.firstName} ${user.lastName}`}</h5>
             <h5 className="edit-user-content">{user.email}</h5>
           </div>
         </div>
-        <Button onClick={() => this._showForm()}>
-          Upload Picture
-        </Button>
+        <Button id="pic-upload-button" onClick={() => this._showForm()}>Upload Picture</Button>
         <Form onSubmit={evt => this._handleSubmit(evt, user.id)}>
           <Form.Group id="edit-user" widths="equal">
             <Form.Field required>
