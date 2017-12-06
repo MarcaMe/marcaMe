@@ -12,7 +12,7 @@ const truncateDescription = story => {
   else return story.description;
 };
 
-export class ContentCard extends Component {
+class ContentCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
