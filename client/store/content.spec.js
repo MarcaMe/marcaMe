@@ -57,4 +57,23 @@ describe('Content Reducer', () => {
     expect(content(initialState, action)[0]).to.be.an('object')
     expect(Object.keys(content(initialState, action)[0]).length).to.equal(0)
   })
+  it('should add content when type is ADD_CONTENT but only after adding ADD_BLANK_CONTENT', () => {
+    const action = { type: 'ADD_CONTENT', content: { id: 3, title: 'Adding Content' }}
+    const blankContentAdded = content(initialState, { type: 'ADD_BLANK_CONTENT'})
+    expect(content(initialState, action).length).to.equal(0)
+    expect(content(blankContentAdded, action).length).to.equal(1)
+    expect(content(blankContentAdded, action)[0].id).to.equal(3)
+    expect(content(blankContentAdded, action)[0].title).to.equal('Adding Content')
+  })
+  it('should delete content when type is DELETE_SINGLE_CONTENT', () => {
+    const currentState = [ {id: 5, title: 'Deleting Content'}]
+    const action = { type: 'DELETE_SINGLE_CONTENT', contentId: 5}
+    expect(content(currentState, action).length).to.equal(0)
+  })
+  it('should edit content', () => {
+    const currentState = [ {id: 5, title: 'EDIT THIS CONTENT'} ]
+    const action = { type: 'EDIT_SINGLE_CONTENT', content: {id: 5, title: 'Edited Content'}}
+    expect(content(currentState, action)[0].id).to.equal(currentState[0].id)
+    expect(content(currentState, action)[0].title).to.equal(action.content.title)
+  })
 })
