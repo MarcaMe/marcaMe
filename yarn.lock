@@ -2471,6 +2471,10 @@ filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
 
+filestack-js@^0.9.12:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/filestack-js/-/filestack-js-0.9.12.tgz#d265de0ff43351003505d4d9c2ce6108f6ca8702"
+
 fill-range@^2.1.0:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-2.2.3.tgz#50b77dfd7e469bc7492470963699fe7a8485a723"

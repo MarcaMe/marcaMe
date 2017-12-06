@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editUser } from '../store';
-import { Form, Input } from 'semantic-ui-react';
+import { Form, Input, Button } from 'semantic-ui-react';
 import history from '../history';
+import filestack from 'filestack-js';
+import '../../secrets'; 
+
 export class EditUser extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       firstName: '',
       lastName: '',
       fnError: false,
       lnError: false,
-      success: false
+      success: false,
+      profilePicture: props.user.profilePicture
     };
   }
   _handleChange(field, value) {
@@ -20,23 +24,45 @@ export class EditUser extends Component {
   _handleSubmit(evt, userId) {
     evt.preventDefault();
     if (this.state.firstName && this.state.lastName) {
-      this.props.editUserInfo(userId, this.state.firstName, this.state.lastName)
-      this.setState({fnError: false, lnError: false, success: true});
-      history.push('/home')
+      this.props.editUserInfo(
+        userId,
+        this.state.firstName,
+        this.state.lastName,
+        this.state.profilePicture
+      );
+      this.setState({ fnError: false, lnError: false, success: true });
+      history.push('/home');
     }
     if (!this.state.firstName) this.setState({ fnError: true });
     if (!this.state.lastName) this.setState({ lnError: true });
   }
-
+  _showForm(){
+    const FSclient = filestack.init(process.env.FILESTACK_API_KEY);
+    FSclient.pick({})
+    .then(data => {
+      console.log(data)
+      this.setState({profilePicture: data.filesUploaded[0].url})
+      console.log(this.state)
+    })
+    .catch(error => console.error(error))
+  }
   render() {
     const { firstName, lastName, fnError, lnError, success } = this.state;
     const user = this.props.user;
     return (
       <div id="login-container">
         <h2>Edit your information</h2>
-        <Form
-          onSubmit={evt => this._handleSubmit(evt, user.id)}
-        >
+        <div className="edit-user-info">
+          <img id="edit-user-img" src={this.state.profilePicture} />
+          <div id="edit-user-text">
+            <h5 className="edit-user-content">{`${user.firstName} ${user.lastName}`}</h5>
+            <h5 className="edit-user-content">{user.email}</h5>
+          </div>
+        </div>
+        <Button onClick={() => this._showForm()}>
+          Upload Picture
+        </Button>
+        <Form onSubmit={evt => this._handleSubmit(evt, user.id)}>
           <Form.Group id="edit-user" widths="equal">
             <Form.Field required>
               <label>First Name</label>
@@ -47,7 +73,9 @@ export class EditUser extends Component {
                   this._handleChange('firstName', evt.target.value)}
               />
             </Form.Field>
-            {fnError && <p style={{color: 'red'}}>* First name cannot be empty</p>}
+            {fnError && (
+              <p style={{ color: 'red' }}>* First name cannot be empty</p>
+            )}
             <Form.Field required>
               <label>Last Name</label>
               <Input
@@ -57,7 +85,9 @@ export class EditUser extends Component {
                   this._handleChange('lastName', evt.target.value)}
               />
             </Form.Field>
-            {lnError && <p style={{color: 'red'}}>* Last name cannot be empty</p>}
+            {lnError && (
+              <p style={{ color: 'red' }}>* Last name cannot be empty</p>
+            )}
           </Form.Group>
           <Form.Button>{success ? 'Saved!' : 'Submit'}</Form.Button>
         </Form>
@@ -70,11 +100,12 @@ const mapState = state => ({
   user: state.user
 });
 const mapDispatch = dispatch => ({
-  editUserInfo(id, firstName, lastName) {
+  editUserInfo(id, firstName, lastName, profilePicture) {
     const editBody = {
       id,
       firstName,
-      lastName
+      lastName,
+      profilePicture
     };
     dispatch(editUser(editBody));
   }
