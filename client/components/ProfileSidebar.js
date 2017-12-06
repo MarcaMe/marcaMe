@@ -27,7 +27,6 @@ export class ProfileSidebar extends Component {
   render() {
     const loggedInUser = this.props.user;
     const user = this.props.host;
-    console.log(this.state);
     if (this.props.follower) {
       return (
         <div id="profile-sidebar">
