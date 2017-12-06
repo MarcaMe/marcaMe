@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
 import { editOneContent } from '../store/content';
@@ -12,7 +12,7 @@ const truncateDescription = story => {
   else return story.description;
 };
 
-export class ContentCard extends React.Component {
+export class ContentCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
