@@ -58,7 +58,7 @@ export default function(state = defaultCollections, action) {
     case GET_COLLECTIONS:
       return action.collections;
     case GET_UPDATED_COLLECTION:
-      return state.map(collection => (collection.id === action.collection.id ? action.collection.id : collection));
+      return state.map(collection => (collection.id === action.collection.id ? action.collection : collection));
      case REMOVE_COLLECTION:
       return state.filter(collection => collection.id !== action.collection.id);
     default:
