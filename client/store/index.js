@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk';
+ import createLogger from 'redux-logger'
 import promiseMiddleware from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
@@ -28,8 +29,8 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(
   applyMiddleware(
     thunkMiddleware,
-    promiseMiddleware()
-    // createLogger({ collapsed: true })
+    promiseMiddleware(),
+    createLogger({ collapsed: true })
   )
 );
 const store = createStore(reducer, middleware);
