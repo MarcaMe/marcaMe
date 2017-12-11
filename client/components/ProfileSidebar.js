@@ -9,7 +9,6 @@ import {
   removeFollowing
 } from '../store';
 import { withRouter, NavLink } from 'react-router-dom';
-import { setTimeout } from 'timers';
 
 export class ProfileSidebar extends Component {
   constructor() {

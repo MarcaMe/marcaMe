@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 const GET_HOST = 'GET_HOST'
 const UPDATE_HOST_NAME = 'UPDATE_HOST_NAME'

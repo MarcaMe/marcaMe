@@ -22,8 +22,8 @@ export const removeFollowing = (userId, followingId) => dispatch => {
     url: `/api/relationship/following/${userId}`,
     data: { followingId }
   })
-    .then(followingId => {
-      dispatch(deleteFollowing(followingId));
+    .then(foundFollowingId => {
+      dispatch(deleteFollowing(foundFollowingId));
     })
     .catch(err => console.error(err));
 };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Image, Label, Button } from 'semantic-ui-react';
+import { Label, Button } from 'semantic-ui-react';
 import { removeFollowing } from '../store';
 
 export class Following extends Component {
