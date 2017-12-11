@@ -66,6 +66,9 @@ router.post('/share', (req, res, next) => {
     let newStory = Object.assign(story).dataValues;
     newStory.userId = friendId;
     newStory.sharedFrom = userId;
+    newStory.tags = [];
+    newStory.isNew = true;
+    newStory.createdAt = Date();
     delete newStory.id;
      Content.create(newStory)
      .then(data => res.json(data))
