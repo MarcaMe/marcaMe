@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Icon } from 'semantic-ui-react';
+import { Search } from 'semantic-ui-react';
 import _ from 'lodash';
 import history from '../history';
-import { ShareAContentThunk } from '../store';
+import { ShareAContentThunk, addBlankContent } from '../store';
 import { setTimeout } from 'core-js/library/web/timers';
 
 
@@ -14,7 +14,6 @@ class SearchFriends extends Component {
       isLoading: false,
       results: [],
       value: '',
-      showCheck: false
     };
     this.handleShare = this.handleShare.bind(this);
   }
@@ -77,7 +76,6 @@ class SearchFriends extends Component {
           <div id="search-result">
             {`${user.firstName} ${user.lastName}`}{' '}
             <img id="search-result-img" src={user.profilePicture} />
-            { this.state.showCheck ?  <Icon name="check" color="red" /> : null }
           </div>
         )}
         />
@@ -113,7 +111,10 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
   shareThunk(storyId, userId, friendId){
-      dispatch(ShareAContentThunk(storyId, userId, friendId))
+      dispatch(addBlankContent({}));
+      setTimeout(() => 
+        dispatch(ShareAContentThunk(storyId, userId, friendId))
+    , 1000)
   }
 }
 }

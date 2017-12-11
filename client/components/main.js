@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,11 +10,18 @@ import {
   Button,
   Icon,
   Divider,
-  Dropdown
+  Dropdown,
+  Progress
 } from 'semantic-ui-react';
-import { logout, fetchAllContentForUser, changeFilter, fetchAllUsers } from '../store';
+import {
+  logout,
+  fetchAllContentForUser,
+  changeFilter,
+  fetchAllUsers
+} from '../store';
 import history from '../history';
 import { ChangeTheme } from '../components';
+import { setTimeout } from 'core-js/library/web/timers';
 
 class Main extends Component {
   constructor(props) {
@@ -31,10 +37,15 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchAllContentofUser();
-    this.props.getAllUsers()
+    this.props.getAllUsers();
   }
 
   render() {
+    console.log(this.props.content[0])
+    this.props.content.length && (
+    console.log("HELLO", Object.keys(this.props.content[0]).length)
+      )
+
     const {
       children,
       handleClick,
@@ -44,8 +55,12 @@ class Main extends Component {
       users,
       removeFilter
     } = this.props;
+          
     return (
-      <div>
+      <div>  
+        {this.props.content.length && !Object.keys(this.props.content[0]).length ? (
+          <Progress size='tiny' percent={100} active>Sending message</Progress>
+        ) : null}   
         <nav>
           <Link to="/home">
             <div className="homeLogo" onClick={() => removeFilter()}>
@@ -80,10 +95,20 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => {history.push('/user/edit')}}><Icon name="user" />Edit Account</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push('/user/edit');
+                    }}
+                  >
+                    <Icon name="user" />Edit Account
+                  </Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
-                      trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}
+                      trigger={
+                        <Dropdown.Item>
+                          <Icon name="setting" /> Edit Settings
+                        </Dropdown.Item>
+                      }
                     >
                       <Header
                         icon="settings"
@@ -95,7 +120,7 @@ class Main extends Component {
                     </Modal>
                   </Dropdown.Item>
                   <Dropdown.Item onClick={handleClick}>
-                  <Icon name="log out" />
+                    <Icon name="log out" />
                     Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -129,7 +154,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     theme: state.theme,
     filter: state.filter,
-    users: state.searchFriends
+    users: state.searchFriends,
+    content: state.content
   };
 };
 
