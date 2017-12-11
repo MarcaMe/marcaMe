@@ -40,13 +40,13 @@ describe('Collection thunk creators', () => {
 
   describe('postCollection', () => {
     it('eventually dispatches the GET_COLLECTION action', () => {
-      const collection = {name: 'An Amazing Collection'}
-      mockAxios.onPost('/api/collections').replyOnce(204, collection)
+      const newCollection = {name: 'An Amazing Collection'}
+      mockAxios.onPost('/api/collections').replyOnce(204, newCollection)
       return store.dispatch(postCollection())
         .then(() => {
           const actions = store.getActions()
           expect(actions[0].type).to.be.equal('GET_COLLECTION')
-          expect(actions[0].collection).to.be.deep.equal(collection)
+          expect(actions[0].collection).to.be.deep.equal(newCollection)
         })
     })
   })

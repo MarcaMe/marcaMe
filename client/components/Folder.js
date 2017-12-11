@@ -14,9 +14,9 @@ const folderTarget = {
   }
 };
 
-function collect(connect, monitor) {
+function collect(toConnect, monitor) {
   return {
-    connectDropTarget: connect.dropTarget(),
+    connectDropTarget: toConnect.dropTarget(),
     isOver: monitor.isOver()
   };
 }

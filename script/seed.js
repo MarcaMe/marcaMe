@@ -53,7 +53,7 @@ async function seed () {
 
   ])
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${users.length} users and ${relationships.length} relationships created`)
   console.log(`seeded successfully`)
 }
 

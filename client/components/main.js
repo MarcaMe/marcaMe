@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { AddPopup, SearchFriends, NotificationIcon } from './index';
 import {
   Header,
@@ -32,10 +32,6 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchAllContentofUser();
     this.props.getAllUsers()
-  }
-
-  handleEdit() {
-    history.push('/user/edit');
   }
 
   render() {
@@ -84,7 +80,7 @@ class Main extends Component {
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={this.handleEdit}><Icon name="user" />Edit Account</Dropdown.Item>
+                  <Dropdown.Item onClick={() => {history.push('/user/edit')}}><Icon name="user" />Edit Account</Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
                       trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}

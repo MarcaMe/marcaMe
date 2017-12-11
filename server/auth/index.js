@@ -51,7 +51,7 @@ router.put('/me', (req, res, next) => {
     user.firstName = newName;
     user.save({fields: ['firstName']})
     .then(() => User.findById(id))
-    .then(user => res.json(user))
+    .then(foundUser => res.json(foundUser))
   })
 }
 )

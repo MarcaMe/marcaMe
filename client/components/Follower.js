@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Card, Label } from 'semantic-ui-react';
-import { UserCard } from '../components';
+import { Label } from 'semantic-ui-react';
 import { fetchFollower } from '../store';
 
 export class Follower extends Component {
@@ -35,7 +34,7 @@ export class Follower extends Component {
       follower && (
         <div id="friends-list">
           <h2>Followers</h2>
-          {follower.map((user, index) => {
+          {follower.map(user => {
             return (
               <NavLink key={user.id} to={`/profile/${user.userId}`}>
                 <Label id="friends-label">

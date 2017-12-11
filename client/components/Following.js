@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Card } from 'semantic-ui-react';
 import { UserCard } from '../components';
 import { fetchFollowing } from '../store';
 
