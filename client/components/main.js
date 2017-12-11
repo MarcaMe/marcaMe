@@ -55,12 +55,9 @@ class Main extends Component {
       users,
       removeFilter
     } = this.props;
-          
+
     return (
-      <div>  
-        {this.props.content.length && !Object.keys(this.props.content[0]).length ? (
-          <Progress size='tiny' percent={100} active>Sending message</Progress>
-        ) : null}   
+      <div>
         <nav>
           <Link to="/home">
             <div className="homeLogo" onClick={() => removeFilter()}>

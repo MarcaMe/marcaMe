@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search } from 'semantic-ui-react';
+import { Search, Progress, Dimmer } from 'semantic-ui-react';
 import _ from 'lodash';
 import history from '../history';
 import { ShareAContentThunk, addBlankContent } from '../store';
@@ -63,6 +63,11 @@ class SearchFriends extends Component {
     const isShareArticle = this.props.isShareArticle;
     if (isShareArticle){
    return (
+    <div>
+      {this.props.content.length && !Object.keys(this.props.content[0]).length ? (
+        <Dimmer active>
+          <Progress size='tiny' percent={100} inverted color='red' active>Sending message</Progress>
+        </Dimmer>) : null} 
       <Search
         className="friends-search"
         placeholder="Search for friends"
@@ -79,6 +84,7 @@ class SearchFriends extends Component {
           </div>
         )}
         />
+        </div>
     )
   } else {
     return (
@@ -105,7 +111,8 @@ class SearchFriends extends Component {
 
 const mapState = state => ({
   searchFriends: state.searchFriends,
-  user: state.user
+  user: state.user,
+  content: state.content
 });
 
 const mapDispatch = dispatch => {
