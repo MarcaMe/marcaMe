@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card,  Image, Icon, Popup } from 'semantic-ui-react';
 import { editOneContent } from '../store/content';

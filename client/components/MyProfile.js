@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, Divider, Button } from 'semantic-ui-react';
+import { Card, Divider } from 'semantic-ui-react';
 import ContentCard from './ContentCard';
 import  ProfileSidebar  from './ProfileSidebar';
-import { fetchAllContent, deleteOneContent, fetchHost, fetchFollowing,
+import { fetchAllContentForUser, deleteOneContent, fetchHost, fetchFollowing,
   fetchFollower } from '../store';
 import { NavLink, withRouter } from 'react-router-dom';
 
@@ -108,7 +108,7 @@ const mapDispatch = dispatch => ({
     dispatch(fetchFollower(id));
   },
   fetchAllContentofUser() {
-    dispatch(fetchAllContent());
+    dispatch(fetchAllContentForUser());
   },
   deleteSingleContent(evt, contentId) {
     evt.preventDefault();
