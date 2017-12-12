@@ -105,9 +105,11 @@ class SearchFriends extends Component {
     results={results}
     value={value}
     resultRenderer={user => (
-      <div id="search-result">
-        {`${user.firstName} ${user.lastName}`}{' '}
+      <div key={user.id} id="search-result">
         <img id="search-result-img" src={user.profilePicture} />
+        <div id="search-result-name">
+        {`${user.firstName} ${user.lastName}`}{' '}
+        </div>
       </div>
     )}
     />
