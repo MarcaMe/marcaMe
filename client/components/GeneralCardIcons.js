@@ -69,10 +69,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Add tags"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Add tags</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -84,10 +86,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Share to your profile"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Share to your profile</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -99,10 +103,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Archive"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Archive</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -114,10 +120,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Favorite"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Favorite</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -133,7 +141,7 @@ class GeneralCardIcons extends React.Component {
           position="bottom left"
           style={style}
         >
-        <Popup.Header>Send to your friends!</Popup.Header>
+          <Popup.Header>Send to your friends!</Popup.Header>
        {this.state.displaySearchFriends ?
         <div>
           <br />
@@ -155,10 +163,11 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Delete"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        ><Popup.Header>Delete</Popup.Header>
+        </Popup>
         {renderRemove ? (
           <Popup
             trigger={
@@ -173,10 +182,11 @@ class GeneralCardIcons extends React.Component {
               />
             }
             size="mini"
-            on="hover"
-            content="Remove from collection"
+            hoverable={true}
             position="bottom left"
-          />
+            style={style}
+          ><Popup.Header>Remove from collection</Popup.Header>
+        </Popup>
         ) : null}
       </div>
     );
