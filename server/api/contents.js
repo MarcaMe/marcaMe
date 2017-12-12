@@ -69,6 +69,9 @@ router.post('/share', (req, res, next) => {
     newStory.tags = [];
     newStory.isNew = true;
     newStory.createdAt = Date();
+    newStory.isFavorite = false;
+    newStory.isPublic = false;
+    newStory.isArchived = false;
     delete newStory.id;
      Content.create(newStory)
      .then(data => res.json(data))

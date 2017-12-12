@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popup } from 'semantic-ui-react';
-import { editOneContent, deleteOneContent, postRemoveFromCollection } from '../store';
+import {
+  editOneContent,
+  deleteOneContent,
+  postRemoveFromCollection
+} from '../store';
 import { SearchFriends } from '../components';
 
 class GeneralCardIcons extends React.Component {
@@ -14,11 +18,12 @@ class GeneralCardIcons extends React.Component {
       isTagsOpen: false,
       displayFriends: false,
       friendsArr: [],
-      displaySearchFriends: false
-        };
+      displaySearchFriends: false,
+      percent: 0
+    };
     this._handleEditClick = this._handleEditClick.bind(this);
-    this.handleTags = this.handleTags.bind(this);
-    this.shareArticle = this.shareArticle.bind(this);
+    this._handleTags = this._handleTags.bind(this);
+    this._shareArticle = this._shareArticle.bind(this);
   }
 
   _handleEditClick(evt, fieldName) {
@@ -32,18 +37,21 @@ class GeneralCardIcons extends React.Component {
     );
   }
 
-
-  shareArticle(evt) {
+  _shareArticle(evt) {
     evt.preventDefault();
-     this.setState({ displaySearchFriends: !this.state.displaySearchFriends })
+    this.setState({ displaySearchFriends: !this.state.displaySearchFriends });
   }
 
-  handleTags() {
-    this.setState({ isTagsOpen: !this.state.isTagsOpen })
+  _handleTags() {
+    this.setState({ isTagsOpen: !this.state.isTagsOpen });
   }
 
   render() {
-    const { renderRemove, deleteFromCollection, singlecollection } = this.props
+    const { renderRemove, deleteFromCollection, singlecollection } = this.props;
+    const style = {
+      borderRadius: 25,
+      padding: '1em',
+    }
     return (
       <div>
         <Popup
@@ -52,19 +60,21 @@ class GeneralCardIcons extends React.Component {
               id="tags-icon"
               size="large"
               name="tags"
-              onClick={(evt) => {
+              onClick={evt => {
                 evt.preventDefault();
                 this.props.handleTags();
-                this.handleTags();
+                this._handleTags();
               }}
               color={this.state.isTagsOpen && 'blue'}
             />
           }
           size="mini"
-          on="hover"
-          content="Add tags"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Add tags</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -76,10 +86,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Share to your profile"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Share to your profile</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -91,10 +103,12 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Archive"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Archive</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -106,24 +120,38 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Favorite"
+          hoverable={true}
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Favorite</Popup.Header>
+        </Popup>
         <Popup
           trigger={
             <Icon
               id="send-icon"
               size="large"
               name="send"
-              onClick={evt => this.shareArticle(evt, this.props.id)}
+              onClick={evt => this._shareArticle(evt, this.props.id)}
             />
           }
           size="mini"
-          on="hover"
-          content="Share to your friends!"
+          hoverable={true}
+          hideOnScroll
           position="bottom left"
-        />
+          style={style}
+        >
+          <Popup.Header>Send to your friends!</Popup.Header>
+       {this.state.displaySearchFriends ?
+        <div>
+          <br />
+          <SearchFriends
+            allUsers={this.props.users}
+            isShareArticle={true}
+            storyId={this.props.story.id}
+            friend={this.props.host} />
+        </div> : ''}
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -135,31 +163,30 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Delete"
+          hoverable={true}
           position="bottom left"
-        />
-        {renderRemove ?
-        <Popup
-        trigger={
-          <Icon
-            id="remove-icon"
-            size="large"
-            name="remove circle outline"
-            onClick={(evt) => {
-              evt.preventDefault();
-              deleteFromCollection(singlecollection, this.props.story)}
+          style={style}
+        ><Popup.Header>Delete</Popup.Header>
+        </Popup>
+        {renderRemove ? (
+          <Popup
+            trigger={
+              <Icon
+                id="remove-icon"
+                size="large"
+                name="remove circle outline"
+                onClick={evt => {
+                  evt.preventDefault();
+                  deleteFromCollection(singlecollection, this.props.story);
+                }}
+              />
             }
-          />
-        }
-        size="mini"
-        on="hover"
-        content="Remove from collection"
-        position="bottom left"
-       />
-       : null}
-        {this.state.displaySearchFriends ? (
-          <SearchFriends allUsers={this.props.users} isShareArticle={true} storyId={this.props.story.id} friend={this.props.host} />
+            size="mini"
+            hoverable={true}
+            position="bottom left"
+            style={style}
+          ><Popup.Header>Remove from collection</Popup.Header>
+        </Popup>
         ) : null}
       </div>
     );
@@ -170,10 +197,11 @@ const mapState = state => ({
   singlecollection: state.singlecollection,
   user: state.user,
   users: state.searchFriends,
-  host: state.host
+  host: state.host,
+  content: state.content
 });
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     editContent(id, field, value) {
       const contentBody = { id, [field]: value };
@@ -184,7 +212,7 @@ const mapDispatch = (dispatch) => {
       dispatch(deleteOneContent(contentId));
     },
     deleteFromCollection(collection, content) {
-      dispatch(postRemoveFromCollection(collection, content))
+      dispatch(postRemoveFromCollection(collection, content));
     }
   };
 };

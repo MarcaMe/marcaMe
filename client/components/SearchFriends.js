@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Icon } from 'semantic-ui-react';
+import { Search, Progress, Dimmer } from 'semantic-ui-react';
 import _ from 'lodash';
 import history from '../history';
-import { ShareAContentThunk } from '../store';
+import { ShareAContentThunk, addBlankContent } from '../store';
 import { setTimeout } from 'core-js/library/web/timers';
 
 
@@ -14,7 +14,6 @@ class SearchFriends extends Component {
       isLoading: false,
       results: [],
       value: '',
-      showCheck: false
     };
     this.handleShare = this.handleShare.bind(this);
   }
@@ -56,14 +55,25 @@ class SearchFriends extends Component {
     const storyId = this.props.storyId;
     const userId = this.props.user.id;
     this.props.shareThunk(storyId, userId, friendId)
+    this.resetComponent();
 }
 
 
   render() {
     const { isLoading, value, results } = this.state;
     const isShareArticle = this.props.isShareArticle;
+    const style = {
+      borderRadius: 25,
+      padding: '1em',
+      opacity: 0.7
+    }
     if (isShareArticle){
    return (
+    <div>
+      {this.props.content.length && !Object.keys(this.props.content[0]).length ? (
+        <Dimmer style={style} active>
+          <Progress size="tiny" percent={100} inverted color="red" active>Sending message</Progress>
+        </Dimmer>) : null}
       <Search
         className="friends-search"
         placeholder="Search for friends"
@@ -74,13 +84,15 @@ class SearchFriends extends Component {
         results={results}
         value={value}
         resultRenderer={user => (
-          <div id="search-result">
-            {`${user.firstName} ${user.lastName}`}{' '}
+          <div key={user.id} id="search-result">
             <img id="search-result-img" src={user.profilePicture} />
-            { this.state.showCheck ?  <Icon name="check" color="red" /> : null }
+            <div id="search-result-name">
+            {`${user.firstName} ${user.lastName}`}{' '}
+            </div>
           </div>
         )}
         />
+        </div>
     )
   } else {
     return (
@@ -94,9 +106,11 @@ class SearchFriends extends Component {
     results={results}
     value={value}
     resultRenderer={user => (
-      <div id="search-result">
-        {`${user.firstName} ${user.lastName}`}{' '}
+      <div key={user.id} id="search-result">
         <img id="search-result-img" src={user.profilePicture} />
+        <div id="search-result-name">
+        {`${user.firstName} ${user.lastName}`}{' '}
+        </div>
       </div>
     )}
     />
@@ -107,15 +121,19 @@ class SearchFriends extends Component {
 
 const mapState = state => ({
   searchFriends: state.searchFriends,
-  user: state.user
+  user: state.user,
+  content: state.content
 });
 
 const mapDispatch = dispatch => {
   return {
-  shareThunk(storyId, userId, friendId){
-      dispatch(ShareAContentThunk(storyId, userId, friendId))
+    shareThunk(storyId, userId, friendId){
+        dispatch(addBlankContent({}));
+        setTimeout(() =>
+          dispatch(ShareAContentThunk(storyId, userId, friendId))
+      , 1000)
+    }
   }
-}
 }
 
 export default connect(mapState, mapDispatch)(SearchFriends);

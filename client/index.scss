@@ -67,9 +67,20 @@ body {
   .friends-search {
     margin-right: 1em;
   }
+  #search-result {
+    display: flex;
+  }
   #search-result-img {
-    width: 2em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
+    margin: 0;
+  }
+  #search-result-name {
+    display: flex;
+    margin-left: 1em;
+    flex-direction: column;
+    justify-content: center;  
   }
   #logo {
     width: 7em;

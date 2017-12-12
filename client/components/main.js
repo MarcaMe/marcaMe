@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,7 +12,12 @@ import {
   Divider,
   Dropdown
 } from 'semantic-ui-react';
-import { logout, fetchAllContentForUser, changeFilter, fetchAllUsers } from '../store';
+import {
+  logout,
+  fetchAllContentForUser,
+  changeFilter,
+  fetchAllUsers
+} from '../store';
 import history from '../history';
 import { ChangeTheme } from '../components';
 
@@ -31,7 +35,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchAllContentofUser();
-    this.props.getAllUsers()
+    this.props.getAllUsers();
   }
 
   render() {
@@ -44,6 +48,7 @@ class Main extends Component {
       users,
       removeFilter
     } = this.props;
+
     return (
       <div>
         <nav>
@@ -76,14 +81,24 @@ class Main extends Component {
                 />
               </Link>
               <Link to={`/profile/${user.id}`}>
-                <Icon name="user circle outline" size="big" />
+                <img id="search-result-img" src={user.profilePicture} />
               </Link>
               <Dropdown text={user.firstName}>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => {history.push('/user/edit')}}><Icon name="user" />Edit Account</Dropdown.Item>
+                  <Dropdown.Item
+                    onClick={() => {
+                      history.push('/user/edit');
+                    }}
+                  >
+                    <Icon name="user" />Edit Account
+                  </Dropdown.Item>
                   <Dropdown.Item>
                     <Modal
-                      trigger={<Dropdown.Item><Icon name="setting" /> Edit Settings</Dropdown.Item>}
+                      trigger={
+                        <Dropdown.Item>
+                          <Icon name="setting" /> Edit Settings
+                        </Dropdown.Item>
+                      }
                     >
                       <Header
                         icon="settings"
@@ -95,7 +110,7 @@ class Main extends Component {
                     </Modal>
                   </Dropdown.Item>
                   <Dropdown.Item onClick={handleClick}>
-                  <Icon name="log out" />
+                    <Icon name="log out" />
                     Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -120,16 +135,14 @@ class Main extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     user: state.user,
     isLoggedIn: !!state.user.id,
     theme: state.theme,
     filter: state.filter,
-    users: state.searchFriends
+    users: state.searchFriends,
+    content: state.content
   };
 };
 
