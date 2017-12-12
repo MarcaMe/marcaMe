@@ -48,6 +48,10 @@ class GeneralCardIcons extends React.Component {
 
   render() {
     const { renderRemove, deleteFromCollection, singlecollection } = this.props;
+    const style = {
+      borderRadius: 25,
+      padding: '1em',
+    }
     return (
       <div>
         <Popup
@@ -124,10 +128,22 @@ class GeneralCardIcons extends React.Component {
             />
           }
           size="mini"
-          on="hover"
-          content="Share to your friends!"
+          hoverable={true}
+          hideOnScroll
           position="bottom left"
-        />
+          style={style}
+        >
+        <Popup.Header>Send to your friends!</Popup.Header>
+       {this.state.displaySearchFriends ?
+        <div>
+          <br />
+          <SearchFriends
+            allUsers={this.props.users}
+            isShareArticle={true}
+            storyId={this.props.story.id}
+            friend={this.props.host} />
+        </div> : ''}
+        </Popup>
         <Popup
           trigger={
             <Icon
@@ -160,14 +176,6 @@ class GeneralCardIcons extends React.Component {
             on="hover"
             content="Remove from collection"
             position="bottom left"
-          />
-        ) : null}
-        {this.state.displaySearchFriends ? (
-          <SearchFriends
-            allUsers={this.props.users}
-            isShareArticle={true}
-            storyId={this.props.story.id}
-            friend={this.props.host}
           />
         ) : null}
       </div>
