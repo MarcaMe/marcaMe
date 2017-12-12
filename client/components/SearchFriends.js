@@ -65,6 +65,7 @@ class SearchFriends extends Component {
     const style = {
       borderRadius: 25,
       padding: '1em',
+      opacity: 0.7
     }
     if (isShareArticle){
    return (
