@@ -15,8 +15,8 @@ export class ContentHome extends Component {
   render() {
     const content = this.props.content.filter(singleContent => {
       if (singleContent.sharedFrom === 0 || !singleContent.sharedFrom){
-        return singleContent; 
-      } 
+        return singleContent;
+      }
     });
     const filter = this.props.filter;
     return  (
