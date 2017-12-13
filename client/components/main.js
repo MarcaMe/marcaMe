@@ -34,7 +34,9 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllContentofUser();
+    if (this.props.isLoggedIn) {
+      this.props.fetchAllContentofUser()
+    }
     this.props.getAllUsers();
   }
 
