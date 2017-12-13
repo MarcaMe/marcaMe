@@ -30,3 +30,4 @@ export { default as AllTags } from './AllTags';
 export { default as NotificationIcon } from './NotificationIcon';
 export { default as Notification } from './Notification';
 export { default as EditUser } from './EditUser';
+export { default as LandingPage } from './LandingPage'
