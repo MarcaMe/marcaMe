@@ -13,7 +13,7 @@ const defaultContent = [];
 const addContent = content => ({ type: ADD_CONTENT, content });
 const getContent = content => ({ type: GET_SINGLE_CONTENT, content });
 const getAllContent = content => ({ type: GET_ALL_CONTENT, content });
-export const addBlankContent = () => ({ type: ADD_BLANK_CONTENT })
+export const addBlankContent = loadingType => ({ type: ADD_BLANK_CONTENT, loadingType })
 
 const deleteSingleContent = contentId => ({
   type: DELETE_SINGLE_CONTENT,
@@ -83,9 +83,9 @@ export default function(state = defaultContent, action) {
     case GET_ALL_CONTENT:
       return action.content;
     case ADD_BLANK_CONTENT:
-      return [{}, ...state]
+      return [action.loadingType, ...state]
     case ADD_CONTENT:
-      return state.map(content => (Object.keys(content).length === 0 ? action.content : content))
+      return state.map(content => (Object.keys(content).length <= 1 ? action.content : content))
     case GET_SINGLE_CONTENT:
       return [action.content];
     case EDIT_SINGLE_CONTENT:
