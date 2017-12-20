@@ -13,7 +13,7 @@ import {
   Follower,
   SingleCollection,
   Notification,
-  EditUser,
+  EditUser
 } from './components';
 import { me } from './store';
 import ContentHome from './components/ContentHome';

@@ -11,6 +11,12 @@ body {
     display: block;
   }
 
+  #landing-page {
+    position: absolute;
+    left: 3%;
+    width: 45%;
+  }
+
   nav {
     display: flex;
     justify-content: space-between;
@@ -27,7 +33,7 @@ body {
   .edit-user-info{
     display: flex;
     justify-content: space-between;
-    width: 14em;  
+    width: 14em;
     margin-bottom: 1em;
   }
   #pic-upload-button{
@@ -41,7 +47,7 @@ body {
   #edit-user-text{
     display: flex;
     flex-direction: column;
-    justify-content: center;  
+    justify-content: center;
   }
   .edit-user-content {
     margin: 0;
@@ -80,7 +86,7 @@ body {
     display: flex;
     margin-left: 1em;
     flex-direction: column;
-    justify-content: center;  
+    justify-content: center;
   }
   #logo {
     width: 7em;
@@ -264,7 +270,7 @@ body {
 
   #login-container {
     position: absolute;
-    left: 35%;
+    left: 55vw;
     top: 20%;
     width: 400px;
     height: 250px;
