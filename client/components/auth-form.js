@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import { Button, Form, Icon } from 'semantic-ui-react'
+import { Button, Form, Icon, Image } from 'semantic-ui-react'
 
 
 /**
@@ -12,8 +12,10 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
+    <div id="landing-page">
+    <Image  src="/images/landingpage.jpg" />
     <div id="login-container">
-    <h2>{displayName}</h2>
+    <h2 style={{textAlign: 'center'}}>{displayName}</h2>
       <Form id="login" onSubmit={handleSubmit} name={name} >
         <Form.Field>
           <label>Email</label>
@@ -43,6 +45,7 @@ const AuthForm = (props) => {
           </Button>
         </a>
       </div>
+    </div>
     </div>
   )
 }
