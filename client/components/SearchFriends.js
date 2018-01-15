@@ -70,7 +70,7 @@ class SearchFriends extends Component {
     if (isShareArticle){
    return (
     <div>
-      {this.props.content.length && !Object.keys(this.props.content[0]).length ? (
+      {this.props.content.length && this.props.content[0].loadingType === 'sendMessage' ? (
         <Dimmer style={style} active>
           <Progress size="tiny" percent={100} inverted color="red" active>Sending message</Progress>
         </Dimmer>) : null}
@@ -128,7 +128,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     shareThunk(storyId, userId, friendId){
-        dispatch(addBlankContent({}));
+        dispatch(addBlankContent({loadingType: 'sendMessage'}));
         setTimeout(() =>
           dispatch(ShareAContentThunk(storyId, userId, friendId))
       , 1000)

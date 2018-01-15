@@ -98,7 +98,7 @@ const mapState = state => ({
 });
 const mapDispatch = dispatch => ({
   handleSubmit(evt, userId, tags, url) {
-    dispatch(addBlankContent({}));
+    dispatch(addBlankContent({loadingType: 'addingContent'}));
     evt.preventDefault();
     let newTags = tags.join(',');
     dispatch(postContentThunk({ userId, tags: newTags, url }));

@@ -50,7 +50,7 @@ export class FullCard extends Component {
     const { connectDragSource, isDragging, renderRemove } = this.props;
     return connectDragSource(
       <div>
-      {!this.props.story.title ?
+      {this.props.story.loadingType === 'addingContent' &&
         <Card
         style={{
           display: 'flex',
@@ -68,7 +68,8 @@ export class FullCard extends Component {
         <Card.Content >
         <Loader active inline="centered" />
         </Card.Content>
-        </Card> :
+        </Card>}
+      { this.props.story.id &&
         <Card
           style={{
             width: '300px',
@@ -99,7 +100,8 @@ export class FullCard extends Component {
               handleTags={this.handleTagsComponent}
             />
           </Card.Content>
-        </Card>}
+        </Card>
+      }
       </div>
     );
   }
