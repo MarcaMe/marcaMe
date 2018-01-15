@@ -51,14 +51,14 @@ describe('Content Reducer', () => {
     expect(content(initialState, action)).to.have.length(2)
   })
   it('should add an empty object when type is ADD_BLANK_CONTENT', () => {
-    const action = { type: 'ADD_BLANK_CONTENT'}
+    const action = { type: 'ADD_BLANK_CONTENT', loadingType: {loadingType: 'addingContent'} }
     expect(content(initialState, action).length).to.equal(1)
     expect(content(initialState, action)[0]).to.be.an('object')
-    expect(Object.keys(content(initialState, action)[0]).length).to.equal(0)
+    expect(Object.keys(content(initialState, action)[0]).length).to.equal(1)
   })
   it('should add content when type is ADD_CONTENT but only after adding ADD_BLANK_CONTENT', () => {
     const action = { type: 'ADD_CONTENT', content: { id: 3, title: 'Adding Content' }}
-    const blankContentAdded = content(initialState, { type: 'ADD_BLANK_CONTENT'})
+    const blankContentAdded = content(initialState, { type: 'ADD_BLANK_CONTENT', loadingType: {loadingType: 'addingContent'} })
     expect(content(initialState, action).length).to.equal(0)
     expect(content(blankContentAdded, action).length).to.equal(1)
     expect(content(blankContentAdded, action)[0].id).to.equal(3)
