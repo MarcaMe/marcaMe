@@ -12,10 +12,14 @@ You can gather your favorite articles, videos, and other internet content in one
 ### To install the marca chrome extension:
 
 • Open Chrome settings -> More Tools -> Extensions
+
 • Check "Developer Mode" box
+
 • Click "Load unpacked extension" and select the chrome extension folder in the project repo
+
 • Go add your favorite content from the web
 
 
 ### Brought to you by the Marca team:
+
 Kenny Diaz, Philip Fahim, Sol Park, Xi Qin
