@@ -7,14 +7,14 @@ You can gather your favorite articles, videos, and other internet content in one
 
 ### To get started with this repo:
 
-1. Yarn install (or just Yarn), or npm install
+• Yarn install (or just Yarn), or npm install
 
 ### To install the marca chrome extension:
 
-2. Open Chrome settings -> More Tools -> Extensions
-3. Check "Developer Mode" box
-4. Click "Load unpacked extension" and select the chrome extension folder in the project repo
-5. Go add your favorite content from the web
+• Open Chrome settings -> More Tools -> Extensions
+• Check "Developer Mode" box
+• Click "Load unpacked extension" and select the chrome extension folder in the project repo
+• Go add your favorite content from the web
 
 
 ### Brought to you by the Marca team:
