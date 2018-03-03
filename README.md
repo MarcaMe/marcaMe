@@ -8,7 +8,7 @@ You can gather your favorite articles, videos, and other internet content in one
 
 1. Yarn install (or just Yarn), or npm install
 
-To install the marca chrome extension:
+### To install the marca chrome extension:
 
 2. Open Chrome settings -> More Tools -> Extensions
 3. Check "Developer Mode" box
